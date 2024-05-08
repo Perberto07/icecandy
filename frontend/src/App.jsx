@@ -12,7 +12,7 @@ import Order from "./component/Order";
 import Addorder from "./component/Addorder";
 import Editorder from "./component/Editorder";
 import Transaction from "./component/Transaction";
-import Sidebar from "./Sidebar";
+
 
 const Customerpage = () => {
     return (

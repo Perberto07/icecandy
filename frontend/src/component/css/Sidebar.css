@@ -1,0 +1,33 @@
+
+.sidebar {
+    width: 200px;
+    height: 100vh; /* Set the height to 100% of the viewport height */
+    background-color: #721414;
+    color: #fff;
+  }
+  
+  .sidebar nav {
+    padding-top: 20px;
+  }
+  
+  .sidebar ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .sidebar ul li {
+    padding: 10px 0;
+  }
+  
+  .sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+  }
+  
+  .sidebar ul li a i {
+    margin-right: 10px;
+  }
+  
