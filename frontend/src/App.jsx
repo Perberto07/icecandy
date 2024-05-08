@@ -11,6 +11,8 @@ import Editproduct from "./component/Editproduct";
 import Order from "./component/Order";
 import Addorder from "./component/Addorder";
 import Editorder from "./component/Editorder";
+import Transaction from "./component/Transaction";
+import Sidebar from "./Sidebar";
 
 const Customerpage = () => {
     return (
@@ -46,6 +48,18 @@ const Orderpage = () => {
         </>
     );
 };
+const Transactionpage = () => {
+    return (
+        <>
+        
+            <Routes>
+                <Route path='/' element={<Transaction/>}></Route>
+
+            </Routes>
+        </>
+    );
+};
+
 
 
 
@@ -60,6 +74,7 @@ function App() {
                     <Route path='/Home' element={<Home/>}></Route>
                     <Route path='/Customer/*' element={<Customerpage/>}></Route>
                     <Route path='/Product/*' element={<Productpage/>}></Route>
+                    <Route path='/Transaction/*' element={<Transactionpage/>}></Route>
                     <Route path='/Order/*' element={<Orderpage/>}></Route>
                 </Routes>
             </div>

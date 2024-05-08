@@ -1,7 +1,7 @@
 
 function Editproduct() {
   return (
-    <div>updateproduct</div>
+    <div>Edit product</div>
   )
 }
 
