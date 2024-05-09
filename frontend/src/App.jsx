@@ -12,7 +12,9 @@ import Order from "./component/Order";
 import Addorder from "./component/Addorder";
 import Editorder from "./component/Editorder";
 import Transaction from "./component/Transaction";
-
+import Deletecustomer from "./component/Deletecustomer";
+import Deleteproduct from "./component/Deleteproduct";
+import Deleteorder from "./component/Deleteorder";
 
 const Customerpage = () => {
     return (
@@ -21,6 +23,7 @@ const Customerpage = () => {
                 <Route path='/' element={<Customer/>}></Route>
                 <Route path='/Addcustomer' element={<Addcustomer/>}></Route>
                 <Route path='/Editcustomer' element={<Editcustomer/>}></Route>
+                <Route path='/Deletecustomer' element={<Deletecustomer/>}></Route>
             </Routes>
         </>
     );
@@ -33,6 +36,7 @@ const Productpage = () => {
                 <Route path='/' element={<Product/>}></Route>
                 <Route path='/Addproduct' element={<Addproduct/>}></Route>
                 <Route path='/Editproduct' element={<Editproduct/>}></Route>
+                <Route path='/Deleteproduct' element={<Deleteproduct/>}></Route>
             </Routes>
         </>
     );
@@ -44,6 +48,7 @@ const Orderpage = () => {
                 <Route path='/' element={<Order/>}></Route>
                 <Route path='/Addorder' element={<Addorder/>}></Route>
                 <Route path='/Editorder' element={<Editorder/>}></Route>
+                <Route path='/Deleteorder' element={<Deleteorder/>}></Route>
             </Routes>
         </>
     );

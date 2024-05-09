@@ -1,7 +1,8 @@
+import './css/content.css'
 
 function Editorder() {
   return (
-    <div>updateorder</div>
+    <div className='Content'>updateorder</div>
   )
 }
 
