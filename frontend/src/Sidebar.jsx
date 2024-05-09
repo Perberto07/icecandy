@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import './component/css/Sidebar.css'
+import Header from "./Header";
 
 function Sidebar() {
   return (
     <>
-      
+      <Header></Header>
         <div className="sidebar">
           <nav>
             <ul>
