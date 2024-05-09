@@ -1,16 +1,23 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import './css/Login.css'
+
 function Login() {
   return (
-    <>
-      <div>
-        <input type="text"></input>
-        <input type="password"></input>
+    <div className="login-container">
+      <h2>Login</h2>
+      <div className="input-container">
+        <input type="text" placeholder="Username" className="input-field" />
       </div>
-      <div>
-        <Link to="/Home"><button>login</button></Link>
+      <div className="input-container">
+        <input type="password" placeholder="Password" className="input-field" />
       </div>
-    </>
-  )
+      <div className="button-container">
+        <Link to="/Home">
+          <button className="login-button">Login</button>
+        </Link>
+      </div>
+    </div>
+  );
 }
 
-export default Login
+export default Login;
