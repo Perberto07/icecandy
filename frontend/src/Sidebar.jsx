@@ -14,7 +14,7 @@ function Sidebar() {
               <li><Link to="/Product"> <i className="fas fa-plus"></i> Product</Link></li>
               <li><Link to="/Order"> <i className="fas fa-handshake"></i> Order</Link></li>
               <li><Link to="/Transaction"> <i className="fas fa-money-bill"></i> Transaction</Link></li>
-              <li><Link to="/Settings"> <i className="fas fa-cog"></i> Settings</Link></li>
+              <li><Link to="/Transaction/Settings"> <i className="fas fa-cog"></i> Settings</Link></li>
               <li><Link to="/"> <i className="fas fa-sign-out-alt"></i> Logout</Link></li>
             </ul>
           </nav>

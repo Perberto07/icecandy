@@ -15,6 +15,7 @@ import Transaction from "./component/Transaction";
 import Deletecustomer from "./component/Deletecustomer";
 import Deleteproduct from "./component/Deleteproduct";
 import Deleteorder from "./component/Deleteorder";
+import Settings from "./component/Settings";
 
 const Customerpage = () => {
     return (
@@ -59,7 +60,8 @@ const Transactionpage = () => {
         
             <Routes>
                 <Route path='/' element={<Transaction/>}></Route>
-
+                <Route path='/Transaction' element={<Transaction/>}></Route>
+                <Route path='/Settings' element={<Settings/>}></Route>
             </Routes>
         </>
     );

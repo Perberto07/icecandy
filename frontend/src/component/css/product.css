@@ -1,0 +1,15 @@
+.productlist{
+    width: 30%;
+    height: auto;
+}
+.product{
+    width: 100%;
+    height: auto;  
+}
+.option{
+    position:fixed ;
+    left: 50%;
+    top: 50%;
+}
+
+  

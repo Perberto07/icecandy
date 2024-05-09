@@ -1,8 +1,10 @@
 
 .sidebar {
+    position: fixed;
     width: 200px;
+    top: 0px;
     height: 100vh; /* Set the height to 100% of the viewport height */
-    background-color: #721414;
+    background-color: #530404;
     color: #fff;
   }
   
