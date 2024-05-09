@@ -6,7 +6,13 @@ function Deletecustomer() {
     <>
     <Sidebar/>
     <div className="Content">
-        Deletecustomer
+    <div className='mb-2'>
+          <label htmlFor="username">Search Customer: </label>
+          <input
+            type="search"
+            id="username"
+            placeholder='Enter Customer' />
+        </div>
     </div>
     </>
   )

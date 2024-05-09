@@ -4,10 +4,16 @@ import './css/content.css'
 function Deleteorder() {
   return (
     <>
-    <Sidebar/>
-    <div className="Content">
-        Deleteorder
-    </div>
+      <Sidebar />
+      <div className="Content">
+        <div className='mb-2'>
+          <label htmlFor="username">Search: </label>
+          <input
+            type="search"
+            id="username"
+            placeholder='Enter Customer or store' />
+        </div>
+      </div>
     </>
   )
 }
