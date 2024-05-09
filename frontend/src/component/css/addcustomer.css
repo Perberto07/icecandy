@@ -1,0 +1,29 @@
+.Content2{
+    margin-top: 10%;
+    border-style: double;
+    border-color: black;
+    border-width: 2px;
+    margin-left: 20%;
+    margin-right: 20%;
+    
+}
+.one{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 5%;
+}
+.two{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.three{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 5%;
+}
+.Content2 hr{
+    margin: 2% 40%;
+}
