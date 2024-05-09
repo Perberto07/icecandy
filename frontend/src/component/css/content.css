@@ -1,8 +1,11 @@
 .Content{
     background: #2f0ab575;
     position: fixed;
+    background-image: url('../images/icebg.jpg');
+    background-size: cover;
     top: 130px;
     bottom: 0px;
     right: 0px;
     left: 208px;
+    overflow: scroll;
 }

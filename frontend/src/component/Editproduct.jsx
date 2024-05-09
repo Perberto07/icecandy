@@ -1,7 +1,8 @@
+import './css/content.css'
 
 function Editproduct() {
   return (
-    <div>Edit product</div>
+    <div className="Content">Edit product</div>
   )
 }
 

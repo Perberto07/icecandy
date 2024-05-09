@@ -1,6 +1,8 @@
+import './css/content.css'
+
 function Editcustomer() {
   return (
-    <div>updatecustomer</div>
+    <div className='Content'>updatecustomer</div>
   )
 }
 

@@ -1,6 +1,8 @@
+import './css/content.css'
+
 function Addorder() {
   return (
-    <div>addorder</div>
+    <div className='Content'>addorder</div>
   )
 }
 
