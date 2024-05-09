@@ -11,9 +11,12 @@
     align-items: center;
     background-color:dodgerblue;
     color: #013220;
-    padding: 10px 100px;
+    padding-left: 0px;
+    padding-right: 90px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     position: fixed;
-    margin-right: 20px;
+    left: 208px;
     top: 0;
     width: calc(100% - 100px); /* Adjust width to leave space for the sidebar */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add shadow effect */
