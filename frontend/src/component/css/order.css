@@ -1,20 +1,8 @@
-.productlist{
-    display: flex;
-    align-self: baseline;
-    width: 30%;
-    height: auto;
-}
-.product{
-    width: 100%;
-    height: auto;  
-}
-.option{
-    position:fixed ;
-    left: 65%;
+.option {
     top: 40%;
-    margin-top: 20px;
-}
-
+    left: 53%;
+    
+  }
   
   .option h2,
   .option li {
@@ -37,7 +25,7 @@
   
   .option h2 a:hover,
   .option li a:hover {
-    background-color: #172dac;
+    background-color: #333;
     color: #fff;
   }
   
@@ -45,6 +33,4 @@
   .option li i {
     margin-right: 10px;
   }
-  
-
   
