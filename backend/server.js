@@ -32,6 +32,8 @@ db.connect((err) => {
 });
 
 
+
+
 const verifyUser = (req, res, next) => {
     const token = req.cookies.token;
     if(!token){
