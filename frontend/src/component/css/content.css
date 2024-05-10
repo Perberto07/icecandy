@@ -6,6 +6,7 @@
     bottom: 0px;
     right: 0px;
     left: 208px;
+    display: flex;
     overflow-y: scroll;
 }
 

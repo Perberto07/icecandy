@@ -1,11 +1,19 @@
 .container {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
     
+  }
+  .customer{
+    display: flex;
+  justify-self: center;
+  align-items: center;
   }
   
   .button {
     display: inline-block;
-    margin: 10px;
+    margin: 20px;
     padding: 10px 20px;
     background-color: #007bff;
     color: #fff;

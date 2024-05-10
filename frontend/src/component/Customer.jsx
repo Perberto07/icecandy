@@ -9,12 +9,14 @@ const CustomerComponent = () => {
     <Sidebar/>
     <div className='Content'>
     <div className="container">
-      <h2>
+      <div className='customer'>
+      <ul><li><h2>
         <Link to="/Customer" className="button">
           <i className="icon fas fa-info-circle"></i>Customer
         </Link>
-      </h2>
-      <ul>
+      </h2></li>
+     
+      
         <li>
           <Link to="/Customer/Addcustomer" className="button">
             <i className="icon fas fa-plus"></i>Add Customer
@@ -31,6 +33,7 @@ const CustomerComponent = () => {
           </Link>
         </li>
       </ul>
+      </div>
     </div>
     </div>
     </>

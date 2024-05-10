@@ -5,7 +5,7 @@ function Settings() {
   return (
     <>
     <Sidebar/>
-    <div className="Settings">
+    <div className="">
         <li>manage account</li>
     </div>
     </>
