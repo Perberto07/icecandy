@@ -32,8 +32,6 @@ db.connect((err) => {
 });
 
 
-
-
 const verifyUser = (req, res, next) => {
     const token = req.cookies.token;
     if(!token){
@@ -55,7 +53,7 @@ app.get('/login', verifyUser, (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-    const sql = "SELECT * FROM login WHERE UserName=? AND Password = ?";
+    const sql = "SELECT * FROM user WHERE Username=? AND Password = ?";
     const values = [
         req.body.username, 
         req.body.password,
