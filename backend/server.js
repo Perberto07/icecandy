@@ -55,24 +55,28 @@ app.get('/login', verifyUser, (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-    const sql = "SELECT * FROM user WHERE Username=? AND Password = ?";
-    const values = [
-        req.body.username, 
-        req.body.password,
-    ];
+    const sql = "SELECT * FROM user WHERE Username=?";
+    const values = [req.body.username];
+    
     db.query(sql, values, (err, data) => { 
-        if (err) return res.json("error");
-        if(data.length > 0){
-            const name = data[0].name;
-            const token = jwt.sign({name}, "our-jsonwebtoken-secret-key", {expiresIn: '1d'});
-            res.cookie('token', token);
-            return res.json({Status: "Success"})
-        }
-        else{
-            return res.json({Message: "No record"});
+        if (err) return res.json({ Status: "Error", Message: "Database error" });
+
+        if (data.length === 0) {
+            return res.json({ Status: "Error", Message: "Wrong username" });
+        } else {
+            const user = data[0];
+            if (user.Password === req.body.password) {
+                const name = user.name;
+                const token = jwt.sign({ name }, "our-jsonwebtoken-secret-key", { expiresIn: '1d' });
+                res.cookie('token', token);
+                return res.json({ Status: "Success" });
+            } else {
+                return res.json({ Status: "Error", Message: "Wrong password" });
+            }
         }
     });
 });
+
 
 
 

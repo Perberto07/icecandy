@@ -1,5 +1,5 @@
-import './css/Login.css'
-import  { useState } from 'react';
+import './css/Login.css';
+import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -10,6 +10,7 @@ function Login() {
   const [error, setError] = useState('');
 
   axios.defaults.withCredentials = true;
+
   function handleSubmit(event) {
     event.preventDefault();
     console.log("Submitting login request with username:", username);
@@ -17,15 +18,15 @@ function Login() {
     axios.post('http://localhost:8080/login', { username, password })
       .then(res => {
         if (res.data.Status === "Success") {
-          navigate('/home')
-          console.log("Success")
+          navigate('/home');
+          console.log("Success");
         } else {
-          alert(res.data.Message)
+          setError(res.data.Message); // Display error to the user
         }
       })
       .catch(err => {
         console.error("Login failed:", err);
-        setError('Failed to login. Please try again.',error); // Display error to the user
+        setError('Failed to login. Please try again.'); // Display error to the user
       });
   }
 
@@ -35,7 +36,6 @@ function Login() {
         <div className="login-container">
           <h2>Login</h2>
           <form onSubmit={handleSubmit}>
-
             <div className="input-container">
               <input
                 type="text"
@@ -45,16 +45,16 @@ function Login() {
                 onChange={e => setUsername(e.target.value)} 
                 className="input-field" />
             </div>
-
             <div className="input-container">
               <input
-                type="password" // Changed type to password
+                type="password"
                 id="password"
                 placeholder='Enter Password'
                 value={password}
                 onChange={e => setPassword(e.target.value)} 
                 className="input-field" />
             </div>
+            {error && <div className="error-message">{error}</div>}
             <div className="button-container">
               <button>Login</button>
             </div>
@@ -66,4 +66,3 @@ function Login() {
 }
 
 export default Login;
-
