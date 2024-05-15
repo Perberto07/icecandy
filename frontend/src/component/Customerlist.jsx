@@ -17,8 +17,8 @@ function Customerlist() {
     return (
         <>
         <Sidebar/>
-            <div className='Content'>
-                <div className="container">
+        
+        <div className='Content'>
 
                     <div className='col-md-9 bg-dark bg-opacity-100   d-flex justify-content-center align-items-center'>
                         <div className='w-200 h-90 bg-white rounded p-4'>
@@ -47,8 +47,8 @@ function Customerlist() {
                             </table>
                         </div>
                     </div>
-                </div>
-                </div>
+                    </div>
+                    
             </>
 
             );
