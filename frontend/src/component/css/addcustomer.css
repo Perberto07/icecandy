@@ -1,29 +1,72 @@
-.Content2{
-    margin-top: 10%;
+.Content2 {
+    margin-top: 10%; /* Adjust margin-top if needed */
     border-style: double;
     border-color: black;
     border-width: 2px;
-    margin-left: 20%;
-    margin-right: 20%;
-    
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%; /* Adjust width as needed */
+    padding: 40px;
+    box-sizing: border-box; /* Include padding and border in element's total width */
 }
-.one{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 5%;
+
+
+.container {
+    text-align: center;
 }
-.two{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+form {
+    margin-top: 20px;
 }
-.three{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-bottom: 5%;
+
+.form-group {
+    margin-bottom: 20px;
 }
-.Content2 hr{
-    margin: 2% 40%;
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+.Content2 button {
+    display: block;
+    margin: 0 auto; /* Center the button */
+    margin-top: 15px; ; 
+    padding: 15px 30px;
+    background-color: #0234ff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.Content2 button:hover {
+    background-color: #00447b;
 }
