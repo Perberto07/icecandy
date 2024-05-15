@@ -39,7 +39,7 @@ function Addcustomer() {
             />
           </div>
           <button>
-            sent
+            send
           </button>
         </div>
       </div>

@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: May 15, 2024 at 06:16 AM
+-- Host: 127.0.0.1
+-- Generation Time: May 15, 2024 at 07:56 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -200,7 +200,7 @@ INSERT INTO `customer` (`CustomerNO`, `Name`, `Address`, `ContactPerson`, `Cellp
 (158, 'Uy Silog', '60 A. Pablo St Karuhatan Valenzuela', 'Sarah Jane Dorado', 9171775226),
 (159, 'Glycas Store', '28 Karuhatan Rd Valenzuela ', 'Grace Rina', 9215413865),
 (160, 'Albert  Store', '59 Karuhatan Rd Karuhatan Valenzuela', 'Albert ', 9296419415),
-(161, '', '', '', 0),
+(161, 'Gracious AG Trading ', 'B39 L6 Makabud St Brgy 179 Amparo Subd Caloocan', 'Joei Aseron/Maricris Aseron', 9510811682),
 (162, 'KJC Store', '281 Mc Arthur Valenzuela', 'Lorna', 9222047738),
 (163, 'Grocery Hub ', '247 Mc Arthur Highway Karuhatan Valenzuela', 'Narcisa Santos', 9422928275),
 (164, 'Jimilas Catering', 'SM VAlenzuela Karuhatan', 'Rhey', 9174451846),
