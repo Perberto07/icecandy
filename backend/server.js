@@ -88,6 +88,14 @@ app.get("/customer", (req, res)=>{
      })
 })
 
+app.get("/product", (req, res)=>{
+    const sql = "SELECT * FROM product";
+     db.query(sql, (err, data)=>{
+        if(err) return res.json("error");
+        return res.json(data);
+     })
+})
+
 
 
 const port = 8080;

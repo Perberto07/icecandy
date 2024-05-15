@@ -5,22 +5,18 @@ import Sidebar from '../Sidebar';
 
 
 
-
-
-
-function Customerlist() {
-    const [Customer, setCustomer] = useState([]);
+function Productlist() {
+    const [Product, setProduct] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/customer')
-            .then(res => setCustomer(res.data))
+        axios.get('http://localhost:8080/product')
+            .then(res => setProduct(res.data))
             .catch(err => console.error(err));
     }, []);
 
     return (
         <>
         <Sidebar/>
-        
         
         <div className='Content'>
 
@@ -30,33 +26,28 @@ function Customerlist() {
 
                                 <thead>
                                     <tr>
-                                        <th>Customer NO.</th>
-                                        <th>Name</th>
-                                        <th>Address</th>
-                                        <th>Contact person</th>
-                                        <th>CellPhone Number</th>
+                                        <th>Product No.</th>
+                                        <th>Product Flavor</th>
+                                        <th>Price</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {Customer.map((Customer, index) => (
+                                    {Product.map((Product, index) => (
                                         <tr key={index}>
-                                            <td>{Customer.CustomerNO}</td>
-                                            <td>{Customer.Name}</td>
-                                            <td>{Customer.Address}</td>
-                                            <td>{Customer.ContactPerson}</td>
-                                            <td>{Customer.CellphoneNO}</td>
+                                            <td>{Product.ProductNO}</td>
+                                            <td>{Product.ProductFlavor}</td>
+                                            <td>{Product.Price}</td>
                                         </tr>
                                     ))}
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                       
                     </div>
-                 
+                    
             </>
 
             );
 }
 
-            export default Customerlist;
+            export default Productlist;

@@ -17,6 +17,7 @@ import Deleteproduct from "./component/Deleteproduct";
 import Deleteorder from "./component/Deleteorder";
 import Settings from "./component/Settings";
 import Customerlist from "./component/Customerlist";
+import Productlist from "./component/Productlist";
 
 const Customerpage = () => {
     return (
@@ -37,6 +38,7 @@ const Productpage = () => {
         <>
             <Routes>
                 <Route path='/' element={<Product/>}></Route>
+                <Route path='/Productlist' element={<Productlist/>}></Route>
                 <Route path='/Addproduct' element={<Addproduct/>}></Route>
                 <Route path='/Editproduct' element={<Editproduct/>}></Route>
                 <Route path='/Deleteproduct' element={<Deleteproduct/>}></Route>
