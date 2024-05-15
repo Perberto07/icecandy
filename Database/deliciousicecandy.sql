@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 15, 2024 at 03:10 AM
+-- Host: localhost:3306
+-- Generation Time: May 15, 2024 at 06:16 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -209,7 +209,37 @@ INSERT INTO `customer` (`CustomerNO`, `Name`, `Address`, `ContactPerson`, `Cellp
 (167, 'Waboos Eatery', '14 P Gomez St. Maysan Valenzuela', 'Baby', 9291356704),
 (168, 'Tm Myer Grocery', 'M Tonco St Maysan Valenzuela', 'Tm Myer', 9062640746),
 (169, 'Mila Store', '23 Susana St Anville Subdivision Maysan Valenzuela', 'Mila', 9052862977),
-(170, 'Irene Gutierrez Store', '403 Dulong Tangke St cor F Dela Cruz Malinta Valen', 'Irene Gutierrezv', 9339601035);
+(170, 'Irene Gutierrez Store', '403 Dulong Tangke St cor F Dela Cruz Malinta Valen', 'Irene Gutierrezv', 9339601035),
+(171, 'Ruben Chua Store', '22 E Llenado Cmpd Maysan Rd Malinta Valenzuela', 'Ruben Chua', 9395757791),
+(172, 'Ric Arellano Store', '381 Mc Arthur Hi Way Malinta Valenzuela', 'Ric Arellano', 9053279148),
+(173, 'Sweet Cravings Chocolate Store', '768 A Pablo St Malinta Valenzuela', 'Lourdeliza Maquirang', 9456043621),
+(174, 'Leolens Canteen', 'Maysan Rd. Malinta Valenzuela nr CMIC', 'Evelyn', 9304347692),
+(175, 'Ngani Baya', '6 Danding Bldg CJ Santos St. Malinta VAlenzuela', 'Maricon Sosa', 9199141153),
+(176, 'AMRC Pharmacy', '10 Balubaran Malinta Valenzuela', 'Len', 9174781328),
+(177, 'Arevallo Store', '37 J San MIguel St Balubaran Valenzuela', 'mark', 9456688737),
+(178, 'Gladiz Joy Cantor Store', '46 Doneza St Balubaran Malinta Valenzuela', 'Gladiz Joy ', 9078288905),
+(179, 'Cathy Store', '808 A Pablo St Malinta Valenzuela', 'Erosaly', 9122751369),
+(180, 'Alpha Care ', '15 Gov I Santiago St Malinta VAlenzuela', 'Jane', 9999980468),
+(181, 'Laarni Nartea', '1370 Gov I Santiago St Malinta Valenzuela', 'Laarni', 9212933409),
+(182, 'Mike Carenderia', '427 Santos CMPD. Malinta Bukid Valenzuela', 'Elizabeth Manaligod', 9611251543),
+(183, 'Enerflex Gym', 'St Louis Cmpd Malinta Valenzuela', 'Joepet Abrigo', 9219959109),
+(184, 'Kyle Store Store', '776 M. H. Del Pilar St Arkong Bato Valenzuela (nr ', 'Kyle', 9391468118),
+(185, 'Yenzky Store', '1092 MH Del Pilar St Arkong Bato Valenzuela', 'Karen Amuran', 9208136683),
+(186, 'Lynnie Store', '452 Dela Cruz Cmpd Paso De Blas Valenzuela', 'Louie Quibete', 9382642983),
+(187, 'Alven Store', '39 B Dela Cruz Cmpd Paso De Blas Valenzuela', 'Alven Paham', 9515494222),
+(188, 'Mary Beth Taton', '788 Door 1 San Jose Cmpd Paso De Blas Valenzuela ', 'Mary Beth', 93985643763),
+(189, 'JB Medical', '024-A G Lazaro St. Dalandanan Valenzuela', 'Roselen Amazona', 9326227518),
+(190, 'Samantha Store', '60 M Rincon Valenzuela', 'Anthony Santos', 9155649370),
+(191, 'Rajia Store', '24 Rincon Rd cor Pascual St Rincon, Valenzuela', 'Rowena ', 9167525176),
+(192, 'Candy Store', '16 E Antonio St Rincon Valenzuela', 'Candy', 9331661982),
+(193, 'Zeny Store', '16 B Antonio St Rincon Valenzuela', 'Joni Villa', 9393091739),
+(194, 'Diana Dinglasan ', '11 St Joseph STM LFS Vienta Reales Valenzuela', 'Diana', 9274479417),
+(195, 'Franze Bakery', '59 c. Molina ventiriales Valenzuela city', 'Ferm Gamilong', 9174766060),
+(196, 'Jeremy Store', '219 T Santiago St Viente Reales Valenzuela City', 'Daisy Oranga', 9479202798),
+(197, 'Complete Line Pharmacy', '284 T. Santiago St. Viente Reales Valenzuela', 'Irene Mendoza', 9178831318),
+(198, 'Kristel Tanteo Store', '414 Becona Cmpd Galas St Bignay, Valenzuela', 'Kristel', 9289794599),
+(199, 'Mayen Store', '60 Pasolo Rd Valenzuela', 'Mayen', 9166705491),
+(200, 'Charicar Store', '141 J Mercado Cmpd Pasolo Valenzueala', 'Charito', 96452328743);
 
 -- --------------------------------------------------------
 
@@ -285,7 +315,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `CustomerNO` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=171;
+  MODIFY `CustomerNO` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
 
 --
 -- AUTO_INCREMENT for table `product`
