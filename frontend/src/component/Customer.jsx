@@ -11,7 +11,7 @@ const CustomerComponent = () => {
     <div className="container">
       <div className='customer'>
       <ul><li><h2>
-        <Link to="/Customer" className="button">
+        <Link to="/Customerlist" className="button">
           <i className="icon fas fa-info-circle"></i>Customer
         </Link>
       </h2></li>
