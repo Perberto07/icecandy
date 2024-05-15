@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2024 at 02:45 PM
+-- Generation Time: May 15, 2024 at 03:10 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -179,7 +179,37 @@ INSERT INTO `customer` (`CustomerNO`, `Name`, `Address`, `ContactPerson`, `Cellp
 (137, 'Cherry Olaviaga Escarpe', '69 Samonte APT Gen Luis St. Bagbaguin Valenzuela', 'Madam Cherry', 9952803275),
 (138, 'Dulce Bumatay Store', '351 F Francisco Sr Parada Valenzuela', 'Dulce', 9985801996),
 (139, 'Divielyn Store', '233 S De Guzman Parada Valenzuela', 'Divielyn', 9381880073),
-(140, 'Allen & Ken Bakery', '273 S De Guzman Impong Juana Parada Valenzuela', 'Joy Recto', 9333638015);
+(140, 'Allen & Ken Bakery', '273 S De Guzman Impong Juana Parada Valenzuela', 'Joy Recto', 9333638015),
+(141, 'ARV Store', '11 P De Guzman Cor Tata Erro St Parada Valenzuela', 'Vilma', 9505947617),
+(142, 'Juvy Store', '87 Captain Cruz Parada Valenzuela', 'Juvy', 9393531898),
+(143, 'Rovirich', '6120 Gen T De Leon Valenzuela', 'Lucina Pineda', 9236031663),
+(144, 'Maleiden Store', '2063 Gen T De Leon Valenzuela', 'Maleiden', 9479791991),
+(145, 'Gain Drugstore', '4030 Gen T De Leon Valenzuela', 'Joecy Miralin', 9222298088),
+(146, '786/110 Store', '2133 A Angeles St Fortune Village Gen T De Leon Va', 'Madel Segosio', 9477113409),
+(147, 'Artienda Store', '2208 Salvador St Fortune Village Gen T De Leon Val', 'Mary Grace De Leon', 9178384277),
+(148, 'RM Store', '140 Rd Diam St Gen T De Leon Valenzuela', 'Rosemarie Cortez', 9224792098),
+(149, 'Jess Lene Mdse ', '6144 Gen T De Leon Valenzuela', 'Jessie Liwanag', 9503914904),
+(150, 'Ervin Eatery', '6029 Diverside Home Gen T De Leon Valenzuela', 'Rodalyn Taguifranca', 9283098214),
+(151, 'Bogart Carwash', '108 P Valenzuela cor Deato St. Valenzuela City', 'Sir Arnel', 9999767688),
+(152, 'Tapsi Nyu To - Pond Valenzuela', '2F Pond Bldg, 2 Phil Gun Club St Marulas Valenzuel', 'Jay Rosario', 9153416797),
+(153, 'Lhadel Store', '69 Engracio St Elysian Marulas Valenzuela', 'Myrla', 9299604349),
+(154, 'Mobear Store', '68 Violeta St Happysite Subd Marulas Valenzuela', 'Leunora Mendoza', 9056797138),
+(155, 'Cathy Store', '19 Rd 5 San Miguel St Marulas Valenzuela', 'Bong Guzman', 9266768245),
+(156, 'Rose Store', '4 Fausto St Manotoc Subdivision Marulas Valenzuela', 'Faith Marie Solano', 9157946402),
+(157, 'Buena Fortuna Cafe', '34 Pio Valenzuela St Marulas Valenzuela', 'Divina Cabrera', 9952813148),
+(158, 'Uy Silog', '60 A. Pablo St Karuhatan Valenzuela', 'Sarah Jane Dorado', 9171775226),
+(159, 'Glycas Store', '28 Karuhatan Rd Valenzuela ', 'Grace Rina', 9215413865),
+(160, 'Albert  Store', '59 Karuhatan Rd Karuhatan Valenzuela', 'Albert ', 9296419415),
+(161, '', '', '', 0),
+(162, 'KJC Store', '281 Mc Arthur Valenzuela', 'Lorna', 9222047738),
+(163, 'Grocery Hub ', '247 Mc Arthur Highway Karuhatan Valenzuela', 'Narcisa Santos', 9422928275),
+(164, 'Jimilas Catering', 'SM VAlenzuela Karuhatan', 'Rhey', 9174451846),
+(165, 'Ronnie Barbershop', '10 Ilang Ilang St Karuhatan Valenzuela', 'Regina Daliwa', 9050614582),
+(166, 'Am Baltazar', 'St Louis University Valenzuela', 'Alexander Baltazar ', 9276228912),
+(167, 'Waboos Eatery', '14 P Gomez St. Maysan Valenzuela', 'Baby', 9291356704),
+(168, 'Tm Myer Grocery', 'M Tonco St Maysan Valenzuela', 'Tm Myer', 9062640746),
+(169, 'Mila Store', '23 Susana St Anville Subdivision Maysan Valenzuela', 'Mila', 9052862977),
+(170, 'Irene Gutierrez Store', '403 Dulong Tangke St cor F Dela Cruz Malinta Valen', 'Irene Gutierrezv', 9339601035);
 
 -- --------------------------------------------------------
 
@@ -255,7 +285,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `CustomerNO` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
+  MODIFY `CustomerNO` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=171;
 
 --
 -- AUTO_INCREMENT for table `product`
