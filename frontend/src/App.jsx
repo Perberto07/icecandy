@@ -16,12 +16,14 @@ import Deletecustomer from "./component/Deletecustomer";
 import Deleteproduct from "./component/Deleteproduct";
 import Deleteorder from "./component/Deleteorder";
 import Settings from "./component/Settings";
+import Customerlist from "./component/Customerlist";
 
 const Customerpage = () => {
     return (
         <>
             <Routes>
                 <Route path='/' element={<Customer/>}></Route>
+                <Route path='/Customerlist' element={<Customerlist/>}></Route>
                 <Route path='/Addcustomer' element={<Addcustomer/>}></Route>
                 <Route path='/Editcustomer' element={<Editcustomer/>}></Route>
                 <Route path='/Deletecustomer' element={<Deletecustomer/>}></Route>
