@@ -80,18 +80,21 @@ app.post('/login', (req, res) => {
 
 
 
-app.post('/create', (req, res) =>{
-    const sql = "INSERT INTO newsletter (`newsTitle`, `information`, `bibleverse`) VALUES ?";
-    const values = [
-        [req.body.newsTitle,
-        req.body.information,
-        req.body.bibleverse]
-    ]
-    db.query(sql, [values], (err, data) => {
-        if (err) return res.status(500).json({ error: err.message });
+app.get("/customer", (req, res)=>{
+    const sql = "SELECT * FROM Customer";
+     db.query(sql, (err, data)=>{
+        if(err) return res.json("error");
         return res.json(data);
-    });    
-});
+     })
+})
+
+app.get("/product", (req, res)=>{
+    const sql = "SELECT * FROM product";
+     db.query(sql, (err, data)=>{
+        if(err) return res.json("error");
+        return res.json(data);
+     })
+})
 
 
 
