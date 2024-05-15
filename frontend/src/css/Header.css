@@ -2,17 +2,16 @@
     width: 100px; 
     height: auto; 
     border-radius: 150%;
-
-}
-
-.header {
+  }
+  
+  .header {
     display: flex;
-    justify-content: center; /* Center the content horizontally */
+    justify-content: space-between; /* Adjust spacing between logo, header text, and date/time */
     align-items: center;
-    background-color:dodgerblue;
+    background-color: dodgerblue;
     color: #013220;
-    padding-left: 0px;
-    padding-right: 90px;
+    padding-left: 20px; /* Adjust padding for better alignment */
+    padding-right: 20px; /* Adjust padding for better alignment */
     padding-top: 10px;
     padding-bottom: 10px;
     position: fixed;
@@ -20,16 +19,31 @@
     top: 0;
     width: calc(100% - 100px); /* Adjust width to leave space for the sidebar */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add shadow effect */
-}
-
-.header a {
-    color: #790b0b;
-    text-decoration: none;
-    font-size: 20px;
-    font-weight: bold;
-    margin-right: 20px; /* Add margin between logo and text */
-}
-.header h1 {
+  }
+  
+  .header h1 {
     font-size: 40px; /* Adjust font size as needed */
-}
-
+    margin-right: 20px; /* Add margin between logo and text */
+  }
+  
+  /* Style for the date and time container */
+.date-time-container {
+    font-size: 130%;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-right: 12%;
+  }
+  
+  /* Style for the date */
+  .current-date {
+    font-weight: bold; /* Make the date bold */
+  }
+  
+  /* Style for the time */
+  .current-time {
+    font-weight: bold; /* Make the time bold */
+    margin-top: 5px; /* Add some space between the date and time */
+  }
+  
