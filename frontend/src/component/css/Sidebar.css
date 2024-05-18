@@ -1,35 +1,47 @@
-
 .sidebar {
-    position: fixed;
-    width: 200px;
-    top: 0px;
-    height: 100vh; /* Set the height to 100% of the viewport height */
-    background-color: #fe0c0c;
-    color: #fff;
-  }
-  
-  .sidebar nav {
-    padding-top: 20px;
-  }
-  
-  .sidebar ul {
-    list-style-type: none;
-    padding-left: 0;
-  }
-  
-  .sidebar ul li {
-    padding: 10px 0;
-  }
-  
-  .sidebar ul li a {
-    color: #fff;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    padding-left: 20px;
-  }
-  
-  .sidebar ul li a i {
-    margin-right: 10px;
-  }
-  
+  position: fixed;
+  width: 200px; /* Keep the sidebar width unchanged */
+  top: 0;
+  height: 100vh; /* Set the height to 100% of the viewport height */
+  background-color: #fe0c0c;
+  color: #fff;
+}
+
+.sidebar nav {
+  padding-top: 20px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.sidebar ul li {
+  padding: 10px 0; /* Increase vertical padding for larger buttons */
+}
+
+.sidebar ul li a {
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 20px 30px; /* Keep padding for wider buttons */
+  transition: background-color 0.3s ease; /* Add transition for smooth color change */
+  border-radius: 5px; /* Add border radius for rounded corners */
+  font-size: 18px; /* Keep font size */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Keep font family */
+  margin-bottom: 5px; /* Reduce space between buttons */
+}
+
+.sidebar ul li a i {
+  margin-right: 15px; /* Keep the margin between icon and text unchanged */
+}
+
+.sidebar ul li a:hover {
+  background-color: rgba(0, 0, 0, 0.1); /* Darken the background color on hover */
+  color: #fff; /* Change text color to white on hover */
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Add a subtle shadow on hover */
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease; /* Add smooth transition effects */
+}
+
+
