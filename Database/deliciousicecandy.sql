@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 15, 2024 at 07:56 AM
+-- Host: 127.0.0.1:3307
+-- Generation Time: May 18, 2024 at 02:24 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -239,7 +239,27 @@ INSERT INTO `customer` (`CustomerNO`, `Name`, `Address`, `ContactPerson`, `Cellp
 (197, 'Complete Line Pharmacy', '284 T. Santiago St. Viente Reales Valenzuela', 'Irene Mendoza', 9178831318),
 (198, 'Kristel Tanteo Store', '414 Becona Cmpd Galas St Bignay, Valenzuela', 'Kristel', 9289794599),
 (199, 'Mayen Store', '60 Pasolo Rd Valenzuela', 'Mayen', 9166705491),
-(200, 'Charicar Store', '141 J Mercado Cmpd Pasolo Valenzueala', 'Charito', 96452328743);
+(200, 'Charicar Store', '141 J Mercado Cmpd Pasolo Valenzueala', 'Charito', 96452328743),
+(201, 'Unicel Store', '193 Caloong 2 Valenzuela', 'Lucila', 9232073593),
+(202, 'Owie Store', '86 Caloong 2 Valenzuela', 'Jocelyn A. Badilla', 9555684911),
+(203, 'Four Sister', '9T Santiago, Canumay West', 'Jennifer Patiam', 9286338347),
+(204, 'Xiaoqiang Gen. Mdse', '55 T Santiago St. Canumay West', 'Roselle Huang', 9296434767),
+(205, 'King Claud Store', 'P83 Faustino St  Punturin Valenzuela', 'Angelice Marie Galang', 9273130837),
+(206, 'Jean Pineda Store', '6 Kabesang Porong St Punturin Valenzuela', 'Jean Pineda', 9217842197),
+(207, 'Eunora Store', '1048 Que Grande St Ugong Valenzuela', 'Nestor Angeles', 9662133859),
+(208, 'Jianlee Store', '2093 Lamesa St Ugong Valenzuela', 'Menchie Mulawin', 9475159135),
+(209, 'CSG_PHDA Store', '1013 Que Grande St Ugong Valenzuela', 'Rovelyn Marquez Bautista', 9771581255),
+(210, 'Parats Bulalohan', '4026  Que Grande St Ugong Valenzuela', 'Jennifer Espiransate', 9494306919),
+(211, 'Argio Lugawan', '2083 Apolonia St Mapulang Lupa, Valenzuela', 'Primitiva Molina', 908785638),
+(212, 'Calypso', 'Mapulang Lupa Valenzuela', 'Calypso', 9501447329),
+(213, 'Lenar', '257 Sampaguita St. Tagalag Valenzuela ', 'Narlita A. Pajamustan', 9353894519),
+(214, 'Lorina Abendan', '201 Tagalag Valenzuela ', 'Lorina D. Abendan', 9324387351),
+(215, 'Princess Lorenze Bakeshop', '301 MH Del Pilar Malanday Valenzuela', 'Mila', 9482171475),
+(216, 'Kaunlaran', 'Langaray cor Labahita St. Longos Malabon', 'Mina Perez', 9154716443),
+(217, 'Romulus Bakery', 'Blk 3 Lot 62 Langaray St. Longos, Malabon', 'Liza', 9266328870),
+(218, 'Nora Store', '25 Bustamante St Tenajeros Malabon', 'Nora', 9392390171),
+(219, 'Edith Store', '172 MH Del Pilar St Tenajeros Malabon', 'Editha M. Yanga', 9310551041),
+(220, 'Angel Store', 'Blk 5 Lot 6 SMC HOA Catmon Malabon', 'Angel', 9104170615);
 
 -- --------------------------------------------------------
 
@@ -315,7 +335,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `CustomerNO` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
+  MODIFY `CustomerNO` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=221;
 
 --
 -- AUTO_INCREMENT for table `product`
