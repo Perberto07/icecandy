@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3307
--- Generation Time: May 18, 2024 at 02:24 AM
+-- Host: 127.0.0.1
+-- Generation Time: May 18, 2024 at 08:28 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -300,7 +300,7 @@ INSERT INTO `product` (`ProductNO`, `ProductFlavor`, `Price`) VALUES
 
 CREATE TABLE `user` (
   `ID` int(7) NOT NULL,
-  `Username` varchar(20) NOT NULL,
+  `Username` varchar(50) NOT NULL,
   `Password` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -309,7 +309,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`ID`, `Username`, `Password`) VALUES
-(0, 'perberto@gmail.com', 'perberto07');
+(0, 'perberto', 'perberto07'),
+(1, 'jhdllpnd', 'jhudiell14'),
+(2, 'loeydriyan', 'noych01'),
+(3, 'shardeep', 'janjan08');
 
 --
 -- Indexes for dumped tables
@@ -326,6 +329,12 @@ ALTER TABLE `customer`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`ProductNO`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
