@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2024 at 08:28 AM
+-- Generation Time: May 18, 2024 at 08:50 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -310,7 +310,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`ID`, `Username`, `Password`) VALUES
 (0, 'perberto', 'perberto07'),
-(1, 'jhdllpnd', 'jhudiell14'),
+(1, 'jhdllpnd', 'jhudielle14'),
 (2, 'loeydriyan', 'noych01'),
 (3, 'shardeep', 'janjan08');
 
