@@ -1,5 +1,5 @@
 import './css/Login.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -8,6 +8,7 @@ function Login() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const [error, setError] = useState('');
+  const [errorVisible, setErrorVisible] = useState(false); // State to track error visibility
 
   axios.defaults.withCredentials = true;
 
@@ -22,18 +23,27 @@ function Login() {
           console.log("Success");
         } else {
           setError(res.data.Message); // Display error to the user
+          setErrorVisible(true); // Set error visibility to true
         }
       })
       .catch(err => {
         console.error("Login failed:", err);
         setError('Failed to login. Please try again.'); // Display error to the user
+        setErrorVisible(true); // Set error visibility to true
       });
   }
+
+  // Clear error and reset error visibility
+  useEffect(() => {
+    if (!error) {
+      setErrorVisible(false); // Set error visibility to false when error is cleared
+    }
+  }, [error]);
 
   return (
     <>
       <div className="loginbg">
-        <div className="login-container">
+        <div className={`login-container ${errorVisible ? 'error-visible' : ''}`}>
           <h2>Login</h2>
           <form onSubmit={handleSubmit}>
             <div className="input-container">

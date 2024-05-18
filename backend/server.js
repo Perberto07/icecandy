@@ -55,17 +55,35 @@ app.get('/login', verifyUser, (req, res) => {
 });
 
 app.post('/login', (req, res) => {
+    const { username, password } = req.body;
+
+    // Check if username and password are provided
+    if (!username && !password) {
+        return res.json({ Status: "Error", Message: "Username and Password are required" });
+    }
+
+    // Check if username is provided
+    if (!username) {
+        return res.json({ Status: "Error", Message: "Username is required" });
+    }
+
+    // Check if password is provided
+    if (!password) {
+        return res.json({ Status: "Error", Message: "Please enter your password" });
+    }
+
+    // Proceed with login authentication
     const sql = "SELECT * FROM user WHERE Username=?";
-    const values = [req.body.username];
+    const values = [username];
     
     db.query(sql, values, (err, data) => { 
         if (err) return res.json({ Status: "Error", Message: "Database error" });
 
         if (data.length === 0) {
-            return res.json({ Status: "Error", Message: "Wrong username" });
+            return res.json({ Status: "Error", Message: "Invalid username" });
         } else {
             const user = data[0];
-            if (user.Password === req.body.password) {
+            if (user.Password === password) {
                 const name = user.name;
                 const token = jwt.sign({ name }, "our-jsonwebtoken-secret-key", { expiresIn: '1d' });
                 res.cookie('token', token);
@@ -76,6 +94,8 @@ app.post('/login', (req, res) => {
         }
     });
 });
+
+
 
 
 
