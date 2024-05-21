@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import logo from './images/icecandy.jpg'; // Import your logo image
 import './css/Header.css';
 
@@ -39,6 +39,8 @@ function Header() {
         <p className="current-date-time" dangerouslySetInnerHTML={{ __html: getCurrentDateTime() }}></p>
       </div>
     </div>
+
+
   );
 }
 

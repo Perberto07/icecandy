@@ -1,7 +1,8 @@
 .sidebar {
   position: fixed;
   width: 200px; /* Keep the sidebar width unchanged */
-  top: 0;
+  top:120px;
+  left: 0px;
   height: 100vh; /* Set the height to 100% of the viewport height */
   background-color: #fe0c0c;
   color: #fff;
@@ -17,7 +18,7 @@
 }
 
 .sidebar ul li {
-  padding: 10px 0; /* Increase vertical padding for larger buttons */
+  padding: 7px 0; /* Increase vertical padding for larger buttons */
 }
 
 .sidebar ul li a {
