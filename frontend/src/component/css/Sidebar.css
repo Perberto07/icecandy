@@ -44,23 +44,7 @@
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Add a subtle shadow on hover */
   transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease; /* Add smooth transition effects */
 } 
-.Home{
+.icon{
   width: 25%;
 }
-.Customer{
-  width: 25%;
-}
-.Product{
-  width: 25%;
-}
-.Order{
-  width: 25%;
-}
-.Transaction{
-  width: 25%;
-}
-.Logout{
-  width: 25%;
-}
-
 

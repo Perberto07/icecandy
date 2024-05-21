@@ -1,0 +1,45 @@
+.navigation {
+    background-color: #f8f9fa; /* Optional: Background color for the navigation bar */
+    padding: 10px; /* Optional: Padding around the navigation bar */
+  }
+  
+  .navi {
+    display: flex;
+    justify-content: center; /* Center the nav bar contents */
+  }
+  
+  .nav {
+    list-style-type: none; /* Remove bullet points */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    display: flex; /* Make the list items align horizontally */
+  }
+  
+  .nav li {
+    margin-right: 10px; /* Space between list items */
+  }
+  
+  .nav li:last-child {
+    margin-right: 0; /* Remove margin from the last item */
+  }
+  
+  .nav a {
+    text-decoration: none; /* Remove underline from links */
+    color: #000; /* Optional: Text color for links */
+    display: flex; /* Align image and text horizontally */
+    align-items: center; /* Vertically center the content */
+  }
+  
+  .nav a.active {
+    font-weight: bold; /* Optional: Style for the active link */
+  }
+  
+  .nav img {
+    margin-right: 5px; /* Space between image and text */
+  }
+  
+
+.icon1{
+    width: 15%;
+  }
+ 

@@ -1,17 +1,10 @@
-.icecandy-logo {
-    width: 100px; 
-    height: auto; 
-    margin-left: 40px;
-    border-radius: 150%;
-  }
-  
   .header {
     display: flex;
-    justify-content:space-between; /* Adjust spacing between logo, header text, and date/time */
+    justify-content: space-between;
     background-color: dodgerblue;
     color: #013220;
     padding-left: 20px; /* Adjust padding for better alignment */
-    padding-right: 20px; /* Adjust padding for better alignment */
+    padding-right: 10; /* Adjust padding for better alignment */
     padding-top: 10px;
     padding-bottom: 10px;
     position: fixed;
@@ -22,8 +15,15 @@
   }
   
   .icecandy-text-container {
+    display: flex;
     font-size: 20px; /* Adjust font size as needed */
     left: 0px;
+  }
+  .icecandy-logo {
+    width: 100px; 
+    height: auto; 
+    margin-left: 40px;
+    border-radius: 150%;
   }
   
   /* Style for the date and time container */
@@ -31,11 +31,8 @@
     font-size: 130%;
     font-family: 'Roboto', sans-serif;
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    padding-right: 12%;
+    padding-right: 5%;
   }
-  
   /* Style for the date */
   .current-date {
     font-weight: bold; /* Make the date bold */
@@ -44,6 +41,14 @@
   /* Style for the time */
   .current-time {
     font-weight: bold; /* Make the time bold */
-    margin-top: 5px; /* Add some space between the date and time */
+    
+  }
+  .icon{
+    margin-top: 20px;
+   
+  }
+  .icon2{
+    width: 35px;
+    margin: 20px;
   }
   

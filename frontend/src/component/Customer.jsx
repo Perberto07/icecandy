@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import './css/customer.css'; // Make sure to import your CSS file
 import './css/content.css';
