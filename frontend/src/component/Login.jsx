@@ -2,6 +2,7 @@ import './css/Login.css';
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import ADMIN from './images/admin.png';
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -44,7 +45,11 @@ function Login() {
     <>
       <div className="loginbg">
         <div className={`login-container ${errorVisible ? 'error-visible' : ''}`}>
-          <h2>Login</h2>
+          <div className='ADMIN'>
+          <img src={ADMIN} alt="admin" className="admin" />
+          <h2 className='log'>Login</h2>
+          </div>
+          
           <form onSubmit={handleSubmit}>
             <div className="input-container">
               <input
@@ -66,7 +71,7 @@ function Login() {
             </div>
             {error && <div className="error-message">{error}</div>}
             <div className="button-container">
-              <button>Login</button>
+              <button className='login-button'>Login</button>
             </div>
           </form>
         </div>
