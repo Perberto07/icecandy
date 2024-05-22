@@ -31,20 +31,9 @@
   margin-bottom: 5px;
 }
 
-<<<<<<< HEAD
-.sidebar ul li a i {  
-  margin-right: 10px; /* Keep the margin between icon and text unchanged */
-}
-
-.sidebar ul li a:hover {
-  background-color: rgba(0, 0, 0, 0.1); /* Darken the background color on hover */
-  color: #fff; /* Change text color to white on hover */
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Add a subtle shadow on hover */
-  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease; /* Add smooth transition effects */
-} 
 .icon3{
   width: 25%;
-=======
+}
 .sidebar ul li a img {
   margin-right: 15px;
   width: 25%;
@@ -61,5 +50,5 @@
   color: #fff;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
   transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
->>>>>>> 64a79f25aa832902bbf29a5efdad9ae2bd9b1016
+
 }
