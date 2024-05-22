@@ -35,7 +35,7 @@
 }
 
 .sidebar ul li a i {  
-  margin-right: 15px; /* Keep the margin between icon and text unchanged */
+  margin-right: 10px; /* Keep the margin between icon and text unchanged */
 }
 
 .sidebar ul li a:hover {
@@ -44,7 +44,7 @@
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Add a subtle shadow on hover */
   transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease; /* Add smooth transition effects */
 } 
-.icon{
+.icon3{
   width: 25%;
 }
 

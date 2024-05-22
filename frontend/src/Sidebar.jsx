@@ -15,12 +15,12 @@ function Sidebar() {
       <div className="sidebar">
         <nav>
           <ul>
-            <li><Link to="/Home" className="active"><img src={Home} alt="Home" className="icon" /> Home</Link></li>
-            <li><Link to="/Customer"><img src={Customer} alt="customer" className="icon" /> Customer</Link></li>
-            <li><Link to="/Product"><img src={Product} alt="product" className="icon" />Product</Link></li>
-            <li><Link to="/Order"><img src={Order} alt="order" className="icon" /> Order</Link></li>
-            <li><Link to="/Transaction"><img src={Transaction} alt="transaction" className="icon" />Transaction</Link></li>
-            <li><Link to="/"><img src={Logout} alt="Logout" className="icon" />Logout</Link></li>
+            <li><Link to="/Home" className="active"><img src={Home} alt="Home" className="icon3" /> Home</Link></li>
+            <li><Link to="/Customer"><img src={Customer} alt="customer" className="icon3" /> Customer</Link></li>
+            <li><Link to="/Product"><img src={Product} alt="product" className="icon3" />Product</Link></li>
+            <li><Link to="/Order"><img src={Order} alt="order" className="icon3" /> Order</Link></li>
+            <li><Link to="/Transaction"><img src={Transaction} alt="transaction" className="icon3" />Transaction</Link></li>
+            <li><Link to="/"><img src={Logout} alt="Logout" className="icon3" />Logout</Link></li>
           </ul>
         </nav>
       </div>

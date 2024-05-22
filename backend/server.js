@@ -73,22 +73,36 @@ app.post('/login', (req, res) => {
     }
 
     // Proceed with login authentication
-    const sql = "SELECT * FROM user WHERE Username=?";
-    const values = [username];
-    
-    db.query(sql, values, (err, data) => { 
+    const sqlUser = "SELECT * FROM user WHERE Username=?";
+    const sqlPassword = "SELECT * FROM user WHERE Password=?";
+    const valuesUser = [username];
+    const valuesPassword = [password];
+
+    db.query(sqlUser, valuesUser, (err, dataUser) => {
         if (err) return res.json({ Status: "Error", Message: "Database error" });
 
-        if (data.length === 0) {
-            return res.json({ Status: "Error", Message: "Invalid username" });
+        if (dataUser.length === 0) {
+            // No user found with the given username, check password
+            db.query(sqlPassword, valuesPassword, (err, dataPassword) => {
+                if (err) return res.json({ Status: "Error", Message: "Database error" });
+
+                if (dataPassword.length === 0) {
+                    // No user found with the given password
+                    return res.json({ Status: "Error", Message: "Invalid username and password" });
+                } else {
+                    // Username is incorrect, but the password exists
+                    return res.json({ Status: "Error", Message: "Invalid username" });
+                }
+            });
         } else {
-            const user = data[0];
+            const user = dataUser[0];
             if (user.Password === password) {
                 const name = user.name;
                 const token = jwt.sign({ name }, "our-jsonwebtoken-secret-key", { expiresIn: '1d' });
                 res.cookie('token', token);
                 return res.json({ Status: "Success" });
             } else {
+                // Password does not match
                 return res.json({ Status: "Error", Message: "Wrong password" });
             }
         }
