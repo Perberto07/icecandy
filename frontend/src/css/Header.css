@@ -17,18 +17,18 @@
   .icecandy-text-container {
     display: flex;
     font-size: 20px; /* Adjust font size as needed */
-    left: 0px;
+    margin-left: 0%;
   }
   .icecandy-logo {
     width: 100px; 
     height: auto; 
-    margin-left: 40px;
+    margin-left: 15px;
     border-radius: 150%;
   }
   
   /* Style for the date and time container */
 .date-time-container {
-    font-size: 130%;
+    font-size: 150%;
     font-family: 'Roboto', sans-serif;
     display: flex;
     padding-right: 5%;
