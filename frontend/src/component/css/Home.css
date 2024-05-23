@@ -1,58 +1,45 @@
-/* Content area styles */
-.content {
-  margin-left: 200%; /* Same as sidebar width */
-  padding: 20px;
-}
-
-.content h1 {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.content p {
-  font-size: 16px;
-  margin-bottom: 30px;
-}
-
-.content ul {
-  padding-left: 0;
-}
-
-.content ul li {
-  margin-bottom: 10px;
-}
-
-.content ul li a {
-  color: #333;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-}
-
-.content ul li a:hover {
-  background-color: #f0f0f0;
-}
-
-.content ul li a img {
-  margin-right: 10px;
-  width: 20px;
-}
-
-/* Responsive styles */
-@media (max-width: 768px) {
-  .sidebar {
-    width: 150px;
+.navigation {
+    background-color: #f8f9fa; /* Optional: Background color for the navigation bar */
+    padding: 10px; /* Optional: Padding around the navigation bar */
   }
-
-  .content {
-    margin-left: 150px;
+  
+  .navi {
+    display: flex;
+    justify-content: center; /* Center the nav bar contents */
   }
-
-  .content h1 {
-    font-size: 20px;
+  
+  .nav {
+    list-style-type: none; /* Remove bullet points */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    display: flex; /* Make the list items align horizontally */
   }
-
-  .content p {
-    font-size: 14px;
+  
+  .nav li {
+    margin-right: 10px; /* Space between list items */
   }
-} 
+  
+  .nav li:last-child {
+    margin-right: 0; /* Remove margin from the last item */
+  }
+  
+  .nav a {
+    text-decoration: none; /* Remove underline from links */
+    color: #000; /* Optional: Text color for links */
+    display: flex; /* Align image and text horizontally */
+    align-items: center; /* Vertically center the content */
+  }
+  
+  .nav a.active {
+    font-weight: bold; /* Optional: Style for the active link */
+  }
+  
+  .nav img {
+    margin-right: 5px; /* Space between image and text */
+  }
+  
+
+.icon1{
+    width: 15%;
+  }
+ 
