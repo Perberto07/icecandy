@@ -130,6 +130,16 @@ app.get("/product", (req, res)=>{
      })
 })
 
+app.delete('/productdelete/:id', (req, res) =>{
+    const sql = "DELETE from product WHERE ID = ?";
+    const id = req.params.id;
+
+    db.query(sql, [id], (err, data) => {
+        if (err) return res.json("Error executing SQL query:", err);
+            return res.json(data);
+    });    
+});
+
 
 
 const port = 8080;

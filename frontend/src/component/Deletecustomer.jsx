@@ -11,6 +11,15 @@ function Deletecustomer() {
           .catch(err => console.error(err));
   }, []);
 
+  const handleDelete = async (id) => {
+    try {
+        await axios.delete('http://localhost:8080/customerdelete/' + id)
+        window.location.reload()
+    } catch (err) {
+        console.log(err);
+    }
+}
+
   return (
       <>
       <Sidebar/>
@@ -29,6 +38,7 @@ function Deletecustomer() {
                                       <th>Address</th>
                                       <th>Contact person</th>
                                       <th>CellPhone Number</th>
+                                      <th>delete</th>
                                   </tr>
                               </thead>
                               <tbody>
@@ -39,6 +49,11 @@ function Deletecustomer() {
                                           <td>{Customer.Address}</td>
                                           <td>{Customer.ContactPerson}</td>
                                           <td>{Customer.CellphoneNO}</td>
+                                          <td>
+                                            <button className="" onClick={e => handleDelete(Customer.ID)}>
+                                              delete
+                                            </button>
+                                            </td>
                                       </tr>
                                   ))}
                               </tbody>
