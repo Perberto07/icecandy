@@ -1,5 +1,4 @@
 import Sidebar from '../Sidebar'
-import './css/content.css'
 
 function Deleteproduct() {
   return (

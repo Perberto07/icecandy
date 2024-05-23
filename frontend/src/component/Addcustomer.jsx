@@ -1,4 +1,3 @@
-import './css/content.css';
 import Sidebar from "../Sidebar";
 import './css/addcustomer.css';
 

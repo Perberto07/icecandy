@@ -44,14 +44,33 @@ function Header() {
         <h1>Delicious Ice Candy</h1>
       </div>
 
-      <div className='icon'>
-        <Link to="/Home" className="active"><img src={home} alt="Home" className="icon2" /></Link>
-        <Link to="/Customer"><img src={Customer} alt="customer" className="icon2" /></Link>
-        <Link to="/Product"><img src={Product} alt="product" className="icon2" /></Link>
-        <Link to="/Order"><img src={Order} alt="order" className="icon2" /></Link>
-        <Link to="/Transaction"><img src={Transaction} alt="Transaction" className="icon2" /></Link>
-        <Link to="/"><img src={Logout} alt="Logout" className="icon2" /></Link>
+      <div className='icons'>
+        <Link to="/Home" className="icon-container">
+          <img src={home} alt="Home" className="icon2" />
+          <span className="icon-text">Home</span>
+        </Link>
+        <Link to="/Customer" className="icon-container">
+          <img src={Customer} alt="customer" className="icon2" />
+          <span className="icon-text">Customer</span>
+        </Link>
+        <Link to="/Product" className="icon-container">
+          <img src={Product} alt="product" className="icon2" />
+          <span className="icon-text">Product</span>
+        </Link>
+        <Link to="/Order" className="icon-container">
+          <img src={Order} alt="order" className="icon2" />
+          <span className="icon-text">Order</span>
+        </Link>
+        <Link to="/Transaction" className="icon-container">
+          <img src={Transaction} alt="Transaction" className="icon2" />
+          <span className="icon-text">Transaction</span>
+        </Link>
+        <Link to="/" className="icon-container">
+          <img src={Logout} alt="Logout" className="icon2" />
+          <span className="icon-text">Logout</span>
+        </Link>
       </div>
+
 
       <div className="date-time-container">
         <p className="current-date-time" dangerouslySetInnerHTML={{ __html: getCurrentDateTime() }}></p>

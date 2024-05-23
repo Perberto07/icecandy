@@ -43,11 +43,41 @@
     font-weight: bold; /* Make the time bold */
     
   }
-  .icon{
+  .icons{
     margin-top: 20px;
+    display: flex;
   }
-  .icon2{
-    width: 30px;
+  .icon-container {
+    position: relative;
     margin: 10px;
+    display: inline-block;
   }
+  
+  .icon2 {
+    width: 30px;
+  }
+  
+  .icon-text {
+    visibility: hidden;
+    opacity: 0;
+    width: max-content;
+    background-color: black;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom:5%; /* Position above the icon */
+    left: 50%;
+    transform: translateX(-50%);
+    transition: opacity 0.3s;
+  }
+  
+  .icon-container:hover .icon-text {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  
   

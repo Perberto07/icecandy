@@ -1,4 +1,3 @@
-import './css/content.css'
 import './css/addorder.css'
 import Sidebar from "../Sidebar"
 

@@ -1,36 +1,35 @@
+.Content {
+  padding: 20px;
+}
+
 .option {
-    top: 40%;
-    left: 53%;
-    
-  }
-  
-  .option h2,
-  .option li {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .option h2 a,
-  .option li a {
-    display: block;
-    text-decoration: none;
-    color: #333;
-    padding: 10px 20px;
-    margin-bottom: 10px;
-    border: 2px solid #333;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-  }
-  
-  .option h2 a:hover,
-  .option li a:hover {
-    background-color: #333;
-    color: #fff;
-  }
-  
-  .option h2 i,
-  .option li i {
-    margin-right: 10px;
-  }
-  
+  margin: 20px;
+}
+
+.option h2, .option ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.option h2 {
+  margin-bottom: 10px;
+}
+
+.option li {
+  margin: 10px 0;
+}
+
+.option a {
+  text-decoration: none;
+  color: #000;
+  display: flex;
+  align-items: center;
+}
+
+.option a i {
+  margin-right: 8px;
+}
+
+.option a:hover {
+  color: #007BFF;
+}

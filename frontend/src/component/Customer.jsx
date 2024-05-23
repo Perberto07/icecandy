@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import './css/customer.css'; // Make sure to import your CSS file
-import './css/content.css';
+import './css/customer.css';
+
 import Sidebar from '../Sidebar';
 
 const CustomerComponent = () => {
@@ -12,7 +12,7 @@ const CustomerComponent = () => {
           <div className='customer'>
             <div className="link-container">
               <Link to="/Customer/Customerlist" className="button">
-                <i className="icon fas fa-info-circle"></i>Customer
+                <i className="icon fas fa-list"></i>Customer List
               </Link>
             </div>
             <div className="link-container">
@@ -22,12 +22,12 @@ const CustomerComponent = () => {
             </div>
             <div className="link-container">
               <Link to="/Customer/Editcustomer" className="button">
-                <i className="icon fas fa-handshake"></i>Edit Customer
+                <i className="icon fas fa-edit"></i>Edit Customer
               </Link>
             </div>
             <div className="link-container">
               <Link to="/Customer/Deletecustomer" className="button">
-                <i className="icon fas fa-handshake"></i>Delete Customer
+                <i className="icon fas fa-trash"></i>Delete Customer
               </Link>
             </div>
           </div>
