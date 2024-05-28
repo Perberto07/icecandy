@@ -27,31 +27,34 @@ function Customerlist() {
         <>
             <Sidebar />
             <div className='Content' ref={contentRef}>
-                <div className='w-200 h-90 bg-white rounded p-4'>
-                    <table className='table'>
-                        <thead>
-                            <tr>
-                                <th>Customer NO.</th>
-                                <th>Name</th>
-                                <th>Address</th>
-                                <th>Contact person</th>
-                                <th>CellPhone Number</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {customers.map((customer, index) => (
-                                <tr key={index}>
-                                    <td>{customer.CustomerNO}</td>
-                                    <td>{customer.Name}</td>
-                                    <td>{customer.Address}</td>
-                                    <td>{customer.ContactPerson}</td>
-                                    <td>{customer.CellphoneNO}</td>
+                <div className='col-md-9 bg-dark bg-opacity-100 d-flex justify-content-center align-items-center'>
+                    <div className='customer-list-container'> {/* Apply the container class */}
+                        <h2 className='customer-list-heading'>Customer List</h2> {/* Apply the heading class */}
+                        <table className='customer-list-table'> {/* Apply the table class */}
+                            <thead>
+                                <tr>
+                                    <th>Customer NO.</th>
+                                    <th>Name</th>
+                                    <th>Address</th>
+                                    <th>Contact person</th>
+                                    <th>CellPhone Number</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {customers.map((customer, index) => (
+                                    <tr key={index}>
+                                        <td>{customer.CustomerNO}</td>
+                                        <td>{customer.Name}</td>
+                                        <td>{customer.Address}</td>
+                                        <td>{customer.ContactPerson}</td>
+                                        <td>{customer.CellphoneNO}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <button onClick={scrollToTop} className='back-to-top'>
+                <button onClick={scrollToTop} className='back-to-top'> {/* Apply the back-to-top class */}
                     Back to Top
                 </button>
             </div>
