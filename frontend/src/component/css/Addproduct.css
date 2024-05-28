@@ -1,0 +1,16 @@
+.AddProduct-container {
+    margin-top: 10%; /* Adjust margin-top if needed */
+    border-style: double;
+    border-color: black;
+    border-width: 2px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%; /* Adjust width as needed */
+    padding: 40px;
+    box-sizing: border-box; /* Include padding and border in element's total width */
+}
+
+
+.container {
+    text-align: center;
+}

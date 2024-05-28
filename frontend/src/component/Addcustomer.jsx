@@ -9,7 +9,7 @@ function Addcustomer() {
   const [Address, setAddress] = useState('');
   const [ContactPerson, setContact] = useState('');
   const [CellphoneNo, setContactNo] = useState('');
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -23,7 +23,7 @@ function Addcustomer() {
     axios.post('http://localhost:8080/addcustomer', { Name, Address, ContactPerson, CellphoneNo })
       .then(res => {
         console.log(res);
-        //navigate('/home ');
+      navigate('/Customer/Customerlist ');
       }).catch(err => console.log(err));
   }
 

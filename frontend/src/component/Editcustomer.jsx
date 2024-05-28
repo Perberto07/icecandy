@@ -96,7 +96,7 @@ function Editcustomer() {
                                                 </td>
                                                 <td>
                                                     <input
-                                                        type="text"
+                                                        type="number"
                                                         name="CellphoneNO"
                                                         value={editingCustomerData.CellphoneNO}
                                                         onChange={handleInputChange}
