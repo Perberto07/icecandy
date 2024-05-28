@@ -31,9 +31,6 @@ db.connect((err) => {
     console.log('Connected to database');
 });
 
-
-
-
 const verifyUser = (req, res, next) => {
     const token = req.cookies.token;
     if(!token){
@@ -109,11 +106,6 @@ app.post('/login', (req, res) => {
     });
 });
 
-
-
-
-
-
 app.get("/customer", (req, res)=>{
     const sql = "SELECT * FROM Customer";
      db.query(sql, (err, data)=>{
@@ -130,19 +122,45 @@ app.get("/product", (req, res)=>{
      })
 })
 
-app.delete('/productdelete/:id', (req, res) =>{
-    const sql = "DELETE from product WHERE ID = ?";
-    const id = req.params.id;
+app.post("/addcustomer", (req, res)=>{
+    const sql = "insert into customer (Name, Address, ContactPerson, CellphoneNo) Values(?)";
+    const values=[
+        req.body.Name,
+        req.body.Address,
+        req.body.ContactPerson,
+        req.body.CellphoneNo
+    ]
+     db.query(sql, [values], (err, data) => {
+        if(err) return res.json("Error");
+        return res.json(data);
+     })
+})
 
+app.put("/customer/:id", (req, res) => {
+    const { id } = req.params;
+    const { Name, Address, ContactPerson, CellphoneNo } = req.body;
+    const sql = "UPDATE customer SET Name = ?, Address = ?, ContactPerson = ?, CellphoneNo = ? WHERE CustomerNO = ?";
+    const values = [Name, Address, ContactPerson, CellphoneNo, id];
+
+    db.query(sql, values, (err, data) => {
+        if (err) return res.json({ Status: "Error", Message: "Error updating customer" });
+        return res.json({ Status: "Success", Message: "Customer updated successfully" });
+    });
+});
+// Add this route to your server code
+app.delete("/customer/:id", (req, res) => {
+    const { id } = req.params;
+    const sql = "DELETE FROM customer WHERE CustomerNO = ?";
+    
     db.query(sql, [id], (err, data) => {
-        if (err) return res.json("Error executing SQL query:", err);
-            return res.json(data);
-    });    
+        if (err) return res.json({ Status: "Error", Message: "Error deleting customer" });
+        return res.json({ Status: "Success", Message: "Customer deleted successfully" });
+    });
 });
 
 
-
 const port = 8080;
+
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });

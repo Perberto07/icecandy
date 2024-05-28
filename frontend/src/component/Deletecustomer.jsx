@@ -1,71 +1,90 @@
-import Sidebar from "../Sidebar"
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import Sidebar from '../Sidebar';
+import Modal from './Modal';  // Import the Modal component
 
 function Deletecustomer() {
-  const [Customer, setCustomer] = useState([]);
+    const [Customer, setCustomer] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+    const [selectedCustomerId, setSelectedCustomerId] = useState(null);
 
-  useEffect(() => {
-      axios.get('http://localhost:8080/customer')
-          .then(res => setCustomer(res.data))
-          .catch(err => console.error(err));
-  }, []);
+    useEffect(() => {
+        axios.get('http://localhost:8080/customer')
+            .then(res => setCustomer(res.data))
+            .catch(err => console.error(err));
+    }, []);
 
-  const handleDelete = async (id) => {
-    try {
-        await axios.delete('http://localhost:8080/customerdelete/' + id)
-        window.location.reload()
-    } catch (err) {
-        console.log(err);
-    }
+    const handleDeleteClick = (customerId) => {
+        setSelectedCustomerId(customerId);
+        setShowModal(true);
+    };
+
+    const handleConfirmDelete = () => {
+        axios.delete(`http://localhost:8080/customer/${selectedCustomerId}`)
+            .then(res => {
+                if (res.data.Status === "Success") {
+                    setCustomer(Customer.filter(customer => customer.CustomerNO !== selectedCustomerId));
+                } else {
+                    console.error("Error deleting customer:", res.data.Message);
+                }
+            })
+            .catch(err => console.error(err))
+            .finally(() => {
+                setShowModal(false);
+                setSelectedCustomerId(null);
+            });
+    };
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+        setSelectedCustomerId(null);
+    };
+
+    return (
+        <>
+            <Sidebar />
+
+            <div className='Content'>
+                <div className='col-md-9 bg-dark bg-opacity-100 d-flex justify-content-center align-items-center'>
+                    <div className='w-200 h-90 bg-white rounded p-4'>
+                        <table className='table'>
+                            <thead>
+                                <tr>
+                                    <th>Customer NO.</th>
+                                    <th>Name</th>
+                                    <th>Address</th>
+                                    <th>Contact Person</th>
+                                    <th>CellPhone Number</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {Customer.map((Customer, index) => (
+                                    <tr key={index}>
+                                        <td>{Customer.CustomerNO}</td>
+                                        <td>{Customer.Name}</td>
+                                        <td>{Customer.Address}</td>
+                                        <td>{Customer.ContactPerson}</td>
+                                        <td>{Customer.CellphoneNO}</td>
+                                        <td>
+                                            <button onClick={() => handleDeleteClick(Customer.CustomerNO)}>Delete</button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <Modal
+                show={showModal}
+                onClose={handleCloseModal}
+                onConfirm={handleConfirmDelete}
+                message="Are you sure you want to delete this customer?"
+            />
+        </>
+    );
 }
 
-  return (
-      <>
-      <Sidebar/>
-      
-      
-      <div className='Content'>
-
-                  <div className='col-md-9 bg-dark bg-opacity-100   d-flex justify-content-center align-items-center'>
-                      <div className='w-200 h-90 bg-white rounded p-4'>
-                          <table className='table'>
-
-                              <thead>
-                                  <tr>
-                                      <th>Customer NO.</th>
-                                      <th>Name</th>
-                                      <th>Address</th>
-                                      <th>Contact person</th>
-                                      <th>CellPhone Number</th>
-                                      <th>delete</th>
-                                  </tr>
-                              </thead>
-                              <tbody>
-                                  {Customer.map((Customer, index) => (
-                                      <tr key={index}>
-                                          <td>{Customer.CustomerNO}</td>
-                                          <td>{Customer.Name}</td>
-                                          <td>{Customer.Address}</td>
-                                          <td>{Customer.ContactPerson}</td>
-                                          <td>{Customer.CellphoneNO}</td>
-                                          <td>
-                                            <button className="" onClick={e => handleDelete(Customer.ID)}>
-                                              delete
-                                            </button>
-                                            </td>
-                                      </tr>
-                                  ))}
-                              </tbody>
-                          </table>
-                      </div>
-                  </div>
-                     
-                  </div>
-               
-          </>
-
-          );
-}
-
-export default Deletecustomer
+export default Deletecustomer;

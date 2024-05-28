@@ -20,6 +20,7 @@ function Productlist() {
   const filteredProducts = products.filter(product =>
     product.ProductFlavor.toLowerCase().includes(searchQuery.toLowerCase())
   );
+  
 
   return (
     <>
