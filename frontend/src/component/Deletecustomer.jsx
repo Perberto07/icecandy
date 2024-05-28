@@ -1,19 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import Sidebar from '../Sidebar';
-import Modal from './Modal';  // Import the Modal component
-import './css/topback.css'
-import { useRef } from 'react';
+import Modal from './Modal';
+import './css/topback.css';
+import './css/deletecustomer.css';
 
 function Deletecustomer() {
-    const [Customer, setCustomer] = useState([]);
+    const [customers, setCustomers] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [selectedCustomerId, setSelectedCustomerId] = useState(null);
     const contentRef = useRef(null);
 
     useEffect(() => {
         axios.get('http://localhost:8080/customer')
-            .then(res => setCustomer(res.data))
+            .then(res => setCustomers(res.data))
             .catch(err => console.error(err));
     }, []);
 
@@ -26,7 +26,7 @@ function Deletecustomer() {
         axios.delete(`http://localhost:8080/customer/${selectedCustomerId}`)
             .then(res => {
                 if (res.data.Status === "Success") {
-                    setCustomer(Customer.filter(customer => customer.CustomerNO !== selectedCustomerId));
+                    setCustomers(customers.filter(customer => customer.CustomerNO !== selectedCustomerId));
                 } else {
                     console.error("Error deleting customer:", res.data.Message);
                 }
@@ -55,11 +55,11 @@ function Deletecustomer() {
     return (
         <>
             <Sidebar />
-
-            <div className='Content' ref={contentRef} style={{ height: '100vh', overflowY: 'auto' }}>
+            <div className='Content' ref={contentRef}>
                 <div className='col-md-9 bg-dark bg-opacity-100 d-flex justify-content-center align-items-center'>
-                    <div className='w-200 h-90 bg-white rounded p-4'>
-                        <table className='table'>
+                    <div className='delete-customer-container'>
+                        <h2 className='delete-customer-heading'>Delete Customer</h2>
+                        <table className='delete-customer-table'>
                             <thead>
                                 <tr>
                                     <th>Customer NO.</th>
@@ -67,32 +67,30 @@ function Deletecustomer() {
                                     <th>Address</th>
                                     <th>Contact Person</th>
                                     <th>CellPhone Number</th>
-                                    <th>Delete</th>
+                                    <th>Operation</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {Customer.map((Customer, index) => (
+                                {customers.map((customer, index) => (
                                     <tr key={index}>
-                                        <td>{Customer.CustomerNO}</td>
-                                        <td>{Customer.Name}</td>
-                                        <td>{Customer.Address}</td>
-                                        <td>{Customer.ContactPerson}</td>
-                                        <td>{Customer.CellphoneNO}</td>
+                                        <td>{customer.CustomerNO}</td>
+                                        <td>{customer.Name}</td>
+                                        <td>{customer.Address}</td>
+                                        <td>{customer.ContactPerson}</td>
+                                        <td>{customer.CellphoneNO}</td>
                                         <td>
-                                            <button onClick={() => handleDeleteClick(Customer.CustomerNO)}>Delete</button>
+                                            <button className="delete-button" onClick={() => handleDeleteClick(customer.CustomerNO)}>Delete</button>
                                         </td>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
-                        
                     </div>
                 </div>
+                <button onClick={scrollToTop} className='back-to-top'>
+                    Back to Top
+                </button>
             </div>
-            <button onClick={scrollToTop} className='back-to-top'>
-                            Back to Top
-                        </button>
-
             <Modal
                 show={showModal}
                 onClose={handleCloseModal}

@@ -1,6 +1,73 @@
-.customerid{
-    text-align: center;
+/* Edit Customer Container Styles */
+.edit-customer-container {
+    width: 100%;
+    max-width: 100%;
+    height: max-content;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #f3f3f3, #e0e0e0);
 }
-.cellphoneno{
-    text-align: center;
+
+/* Heading Styles */
+.edit-customer-container h2 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Table Styles */
+.edit-customer-container table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.edit-customer-container th,
+.edit-customer-container td {
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.edit-customer-container th {
+    background-color: #007bff;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.edit-customer-container tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.edit-customer-container tbody tr:hover {
+    background-color: #f0f0f0;
+    transition: background-color 0.3s ease;
+}
+/* Edit Button Styles */
+.edit-customer-container button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.edit-customer-container button:hover {
+    background-color: #0056b3;
+}
+/* Edit Customer Heading Styles */
+.edit-customer-heading {
+    
+        font-size: 32px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 20px;
+    
 }

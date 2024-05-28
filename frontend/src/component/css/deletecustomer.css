@@ -1,8 +1,7 @@
-/* Customer List Styles */
-.customer-list-container {
+/* Delete Customer Container Styles */
+.delete-customer-container {
     width: 100%;
-    max-width: 100%;
-    height: max-content;
+    max-width: 95%;
     margin: 0 auto;
     padding: 30px;
     border-radius: 20px;
@@ -10,14 +9,16 @@
     background: linear-gradient(135deg, #f3f3f3, #e0e0e0);
 }
 
-.customer-list-heading {
+/* Delete Customer Heading Styles */
+.delete-customer-heading {
     font-size: 32px;
     font-weight: bold;
     color: #333;
     margin-bottom: 20px;
 }
 
-.customer-list-table {
+/* Delete Customer Table Styles */
+.delete-customer-table {
     width: 100%;
     border-collapse: collapse;
     border-radius: 20px;
@@ -25,25 +26,39 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-.customer-list-table th,
-.customer-list-table td {
+.delete-customer-table th,
+.delete-customer-table td {
     padding: 20px;
     border-bottom: 1px solid #ddd;
     text-align: left;
 }
 
-.customer-list-table th {
+.delete-customer-table th {
     background-color: #007bff;
     color: #fff;
     text-transform: uppercase;
 }
 
-.customer-list-table tbody tr:nth-child(even) {
+.delete-customer-table tbody tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-.customer-list-table tbody tr:hover {
+.delete-customer-table tbody tr:hover {
     background-color: #f0f0f0;
     transition: background-color 0.3s ease;
 }
 
+/* Delete Button Styles */
+.delete-button {
+    padding: 10px 20px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+}
