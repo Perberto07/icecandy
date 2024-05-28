@@ -29,7 +29,7 @@ function Customerlist() {
                 <div className='col-md-9 bg-dark bg-opacity-100 d-flex justify-content-center align-items-center'>
                     <div className='w-200 h-90 bg-white rounded p-4'>
                         <table className='table'>
-                            <thead>
+                            <thead >
                                 <tr>
                                     <th>Customer NO.</th>
                                     <th>Name</th>
