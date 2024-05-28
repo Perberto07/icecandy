@@ -2,11 +2,14 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Sidebar from '../Sidebar';
 import Modal from './Modal';  // Import the Modal component
+import './css/topback.css'
+import { useRef } from 'react';
 
 function Deletecustomer() {
     const [Customer, setCustomer] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [selectedCustomerId, setSelectedCustomerId] = useState(null);
+    const contentRef = useRef(null);
 
     useEffect(() => {
         axios.get('http://localhost:8080/customer')
@@ -40,11 +43,20 @@ function Deletecustomer() {
         setSelectedCustomerId(null);
     };
 
+    const scrollToTop = () => {
+        if (contentRef.current) {
+            contentRef.current.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    };
+
     return (
         <>
             <Sidebar />
 
-            <div className='Content'>
+            <div className='Content' ref={contentRef} style={{ height: '100vh', overflowY: 'auto' }}>
                 <div className='col-md-9 bg-dark bg-opacity-100 d-flex justify-content-center align-items-center'>
                     <div className='w-200 h-90 bg-white rounded p-4'>
                         <table className='table'>
@@ -73,9 +85,13 @@ function Deletecustomer() {
                                 ))}
                             </tbody>
                         </table>
+                        
                     </div>
                 </div>
             </div>
+            <button onClick={scrollToTop} className='back-to-top'>
+                            Back to Top
+                        </button>
 
             <Modal
                 show={showModal}

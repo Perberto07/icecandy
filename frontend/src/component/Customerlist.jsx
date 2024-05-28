@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import Sidebar from '../Sidebar';
+import './css/topback.css'
 
 function Customerlist() {
     const [Customer, setCustomer] = useState([]);
@@ -49,31 +50,13 @@ function Customerlist() {
                                 ))}
                             </tbody>
                         </table>
-                        <button onClick={scrollToTop} className='back-to-top'>
-                            Back to Top
-                        </button>
                     </div>
                 </div>
+                <hr />
+                <button onClick={scrollToTop} className='back-to-top'>
+                            Back to Top
+                        </button>
             </div>
-            <style jsx>{`
-                .back-to-top {
-                    position: fixed;
-                    bottom: 20px;
-                    right: 20px;
-                    background-color: #007bff;
-                    color: white;
-                    border: none;
-                    padding: 10px 20px;
-                    border-radius: 5px;
-                    cursor: pointer;
-                    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-                    transition: opacity 0.3s;
-                }
-
-                .back-to-top:hover {
-                    background-color: #0056b3;
-                }
-            `}</style>
         </>
     );
 }
