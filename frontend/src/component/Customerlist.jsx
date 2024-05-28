@@ -1,15 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import Sidebar from '../Sidebar';
-import './css/topback.css'
+import './css/topback.css';
+import './css/customerlist.css'; // Import the customer list CSS file
 
 function Customerlist() {
-    const [Customer, setCustomer] = useState([]);
+    const [customers, setCustomers] = useState([]);
     const contentRef = useRef(null);
 
     useEffect(() => {
         axios.get('http://localhost:8080/customer')
-            .then(res => setCustomer(res.data))
+            .then(res => setCustomers(res.data))
             .catch(err => console.error(err));
     }, []);
 
@@ -24,12 +25,22 @@ function Customerlist() {
 
     return (
         <>
-            <Sidebar/>
-            <div className='Content' ref={contentRef} style={{ height: '100vh', overflowY: 'auto' }}>
+            <Sidebar />
+            <div className='Content' ref={contentRef}>
                 <div className='col-md-9 bg-dark bg-opacity-100 d-flex justify-content-center align-items-center'>
+<<<<<<< HEAD
+                    <div className='customer-list-container'> {/* Apply the container class */}
+                        <h2 className='customer-list-heading'>Customer List</h2> {/* Apply the heading class */}
+                        <table className='customer-list-table'> {/* Apply the table class */}
+                            <thead>
+=======
                     <div className='w-200 h-90 bg-white rounded p-4'>
                         <table className='table'>
                             <thead >
+<<<<<<< Updated upstream
+=======
+>>>>>>> f2657661bc31fdbd5f0104c196ce49072a4d15c2
+>>>>>>> Stashed changes
                                 <tr>
                                     <th>Customer NO.</th>
                                     <th>Name</th>
@@ -39,21 +50,21 @@ function Customerlist() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {Customer.map((Customer, index) => (
+                                {customers.map((customer, index) => (
                                     <tr key={index}>
-                                        <td>{Customer.CustomerNO}</td>
-                                        <td>{Customer.Name}</td>
-                                        <td>{Customer.Address}</td>
-                                        <td>{Customer.ContactPerson}</td>
-                                        <td>{Customer.CellphoneNO}</td>
+                                        <td>{customer.CustomerNO}</td>
+                                        <td>{customer.Name}</td>
+                                        <td>{customer.Address}</td>
+                                        <td>{customer.ContactPerson}</td>
+                                        <td>{customer.CellphoneNO}</td>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <button onClick={scrollToTop} className='back-to-top'>
-                            Back to Top
+                <button onClick={scrollToTop} className='back-to-top'> {/* Apply the back-to-top class */}
+                    Back to Top
                 </button>
             </div>
         </>

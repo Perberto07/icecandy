@@ -34,7 +34,7 @@ function Addcustomer() {
         <div className="Content2">
           <form onSubmit={handleSubmit}>
             <div className="one">
-              <label htmlFor="customerName">Store:</label>
+              <label htmlFor="customerName">Store Name:</label>
               <input
                 type="text"
                 id="customerName"
@@ -72,7 +72,7 @@ function Addcustomer() {
                 onChange={e => setContactNo(e.target.value)} />
             </div>
             <button type="submit">
-              Send
+              Add
             </button>
           </form>
         </div>

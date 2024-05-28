@@ -1,15 +1,18 @@
 .Content2 {
-    margin-top: 10%; /* Adjust margin-top if needed */
-    border-style: double;
-    border-color: black;
-    border-width: 2px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 60%; /* Adjust width as needed */
+    margin-top: 5%; /* Adjust margin-top as needed */
+    width: 80%; /* Adjust width as needed */
     padding: 40px;
     box-sizing: border-box; /* Include padding and border in element's total width */
+    margin: 0 auto; /* Center the container */
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+    transition: box-shadow 0.3s ease; /* Add transition for shadow */
 }
 
+.Content2:hover {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2); /* Adjust shadow on hover */
+}
 
 .container {
     text-align: center;
@@ -26,47 +29,43 @@ form {
 label {
     display: block;
     margin-bottom: 5px;
+    font-weight: bold;
+    color: #333; /* Darken label color */
 }
 
 input[type="text"],
 input[type="email"],
 textarea {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     border-radius: 5px;
     border: 1px solid #ccc;
     box-sizing: border-box;
+    transition: border-color 0.3s ease; /* Add transition for input border */
 }
 
-button[type="submit"] {
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+    border-color: #007bff; /* Change border color on focus */
+}
+
+button[type="submit"],
+.Content2 button[type="button"] {
     width: 100%;
     padding: 15px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button[type="submit"]:hover {
-    background-color: #45a049;
-}
-.Content2 button {
-    display: block;
-    margin: 0 auto; /* Center the button */
-    margin-top: 15px; ; 
-    padding: 15px 30px;
-    background-color: #0234ff;
+    background-color: #007bff;
     color: #fff;
     border: none;
     border-radius: 5px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease; /* Add transition for button background */
 }
 
-.Content2 button:hover {
-    background-color: #00447b;
+button[type="submit"]:hover,
+.Content2 button[type="button"]:hover {
+    background-color: #0056b3; /* Change button background color on hover */
 }

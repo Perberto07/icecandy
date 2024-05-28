@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import Sidebar from '../Sidebar';
 import './css/editcustomer.css';
+import './css/topback.css';
 
 function Editcustomer() {
     const [customers, setCustomers] = useState([]);
@@ -12,6 +13,7 @@ function Editcustomer() {
         ContactPerson: '',
         CellphoneNO: ''
     });
+    const contentRef = useRef(null);
 
     useEffect(() => {
         axios.get('http://localhost:8080/customer')
@@ -35,22 +37,29 @@ function Editcustomer() {
     };
 
     const handleUpdateClick = (customerId) => {
-      axios.put(`http://localhost:8080/customer/${customerId}`, editingCustomerData)
-          .then(() => {
-              setCustomers(customers.map(customer =>
-                  customer.CustomerNO === customerId ? { ...customer, ...editingCustomerData } : customer
-              ));
-              setEditingCustomerId(null);
-          })
-          .catch(err => console.error(err));
-  };
-  
+        axios.put(`http://localhost:8080/customer/${customerId}`, editingCustomerData)
+            .then(() => {
+                setCustomers(customers.map(customer =>
+                    customer.CustomerNO === customerId ? { ...customer, ...editingCustomerData } : customer
+                ));
+                setEditingCustomerId(null);
+            })
+            .catch(err => console.error(err));
+    };
+
+    const scrollToTop = () => {
+        if (contentRef.current) {
+            contentRef.current.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    };
 
     return (
         <>
             <Sidebar />
-
-            <div className='Content'>
+            <div className='Content' ref={contentRef}>
                 <div className='col-md-9 bg-dark bg-opacity-100 d-flex justify-content-center align-items-center'>
                     <div className='w-200 h-90 bg-white rounded p-4'>
                         <table className='table'>
@@ -124,6 +133,9 @@ function Editcustomer() {
                         </table>
                     </div>
                 </div>
+                <button onClick={scrollToTop} className='back-to-top'>
+                    Back to Top
+                </button>
             </div>
         </>
     );
