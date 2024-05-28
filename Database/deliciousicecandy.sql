@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2024 at 08:50 AM
+-- Generation Time: May 28, 2024 at 04:25 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -259,7 +259,17 @@ INSERT INTO `customer` (`CustomerNO`, `Name`, `Address`, `ContactPerson`, `Cellp
 (217, 'Romulus Bakery', 'Blk 3 Lot 62 Langaray St. Longos, Malabon', 'Liza', 9266328870),
 (218, 'Nora Store', '25 Bustamante St Tenajeros Malabon', 'Nora', 9392390171),
 (219, 'Edith Store', '172 MH Del Pilar St Tenajeros Malabon', 'Editha M. Yanga', 9310551041),
-(220, 'Angel Store', 'Blk 5 Lot 6 SMC HOA Catmon Malabon', 'Angel', 9104170615);
+(220, 'Angel Store', 'Blk 5 Lot 6 SMC HOA Catmon Malabon', 'Angel', 9104170615),
+(221, 'Norman Store', 'Blk 10 Lot 12 SMC HOA Catmon, Malabon', 'Norman', 9568300285),
+(222, 'Kurt Sari-Sari Store', '299 Gen Luna St. Concepcion Malabon', 'Maricel', 9338677880),
+(223, 'Busilak Store', '115 Rodriguez St Santolan Malabon', 'Michael', 9275675528),
+(224, 'Miraquiel Store', 'Merville Subdivision Dampalit, Malabon', 'Marjoreen Gan', 9325542815),
+(225, 'Lynn Store', '40 Basilio Street Acacia Malabon ', 'Lynn', 9156298529),
+(226, 'Panaderia De Potrero', 'Avocado St Potrero Malabon', 'Jay An Baylosis', 9757281353),
+(227, 'Iyashi Goodies Chocolate Store ', '5 MH Del Pilar St. Tugatog Malabon', 'Allan Lapuz', 9184295590),
+(228, 'Bless Joy Store', '10 D Don Basilio Bautista St Hulong Duhat Malabon', 'Medelon Salveo', 9425551286),
+(229, 'Kian', '485 6th Ave Caloocan ', 'Kian', 9167108244),
+(230, 'Jen Store', '53 4th Ave Caloocan City', 'Jen', 9174569214);
 
 -- --------------------------------------------------------
 
@@ -344,7 +354,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `CustomerNO` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=221;
+  MODIFY `CustomerNO` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=231;
 
 --
 -- AUTO_INCREMENT for table `product`
