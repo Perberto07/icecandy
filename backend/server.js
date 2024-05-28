@@ -127,7 +127,7 @@ app.get("/product", (req, res)=>{
         if(err) return res.json("error");
         return res.json(data);
      })
-}) 
+})
 
 app.post("/addcustomer", (req, res)=>{
     const sql = "insert into customer (Name, Address, ContactPerson, CellphoneNo) Values(?)";
@@ -136,18 +136,6 @@ app.post("/addcustomer", (req, res)=>{
         req.body.Address,
         req.body.ContactPerson,
         req.body.CellphoneNo
-    ]
-     db.query(sql, [values], (err, data) => {
-        if(err) return res.json("Error");
-        return res.json(data);
-     })
-})
-
-app.post("/addproduct", (req, res)=>{
-    const sql = "insert into product (ProductFlavor, Price) Values(?)";
-    const values=[
-        req.body.ProductFlavor,
-        req.body.Price
     ]
      db.query(sql, [values], (err, data) => {
         if(err) return res.json("Error");
@@ -176,6 +164,38 @@ app.delete("/customer/:id", (req, res) => {
         return res.json({ Status: "Success", Message: "Customer deleted successfully" });
     });
 });
+
+app.post("/addproduct", (req, res)=>{
+    const sql = "insert into product (ProductFlavor, Price) Values(?)";
+    const values=[
+        req.body.ProductFlavor,
+        req.body.Price,
+    ]
+     db.query(sql, [values], (err, data) => {
+        if(err) return res.json("Error");
+        return res.json(data);
+     })
+})
+
+app.put('/product/:ProductNO', (req, res) => {
+    const productNO = req.params.ProductNO;
+    const { ProductFlavor, Price } = req.body;
+    const sql = 'UPDATE product SET ProductFlavor = ?, Price = ? WHERE ProductNO = ?';
+    db.query(sql, [ProductFlavor, Price, productNO], (err, data) => {
+      if (err) return res.json({ error: err.message });
+      return res.json(data);
+    });
+});
+
+  app.delete('/product/:ProductNO', (req, res) => {
+    const productNO = req.params.ProductNO;
+    const sql = 'DELETE FROM product WHERE ProductNO = ?';
+    db.query(sql, [productNO], (err, data) => {
+      if (err) return res.json({ error: err.message });
+      return res.json(data);
+    });
+  });
+  
 
 
 const port = 8080;

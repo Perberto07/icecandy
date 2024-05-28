@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Sidebar from '../Sidebar';
-// Assuming you have a CSS file for additional styling
+import './css/editproduct.css'
+import { useNavigate } from 'react-router-dom';
 
 function Editproduct() {
   const [products, setProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [editingProduct, setEditingProduct] = useState(null);
+  const [editForm, setEditForm] = useState({ ProductNO: '', ProductFlavor: '', Price: '' });
+  const navigate = useNavigate(); // Call useNavigate here
 
   useEffect(() => {
     axios.get('http://localhost:8080/product')
@@ -21,6 +25,27 @@ function Editproduct() {
     product.ProductFlavor.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  const handleEditClick = (product) => {
+    setEditingProduct(product.ProductNO);
+    setEditForm({ ...product });
+  };
+
+  const handleFormChange = (event) => {
+    const { name, value } = event.target;
+    setEditForm(prevForm => ({ ...prevForm, [name]: value }));
+  };
+
+  const handleSaveClick = () => {
+    axios.put(`http://localhost:8080/product/${editingProduct}`, editForm)
+      .then(res => {
+        setProducts(products.map(product =>
+          product.ProductNO === editingProduct ? { ...product, ...editForm } : product
+        ));
+        setEditingProduct(null);
+        navigate('/Product/Editproduct'); // Navigate to a different route if necessary
+      })
+      .catch(err => console.error(err));
+  };
 
   return (
     <>
@@ -45,6 +70,7 @@ function Editproduct() {
                     <th>Product No.</th>
                     <th>Product Flavor</th>
                     <th>Price</th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -53,11 +79,34 @@ function Editproduct() {
                       <td>{product.ProductNO}</td>
                       <td>{product.ProductFlavor}</td>
                       <td>{product.Price}</td>
-                      <td><button>edit</button></td>
+                      <td>
+                        <button onClick={() => handleEditClick(product)}>Edit</button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
+              {editingProduct && (
+                <div className='edit-form'>
+                  <h3>Edit Product</h3>
+                  <input
+                    type='text'
+                    name='ProductFlavor'
+                    value={editForm.ProductFlavor}
+                    onChange={handleFormChange}
+                    placeholder='Product Flavor'
+                  />
+                  <input
+                    type='number'
+                    name='Price'
+                    value={editForm.Price}
+                    onChange={handleFormChange}
+                    placeholder='Price'
+                  />
+                  <button onClick={handleSaveClick}>Save</button>
+                  <button onClick={() => setEditingProduct(null)}>Cancel</button>
+                </div>
+              )}
             </div>
           </div>
         </div>

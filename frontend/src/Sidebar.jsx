@@ -58,12 +58,12 @@ function Sidebar() {
                 <span className="text">Order</span>
               </Link>
             </li>
-            <li>
+            {/*<li>
               <Link to="/Transaction">
                 <img src={TransactionIcon} alt="Transaction" className="icon3" />
                 <span className="text">Transaction</span>
               </Link>
-            </li>
+              </li>*/}
             <li>
               <button onClick={handleLogout} className="logout-button">
                 <img src={LogoutIcon} alt="Logout" className="icon3" />

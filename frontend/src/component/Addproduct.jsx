@@ -14,7 +14,6 @@ function Addproduct() {
  
   function handleSubmit(event) {
     event.preventDefault();
-
     // Validation: Check if all fields are filled
     if (!ProductFlavor || !Price) {
       alert("All fields are required!");
@@ -24,7 +23,7 @@ function Addproduct() {
     axios.post('http://localhost:8080/addproduct', { ProductFlavor, Price})
       .then(res => {
         console.log(res);
-      navigate('/Customer/Customerlist ');
+      navigate('/Product/productlist ');
       }).catch(err => console.log(err));
   }
   return (
