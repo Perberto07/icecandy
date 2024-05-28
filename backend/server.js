@@ -106,6 +106,13 @@ app.post('/login', (req, res) => {
     });
 });
 
+// Add this endpoint in your existing Express server code
+app.post('/logout', (req, res) => {
+    res.clearCookie('token');
+    return res.json({ Status: "Success", Message: "Logged out successfully" });
+});
+
+
 app.get("/customer", (req, res)=>{
     const sql = "SELECT * FROM Customer";
      db.query(sql, (err, data)=>{
