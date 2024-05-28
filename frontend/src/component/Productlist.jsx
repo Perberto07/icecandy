@@ -26,7 +26,7 @@ function Productlist() {
     <>
       <Sidebar />
       <div className='Content'>
-        <div>
+        <div className=''>
           <div className='search-container'>
             <input
               type='text'

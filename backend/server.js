@@ -127,7 +127,7 @@ app.get("/product", (req, res)=>{
         if(err) return res.json("error");
         return res.json(data);
      })
-})
+}) 
 
 app.post("/addcustomer", (req, res)=>{
     const sql = "insert into customer (Name, Address, ContactPerson, CellphoneNo) Values(?)";
@@ -136,6 +136,18 @@ app.post("/addcustomer", (req, res)=>{
         req.body.Address,
         req.body.ContactPerson,
         req.body.CellphoneNo
+    ]
+     db.query(sql, [values], (err, data) => {
+        if(err) return res.json("Error");
+        return res.json(data);
+     })
+})
+
+app.post("/addproduct", (req, res)=>{
+    const sql = "insert into product (ProductFlavor, Price) Values(?)";
+    const values=[
+        req.body.ProductFlavor,
+        req.body.Price
     ]
      db.query(sql, [values], (err, data) => {
         if(err) return res.json("Error");

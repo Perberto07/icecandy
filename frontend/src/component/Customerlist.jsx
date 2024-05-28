@@ -52,10 +52,9 @@ function Customerlist() {
                         </table>
                     </div>
                 </div>
-                <hr />
                 <button onClick={scrollToTop} className='back-to-top'>
                             Back to Top
-                        </button>
+                </button>
             </div>
         </>
     );
