@@ -15,13 +15,14 @@
 .link-container {
   margin-bottom: 10px;
   width: 100%;
+  margin-left: 15px;
 }
 
 .button {
   display: inline-block;
   width: 100%;
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #fe0c0c;
   color: #000000;
   border: none;
   border-radius: 20px;
@@ -31,9 +32,9 @@
 }
 
 .button:hover {
-  background-color: #0056b3;
+  background-color: #fe0c0c;
 }
 
 .icon {
-  margin-right: 0px;
+  margin-right: 10px;
 }
