@@ -87,3 +87,14 @@
     border-color: #007bff;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
+/* Search Bar Styles */
+.edit-customer-container input[type="text"],
+.edit-customer-container input[type="number"] {
+    width: calc(100% - 20px); /* Adjust the width to fit within the table cell */
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}

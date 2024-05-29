@@ -1,11 +1,16 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Sidebar from '../Sidebar';
-// Assuming you have a CSS file for additional styling
+import Modal from './Modal'; // Assuming you have a Modal component for confirmation
+import './css/deleteproduct.css';
+
+
 
 function Deleteproduct() {
   const [products, setProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const [selectedProductId, setSelectedProductId] = useState(null);
 
   useEffect(() => {
     axios.get('http://localhost:8080/product')
@@ -17,15 +22,30 @@ function Deleteproduct() {
     setSearchQuery(event.target.value);
   };
 
-  const handleDelete = (ProductNO) => {
-    const confirmDelete = window.confirm('Are you sure you want to delete this product?');
-    if (confirmDelete) {
-      axios.delete(`http://localhost:8080/product/${ProductNO}`)
-        .then(res => {
-          setProducts(products.filter(product => product.ProductNO !== ProductNO));
-        })
-        .catch(err => console.error(err));
-    }
+  const handleDeleteClick = (productId) => {
+    setSelectedProductId(productId);
+    setShowModal(true);
+  };
+
+  const handleConfirmDelete = () => {
+    axios.delete(`http://localhost:8080/product/${selectedProductId}`)
+      .then(res => {
+        if (res.data.Status === "Success") {
+          setProducts(products.filter(product => product.ProductNO !== selectedProductId));
+        } else {
+          console.error("Error deleting product:", res.data.Message);
+        }
+      })
+      .catch(err => console.error(err))
+      .finally(() => {
+        setShowModal(false);
+        setSelectedProductId(null);
+      });
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedProductId(null);
   };
 
   const filteredProducts = products.filter(product =>
@@ -48,8 +68,8 @@ function Deleteproduct() {
           </div>
           <hr />
           <div className='col-md-9 bg-dark bg-opacity-100 d-flex justify-content-center align-items-center'>
-            <div className='w-200 h-90 bg-white rounded p-4'>
-              <table className='table'>
+            <div className='delete-product-container'>
+              <table className='delete-product-table'>
                 <thead>
                   <tr>
                     <th>Product No.</th>
@@ -65,7 +85,7 @@ function Deleteproduct() {
                       <td>{product.ProductFlavor}</td>
                       <td>{product.Price}</td>
                       <td>
-                        <button onClick={() => handleDelete(product.ProductNO)}>Delete</button>
+                        <button className='delete-button' onClick={() => handleDeleteClick(product.ProductNO)}>Delete</button>
                       </td>
                     </tr>
                   ))}
@@ -75,6 +95,12 @@ function Deleteproduct() {
           </div>
         </div>
       </div>
+      <Modal
+        show={showModal}
+        onClose={handleCloseModal}
+        onConfirm={handleConfirmDelete}
+        message="Are you sure you want to delete this product?"
+      />
     </>
   );
 }

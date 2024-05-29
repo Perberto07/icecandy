@@ -1,118 +1,148 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import Sidebar from '../Sidebar';
-import './css/editproduct.css'
-import { useNavigate } from 'react-router-dom';
+import './css/editproduct.css';
+import './css/topback.css';
 
 function Editproduct() {
-  const [products, setProducts] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [editingProduct, setEditingProduct] = useState(null);
-  const [editForm, setEditForm] = useState({ ProductNO: '', ProductFlavor: '', Price: '' });
-  const navigate = useNavigate(); // Call useNavigate here
+    const [products, setProducts] = useState([]);
+    const [editingProductId, setEditingProductId] = useState(null);
+    const [editingProductData, setEditingProductData] = useState({
+        ProductFlavor: '',
+        Price: ''
+    });
+    const [searchInput, setSearchInput] = useState('');
+    const [filteredProducts, setFilteredProducts] = useState([]);
+    const contentRef = useRef(null);
 
-  useEffect(() => {
-    axios.get('http://localhost:8080/product')
-      .then(res => setProducts(res.data))
-      .catch(err => console.error(err));
-  }, []);
+    useEffect(() => {
+        axios.get('http://localhost:8080/product')
+            .then(res => {
+                setProducts(res.data);
+                setFilteredProducts(res.data);
+            })
+            .catch(err => console.error(err));
+    }, []);
 
-  const handleSearch = (event) => {
-    setSearchQuery(event.target.value);
-  };
+    const handleEditClick = (product) => {
+        setEditingProductId(product.ProductNO);
+        setEditingProductData({
+            ProductFlavor: product.ProductFlavor,
+            Price: product.Price
+        });
+    };
 
-  const filteredProducts = products.filter(product =>
-    product.ProductFlavor.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setEditingProductData({ ...editingProductData, [name]: value });
+    };
 
-  const handleEditClick = (product) => {
-    setEditingProduct(product.ProductNO);
-    setEditForm({ ...product });
-  };
+    const handleUpdateClick = (productId) => {
+        const confirmUpdate = window.confirm("Are you sure you want to apply changes?");
+        if (confirmUpdate) {
+            axios.put(`http://localhost:8080/product/${productId}`, editingProductData)
+                .then(() => {
+                    setProducts(products.map(product =>
+                        product.ProductNO === productId ? { ...product, ...editingProductData } : product
+                    ));
+                    setFilteredProducts(filteredProducts.map(product =>
+                        product.ProductNO === productId ? { ...product, ...editingProductData } : product
+                    ));
+                    setEditingProductId(null);
+                })
+                .catch(err => console.error(err));
+        }
+    };
 
-  const handleFormChange = (event) => {
-    const { name, value } = event.target;
-    setEditForm(prevForm => ({ ...prevForm, [name]: value }));
-  };
+    const handleSearchInputChange = (e) => {
+        setSearchInput(e.target.value);
+        const filtered = products.filter(product =>
+            product.ProductFlavor.toLowerCase().includes(e.target.value.toLowerCase())
+        );
+        setFilteredProducts(filtered);
+    };
 
-  const handleSaveClick = () => {
-    axios.put(`http://localhost:8080/product/${editingProduct}`, editForm)
-      .then(res => {
-        setProducts(products.map(product =>
-          product.ProductNO === editingProduct ? { ...product, ...editForm } : product
-        ));
-        setEditingProduct(null);
-        navigate('/Product/Editproduct'); // Navigate to a different route if necessary
-      })
-      .catch(err => console.error(err));
-  };
+    const scrollToTop = () => {
+        if (contentRef.current) {
+            contentRef.current.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    };
 
-  return (
-    <>
-      <Sidebar />
-      <div className='Content'>
-        <div className=''>
-          <div className='search-container'>
-            <input
-              type='text'
-              placeholder='Search by flavor...'
-              value={searchQuery}
-              onChange={handleSearch}
-              className='search-input'
-            />
-          </div>
-          <hr />
-          <div className='col-md-9 bg-dark bg-opacity-100 d-flex justify-content-center align-items-center'>
-            <div className='w-200 h-90 bg-white rounded p-4'>
-              <table className='table'>
-                <thead>
-                  <tr>
-                    <th>Product No.</th>
-                    <th>Product Flavor</th>
-                    <th>Price</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredProducts.map((product, index) => (
-                    <tr key={index}>
-                      <td>{product.ProductNO}</td>
-                      <td>{product.ProductFlavor}</td>
-                      <td>{product.Price}</td>
-                      <td>
-                        <button onClick={() => handleEditClick(product)}>Edit</button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              {editingProduct && (
-                <div className='edit-form'>
-                  <h3>Edit Product</h3>
-                  <input
-                    type='text'
-                    name='ProductFlavor'
-                    value={editForm.ProductFlavor}
-                    onChange={handleFormChange}
-                    placeholder='Product Flavor'
-                  />
-                  <input
-                    type='number'
-                    name='Price'
-                    value={editForm.Price}
-                    onChange={handleFormChange}
-                    placeholder='Price'
-                  />
-                  <button onClick={handleSaveClick}>Save</button>
-                  <button onClick={() => setEditingProduct(null)}>Cancel</button>
+    return (
+        <>
+            <Sidebar />
+            <div className='Content' ref={contentRef}>
+                <div className='edit-product-container'>
+                    <h2 className='edit-product-heading'>Edit Product</h2>
+                    <div className='col-md-9 bg-dark bg-opacity-100 d-flex justify-content-center align-items-center'>
+                        <div className='w-200 h-90 bg-white rounded p-4'>
+                            <input
+                                type="text"
+                                placeholder="Search by Product Flavor"
+                                value={searchInput}
+                                onChange={handleSearchInputChange}
+                            />
+                            <table className='edit-product-table'>
+                                <thead>
+                                    <tr>
+                                        <th>Product NO.</th>
+                                        <th>Product Flavor</th>
+                                        <th>Price</th>
+                                        <th>Operation</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {filteredProducts.map((product, index) => (
+                                        <tr key={index}>
+                                            {editingProductId === product.ProductNO ? (
+                                                <>
+                                                    <td>{product.ProductNO}</td>
+                                                    <td>
+                                                        <input
+                                                            type="text"
+                                                            name="ProductFlavor"
+                                                            value={editingProductData.ProductFlavor}
+                                                            onChange={handleInputChange}
+                                                        />
+                                                    </td>
+                                                    <td>
+                                                        <input
+                                                            type="number"
+                                                            name="Price"
+                                                            value={editingProductData.Price}
+                                                            onChange={handleInputChange}
+                                                        />
+                                                    </td>
+                                                    <td>
+                                                        <button className="product-list-button" onClick={() => handleUpdateClick(product.ProductNO)}>Update</button>
+                                                    </td>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <td>{product.ProductNO}</td>
+                                                    <td>{product.ProductFlavor}</td>
+                                                    <td>{product.Price}</td>
+                                                    <td>
+                                                        <button className="product-list-button" onClick={() => handleEditClick(product)}>Edit</button>
+                                                    </td>
+                                                </>
+                                            )}
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-              )}
+                <button onClick={scrollToTop} className='back-to-top'>
+                    Back to Top
+                </button>
             </div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
+        </>
+    );
 }
 
 export default Editproduct;

@@ -1,47 +1,101 @@
-.search-container {
+/* Edit Product Container Styles */
+.delete-product-container {
+  width: 100%;
+  max-width: 100%;
+  height: max-content;
+  margin: 0 auto;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #f3f3f3, #e0e0e0);
+}
+
+/* Heading Styles */
+.delete-product-container h2 {
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
   margin-bottom: 20px;
 }
 
-.search-input {
-  padding: 10px;
+/* Table Styles */
+.edit-product-container table {
   width: 100%;
-  max-width: 300px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border-collapse: collapse;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-.edit-form {
-  margin-top: 20px;
+.edit-product-container th,
+.edit-product-container td {
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
 }
 
-.edit-form input {
-  display: block;
-  margin-bottom: 10px;
-  padding: 10px;
-  width: 100%;
-  max-width: 300px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.edit-form button {
-  margin-right: 10px;
-  padding: 10px 20px;
-  border: none;
+.edit-product-container th {
   background-color: #007bff;
-  color: white;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.edit-product-container tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.edit-product-container tbody tr:hover {
+  background-color: #f0f0f0;
+  transition: background-color 0.3s ease;
+}
+
+/* Edit Button Styles */
+.edit-product-container button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.edit-form button:hover {
+.edit-product-container button:hover {
   background-color: #0056b3;
 }
 
-.edit-form button:last-child {
-  background-color: #dc3545;
+/* Edit Product Heading Styles */
+.edit-product-heading {
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
 }
 
-.edit-form button:last-child:hover {
-  background-color: #c82333;
+/* Search Bar Styles */
+.edit-product-container input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.edit-product-container input[type="text"]:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+/* Search Bar Styles */
+.edit-product-container input[type="text"],
+.edit-product-container input[type="number"] {
+  width: calc(100% - 20px); /* Adjust the width to fit within the table cell */
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
 }
