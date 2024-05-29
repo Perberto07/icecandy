@@ -73,12 +73,21 @@
   text-decoration: none;
 
 }
-.logout-button :hover {
-  color: #fff;
-}
+
 
 .logout{
-  margin-left: 20px;
+  margin-left: 15px;
   color: #0e0808;
   font-size: larger;
+  font-size: 18px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.logout-button:hover {
+  
+  background-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+.logout-button:hover .logout {
+  color: #fff; /* Set font color to white on hover */
 }

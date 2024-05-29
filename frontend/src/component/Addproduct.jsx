@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 function Addproduct() {
   const [ProductFlavor, setProductFlavor] = useState('');
   const [Price, setPrice] = useState('');
-  const navigate=useNavigate;
+  const navigate=useNavigate('');
   
 
  
@@ -19,11 +19,10 @@ function Addproduct() {
       alert("All fields are required!");
       return;
     }
-
     axios.post('http://localhost:8080/addproduct', { ProductFlavor, Price})
       .then(res => {
-        console.log(res);
-      navigate('/Product/productlist ');
+      console.log(res);
+      navigate('/Product/Productlist');
       }).catch(err => console.log(err));
   }
   return (

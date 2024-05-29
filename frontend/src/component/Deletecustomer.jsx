@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import Sidebar from '../Sidebar';
 import Modal from './Modal';
@@ -9,11 +9,16 @@ function Deletecustomer() {
     const [customers, setCustomers] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [selectedCustomerId, setSelectedCustomerId] = useState(null);
+    const [searchInput, setSearchInput] = useState('');
+    const [filteredCustomers, setFilteredCustomers] = useState([]);
     const contentRef = useRef(null);
 
     useEffect(() => {
         axios.get('http://localhost:8080/customer')
-            .then(res => setCustomers(res.data))
+            .then(res => {
+                setCustomers(res.data);
+                setFilteredCustomers(res.data);
+            })
             .catch(err => console.error(err));
     }, []);
 
@@ -27,6 +32,7 @@ function Deletecustomer() {
             .then(res => {
                 if (res.data.Status === "Success") {
                     setCustomers(customers.filter(customer => customer.CustomerNO !== selectedCustomerId));
+                    setFilteredCustomers(filteredCustomers.filter(customer => customer.CustomerNO !== selectedCustomerId));
                 } else {
                     console.error("Error deleting customer:", res.data.Message);
                 }
@@ -41,6 +47,14 @@ function Deletecustomer() {
     const handleCloseModal = () => {
         setShowModal(false);
         setSelectedCustomerId(null);
+    };
+
+    const handleSearchInputChange = (e) => {
+        setSearchInput(e.target.value);
+        const filtered = customers.filter(customer =>
+            customer.Name.toLowerCase().includes(e.target.value.toLowerCase())
+        );
+        setFilteredCustomers(filtered);
     };
 
     const scrollToTop = () => {
@@ -59,6 +73,12 @@ function Deletecustomer() {
                 <div className='col-md-9 bg-dark bg-opacity-100 d-flex justify-content-center align-items-center'>
                     <div className='delete-customer-container'>
                         <h2 className='delete-customer-heading'>Delete Customer</h2>
+                        <input
+                            type="text"
+                            placeholder="Search by Store Name"
+                            value={searchInput}
+                            onChange={handleSearchInputChange}
+                        />
                         <table className='delete-customer-table'>
                             <thead>
                                 <tr>
@@ -71,7 +91,7 @@ function Deletecustomer() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {customers.map((customer, index) => (
+                                {filteredCustomers.map((customer, index) => (
                                     <tr key={index}>
                                         <td>{customer.CustomerNO}</td>
                                         <td>{customer.Name}</td>

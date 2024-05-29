@@ -1,7 +1,7 @@
-import { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import Sidebar from '../Sidebar';
-import './css/editcustomer.css'; // Import the editcustomer.css file
+import './css/editcustomer.css';
 import './css/topback.css';
 
 function Editcustomer() {
@@ -13,11 +13,16 @@ function Editcustomer() {
         ContactPerson: '',
         CellphoneNO: ''
     });
+    const [searchInput, setSearchInput] = useState('');
+    const [filteredCustomers, setFilteredCustomers] = useState([]);
     const contentRef = useRef(null);
 
     useEffect(() => {
         axios.get('http://localhost:8080/customer')
-            .then(res => setCustomers(res.data))
+            .then(res => {
+                setCustomers(res.data);
+                setFilteredCustomers(res.data);
+            })
             .catch(err => console.error(err));
     }, []);
 
@@ -42,9 +47,20 @@ function Editcustomer() {
                 setCustomers(customers.map(customer =>
                     customer.CustomerNO === customerId ? { ...customer, ...editingCustomerData } : customer
                 ));
+                setFilteredCustomers(filteredCustomers.map(customer =>
+                    customer.CustomerNO === customerId ? { ...customer, ...editingCustomerData } : customer
+                ));
                 setEditingCustomerId(null);
             })
             .catch(err => console.error(err));
+    };
+
+    const handleSearchInputChange = (e) => {
+        setSearchInput(e.target.value);
+        const filtered = customers.filter(customer =>
+            customer.Name.toLowerCase().includes(e.target.value.toLowerCase())
+        );
+        setFilteredCustomers(filtered);
     };
 
     const scrollToTop = () => {
@@ -60,11 +76,17 @@ function Editcustomer() {
         <>
             <Sidebar />
             <div className='Content' ref={contentRef}>
-                <div className='edit-customer-container'> {/* Update the container class */}
-                    <h2 className='edit-customer-heading'>Edit Customer</h2> {/* Apply the heading class */}
+                <div className='edit-customer-container'>
+                    <h2 className='edit-customer-heading'>Edit Customer</h2>
                     <div className='col-md-9 bg-dark bg-opacity-100 d-flex justify-content-center align-items-center'>
                         <div className='w-200 h-90 bg-white rounded p-4'>
-                            <table className='edit-customer-table'> {/* Apply the table class */}
+                            <input
+                                type="text"
+                                placeholder="Search by Store Name"
+                                value={searchInput}
+                                onChange={handleSearchInputChange}
+                            />
+                            <table className='edit-customer-table'>
                                 <thead>
                                     <tr>
                                         <th>Customer NO.</th>
@@ -76,7 +98,7 @@ function Editcustomer() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {customers.map((customer, index) => (
+                                    {filteredCustomers.map((customer, index) => (
                                         <tr key={index}>
                                             {editingCustomerId === customer.CustomerNO ? (
                                                 <>
@@ -114,7 +136,7 @@ function Editcustomer() {
                                                         />
                                                     </td>
                                                     <td>
-                                                        <button className="customer-list-button" onClick={() => handleUpdateClick(customer.CustomerNO)}>Update</button> {/* Apply the button class */}
+                                                        <button className="customer-list-button" onClick={() => handleUpdateClick(customer.CustomerNO)}>Update</button>
                                                     </td>
                                                 </>
                                             ) : (
@@ -125,7 +147,7 @@ function Editcustomer() {
                                                     <td>{customer.ContactPerson}</td>
                                                     <td>{customer.CellphoneNO}</td>
                                                     <td>
-                                                        <button className="customer-list-button" onClick={() => handleEditClick(customer)}>Edit</button> {/* Apply the button class */}
+                                                        <button className="customer-list-button" onClick={() => handleEditClick(customer)}>Edit</button>
                                                     </td>
                                                 </>
                                             )}

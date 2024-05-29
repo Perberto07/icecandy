@@ -23,7 +23,7 @@ function Addcustomer() {
     axios.post('http://localhost:8080/addcustomer', { Name, Address, ContactPerson, CellphoneNo })
       .then(res => {
         console.log(res);
-      navigate('/Customer/Customerlist ');
+      navigate('/Customer/Customerlist');
       }).catch(err => console.log(err));
   }
 
