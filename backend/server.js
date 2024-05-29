@@ -145,9 +145,9 @@ app.post("/addcustomer", (req, res)=>{
 
 app.put("/customer/:id", (req, res) => {
     const { id } = req.params;
-    const { Name, Address, ContactPerson, CellphoneNo } = req.body;
+    const { Name, Address, ContactPerson, CellphoneNO } = req.body;
     const sql = "UPDATE customer SET Name = ?, Address = ?, ContactPerson = ?, CellphoneNo = ? WHERE CustomerNO = ?";
-    const values = [Name, Address, ContactPerson, CellphoneNo, id];
+    const values = [Name, Address, ContactPerson, CellphoneNO, id];
 
     db.query(sql, values, (err, data) => {
         if (err) return res.json({ Status: "Error", Message: "Error updating customer" });

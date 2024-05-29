@@ -9,6 +9,7 @@ function Addcustomer() {
   const [Address, setAddress] = useState('');
   const [ContactPerson, setContact] = useState('');
   const [CellphoneNo, setContactNo] = useState('');
+  const [adding, setAdding] = useState(false);
   const navigate = useNavigate();
 
   function handleSubmit(event) {
@@ -20,11 +21,20 @@ function Addcustomer() {
       return;
     }
 
-    axios.post('http://localhost:8080/addcustomer', { Name, Address, ContactPerson, CellphoneNo })
-      .then(res => {
-        console.log(res);
-      navigate('/Customer/Customerlist');
-      }).catch(err => console.log(err));
+    // Prompt before adding
+    const confirmAdd = window.confirm("Are you sure you want to add?");
+    if (confirmAdd) {
+      setAdding(true);
+      axios.post('http://localhost:8080/addcustomer', { Name, Address, ContactPerson, CellphoneNo })
+        .then(res => {
+          console.log(res);
+          setAdding(false);
+          setTimeout(() => {
+            alert("Adding complete!");
+            navigate('/Customer/Customerlist');
+          }, 2000);
+        }).catch(err => console.log(err));
+    }
   }
 
   return (
@@ -71,8 +81,8 @@ function Addcustomer() {
                 value={CellphoneNo}
                 onChange={e => setContactNo(e.target.value)} />
             </div>
-            <button type="submit">
-              Add
+            <button type="submit" disabled={adding}>
+              {adding ? "Adding..." : "Add"}
             </button>
           </form>
         </div>

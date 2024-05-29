@@ -42,17 +42,20 @@ function Editcustomer() {
     };
 
     const handleUpdateClick = (customerId) => {
-        axios.put(`http://localhost:8080/customer/${customerId}`, editingCustomerData)
-            .then(() => {
-                setCustomers(customers.map(customer =>
-                    customer.CustomerNO === customerId ? { ...customer, ...editingCustomerData } : customer
-                ));
-                setFilteredCustomers(filteredCustomers.map(customer =>
-                    customer.CustomerNO === customerId ? { ...customer, ...editingCustomerData } : customer
-                ));
-                setEditingCustomerId(null);
-            })
-            .catch(err => console.error(err));
+        const confirmUpdate = window.confirm("Are you sure you want to apply changes?");
+        if (confirmUpdate) {
+            axios.put(`http://localhost:8080/customer/${customerId}`, editingCustomerData)
+                .then(() => {
+                    setCustomers(customers.map(customer =>
+                        customer.CustomerNO === customerId ? { ...customer, ...editingCustomerData } : customer
+                    ));
+                    setFilteredCustomers(filteredCustomers.map(customer =>
+                        customer.CustomerNO === customerId ? { ...customer, ...editingCustomerData } : customer
+                    ));
+                    setEditingCustomerId(null);
+                })
+                .catch(err => console.error(err));
+        }
     };
 
     const handleSearchInputChange = (e) => {

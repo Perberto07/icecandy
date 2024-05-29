@@ -1,0 +1,50 @@
+/* Product List Container Styles */
+.product-list-container {
+    width: auto;
+    max-width: auto;
+    height: max-content;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #f3f3f3, #e0e0e0);
+}
+
+/* Product List Heading Styles */
+.product-list-heading {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Product List Table Styles */
+.product-list-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.product-list-table th,
+.product-list-table td {
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.product-list-table th {
+    background-color: #007bff;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.product-list-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.product-list-table tbody tr:hover {
+    background-color: #f0f0f0;
+    transition: background-color 0.3s ease;
+}
