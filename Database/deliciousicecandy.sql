@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2024 at 04:25 AM
+-- Generation Time: May 31, 2024 at 07:17 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -274,6 +274,20 @@ INSERT INTO `customer` (`CustomerNO`, `Name`, `Address`, `ContactPerson`, `Cellp
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ordered`
+--
+
+CREATE TABLE `ordered` (
+  `orderNo` int(30) NOT NULL,
+  `ProductFlavor` varchar(30) NOT NULL,
+  `Quantity` int(30) NOT NULL,
+  `Price` int(7) NOT NULL,
+  `ProductNO` int(7) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `product`
 --
 
@@ -301,6 +315,19 @@ INSERT INTO `product` (`ProductNO`, `ProductFlavor`, `Price`) VALUES
 (11, 'Cappuccino', 12),
 (12, 'Rocky Road', 12),
 (13, 'Dragon Fruit', 12);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transaction`
+--
+
+CREATE TABLE `transaction` (
+  `orderNo` int(30) NOT NULL,
+  `Name` varchar(50) NOT NULL,
+  `Address` varchar(50) NOT NULL,
+  `Date` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -335,10 +362,23 @@ ALTER TABLE `customer`
   ADD PRIMARY KEY (`CustomerNO`);
 
 --
+-- Indexes for table `ordered`
+--
+ALTER TABLE `ordered`
+  ADD UNIQUE KEY `orderNo` (`orderNo`),
+  ADD KEY `productno` (`ProductNO`);
+
+--
 -- Indexes for table `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`ProductNO`);
+
+--
+-- Indexes for table `transaction`
+--
+ALTER TABLE `transaction`
+  ADD PRIMARY KEY (`orderNo`);
 
 --
 -- Indexes for table `user`
@@ -361,6 +401,23 @@ ALTER TABLE `customer`
 --
 ALTER TABLE `product`
   MODIFY `ProductNO` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `transaction`
+--
+ALTER TABLE `transaction`
+  MODIFY `orderNo` int(30) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `ordered`
+--
+ALTER TABLE `ordered`
+  ADD CONSTRAINT `ordered_ibfk_1` FOREIGN KEY (`ProductNO`) REFERENCES `product` (`ProductNO`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ordered_ibfk_2` FOREIGN KEY (`orderNo`) REFERENCES `transaction` (`orderNo`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
