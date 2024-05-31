@@ -26,12 +26,21 @@
     border-radius: 150%;
   }
   
+.datetime-icons{
+  display: block ;
+
+  margin-right: 20px;
+
+}
+  
   /* Style for the date and time container */
 .date-time-container {
-    font-size: 150%;
+    font-size: 110%;
     font-family: 'Roboto', sans-serif;
     display: flex;
-    padding-right: 5%;
+    align-self: flex-end;
+    justify-self: end;
+    margin-left: 300px;
   }
   /* Style for the date */
   .current-date {
@@ -44,17 +53,18 @@
     
   }
   .icons{
-    margin-top: 20px;
+    margin-top: 1px;
     display: flex;
   }
   .icon-container {
     position: relative;
-    margin: 10px;
+    margin-right: 20px;
     display: inline-block;
   }
   
   .icon2 {
     width: 30px;
+    margin-left: 20px ;
   }
   
   .icon-text {
@@ -68,7 +78,7 @@
     padding: 5px;
     position: absolute;
     z-index: 1;
-    bottom:5%; /* Position above the icon */
+    bottom:120%; /* Position above the icon */
     left: 50%;
     transform: translateX(-50%);
     transition: opacity 0.3s;
@@ -78,6 +88,8 @@
     visibility: visible;
     opacity: 1;
   }
-  
+  .brandname{
+    margin-left: 30px;
+  }
   
   

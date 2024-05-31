@@ -41,9 +41,15 @@ function Header() {
     <div className="header">
       <div className="icecandy-text-container">
         <Link to="/Home" className="active"><img src={logo} alt="Logo" className="icecandy-logo" /></Link>
-        <h1>Delicious Ice Candy</h1>
+        <h1 className='brandname'>Delicious Ice Candy</h1>
       </div>
 
+      <div className='datetime-icons'> 
+
+      <div className="date-time-container">
+        <p className="current-date-time" dangerouslySetInnerHTML={{ __html: getCurrentDateTime() }}></p>
+      </div>
+       
       <div className='icons'>
         <Link to="/Home" className="icon-container">
           <img src={home} alt="Home" className="icon2" />
@@ -71,10 +77,9 @@ function Header() {
         </Link>
       </div>
 
-
-      <div className="date-time-container">
-        <p className="current-date-time" dangerouslySetInnerHTML={{ __html: getCurrentDateTime() }}></p>
+      
       </div>
+
     </div>
 
 
