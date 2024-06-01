@@ -30,6 +30,10 @@ function AddOrder() {
     }
   };
 
+  const handleRemoveProduct = (id) => {
+    setProducts(products.filter(product => product.id !== id));
+  };
+
   return (
     <>
       <Sidebar />
@@ -82,7 +86,7 @@ function AddOrder() {
                 <button className="add-button" onClick={addProductField}>+</button>
               )}
               <hr className='line'/>
-              <div className='product'>
+              <div>
                 <label htmlFor={`product-${product.id}`}>Select Product</label>
                 <select
                   name={`products-${product.id}`}
@@ -94,7 +98,7 @@ function AddOrder() {
                   <option value="milk">Milk</option>
                 </select>
               </div>
-              <div className='quantity'>
+              <div>
                 <label htmlFor={`quantity-${product.id}`}>Quantity</label>
                 <input
                   type="number"
@@ -103,6 +107,16 @@ function AddOrder() {
                   placeholder='Enter Quantity'
                 />
               </div>
+              <div>
+                <label htmlFor={`orderNo-${product.id}`}>Order No.</label>
+                <input
+                  type="text"
+                  id={`orderNo-${product.id}`}
+                  className='orderNo-input'
+                  placeholder='Order No'
+                />
+              </div>
+              <button className="remove-button" onClick={() => handleRemoveProduct(product.id)}>X</button>
             </div>
           ))}
           <hr />
