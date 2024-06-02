@@ -1,4 +1,4 @@
-.Content2 {
+.Content-addcustomer {
     margin-top: 5%; /* Adjust margin-top as needed */
     width: 80%; /* Adjust width as needed */
     padding: 40px;
@@ -10,7 +10,7 @@
     transition: box-shadow 0.3s ease; /* Add transition for shadow */
 }
 
-.Content2:hover {
+.Content-addcustomer:hover {
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.2); /* Adjust shadow on hover */
 }
 

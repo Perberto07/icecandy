@@ -5,7 +5,6 @@ const app = express();
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 
-
 app.use(express.json());
 app.use(cookieParser());
 
@@ -54,43 +53,18 @@ app.get('/login', verifyUser, (req, res) => {
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
 
-    // Check if username and password are provided
-    if (!username && !password) {
+    if (!username || !password) {
         return res.json({ Status: "Error", Message: "Username and Password are required" });
     }
 
-    // Check if username is provided
-    if (!username) {
-        return res.json({ Status: "Error", Message: "Username is required" });
-    }
-
-    // Check if password is provided
-    if (!password) {
-        return res.json({ Status: "Error", Message: "Please enter your password" });
-    }
-
-    // Proceed with login authentication
     const sqlUser = "SELECT * FROM user WHERE Username=?";
-    const sqlPassword = "SELECT * FROM user WHERE Password=?";
     const valuesUser = [username];
-    const valuesPassword = [password];
 
     db.query(sqlUser, valuesUser, (err, dataUser) => {
         if (err) return res.json({ Status: "Error", Message: "Database error" });
 
         if (dataUser.length === 0) {
-            // No user found with the given username, check password
-            db.query(sqlPassword, valuesPassword, (err, dataPassword) => {
-                if (err) return res.json({ Status: "Error", Message: "Database error" });
-
-                if (dataPassword.length === 0) {
-                    // No user found with the given password
-                    return res.json({ Status: "Error", Message: "Invalid username and password" });
-                } else {
-                    // Username is incorrect, but the password exists
-                    return res.json({ Status: "Error", Message: "Invalid username" });
-                }
-            });
+            return res.json({ Status: "Error", Message: "Invalid username or password" });
         } else {
             const user = dataUser[0];
             if (user.Password === password) {
@@ -99,35 +73,32 @@ app.post('/login', (req, res) => {
                 res.cookie('token', token);
                 return res.json({ Status: "Success" });
             } else {
-                // Password does not match
                 return res.json({ Status: "Error", Message: "Wrong password" });
             }
         }
     });
 });
 
-// Add this endpoint in your existing Express server code
 app.post('/logout', (req, res) => {
     res.clearCookie('token');
     return res.json({ Status: "Success", Message: "Logged out successfully" });
 });
 
-
 app.get("/customer", (req, res)=>{
     const sql = "SELECT * FROM Customer";
-     db.query(sql, (err, data)=>{
+    db.query(sql, (err, data)=>{
         if(err) return res.json("error");
         return res.json(data);
-     })
-})
+    });
+});
 
 app.get("/product", (req, res)=>{
     const sql = "SELECT * FROM product";
-     db.query(sql, (err, data)=>{
+    db.query(sql, (err, data)=>{
         if(err) return res.json("error");
         return res.json(data);
-     })
-})
+    });
+});
 
 app.post("/addcustomer", (req, res)=>{
     const sql = "insert into customer (Name, Address, ContactPerson, CellphoneNo) Values(?)";
@@ -136,12 +107,12 @@ app.post("/addcustomer", (req, res)=>{
         req.body.Address,
         req.body.ContactPerson,
         req.body.CellphoneNo
-    ]
-     db.query(sql, [values], (err, data) => {
+    ];
+    db.query(sql, [values], (err, data) => {
         if(err) return res.json("Error");
         return res.json(data);
-     })
-})
+    });
+});
 
 app.put("/customer/:id", (req, res) => {
     const { id } = req.params;
@@ -154,11 +125,10 @@ app.put("/customer/:id", (req, res) => {
         return res.json({ Status: "Success", Message: "Customer updated successfully" });
     });
 });
-// Add this route to your server code
+
 app.delete("/customer/:id", (req, res) => {
     const { id } = req.params;
     const sql = "DELETE FROM customer WHERE CustomerNO = ?";
-    
     db.query(sql, [id], (err, data) => {
         if (err) return res.json({ Status: "Error", Message: "Error deleting customer" });
         return res.json({ Status: "Success", Message: "Customer deleted successfully" });
@@ -170,33 +140,51 @@ app.post("/addproduct", (req, res)=>{
     const values=[
         req.body.ProductFlavor,
         req.body.Price,
-    ]
-     db.query(sql, [values], (err, data) => {
+    ];
+    db.query(sql, [values], (err, data) => {
         if(err) return res.json("Error");
         return res.json(data);
-     })
-})
+    });
+});
 
 app.put('/product/:ProductNO', (req, res) => {
     const productNO = req.params.ProductNO;
     const { ProductFlavor, Price } = req.body;
     const sql = 'UPDATE product SET ProductFlavor = ?, Price = ? WHERE ProductNO = ?';
     db.query(sql, [ProductFlavor, Price, productNO], (err, data) => {
-      if (err) return res.json({ error: err.message });
-      return res.json(data);
+        if (err) return res.json({ error: err.message });
+        return res.json(data);
     });
 });
 
-  app.delete('/product/:ProductNO', (req, res) => {
+app.delete('/product/:ProductNO', (req, res) => {
     const productNO = req.params.ProductNO;
     const sql = 'DELETE FROM product WHERE ProductNO = ?';
     db.query(sql, [productNO], (err, data) => {
-      if (err) return res.json({ error: err.message });
-      return res.json(data);
+        if (err) return res.json({ error: err.message });
+        return res.json(data);
     });
-  });
-  
+});
 
+app.post("/addorder", (req, res) => {
+    const { orderData, orderNo, orderDate, customer } = req.body;
+    
+    const sqlOrder = "INSERT INTO orders (OrderNo, OrderDate, CustomerNO) VALUES (?, ?, ?)";
+    const valuesOrder = [orderNo, orderDate, customer];
+    
+    db.query(sqlOrder, valuesOrder, (err, result) => {
+        if (err) return res.json("Error inserting order");
+        
+        const orderId = result.insertId;
+        const sqlOrdered = "INSERT INTO ordered (OrderID, ProductFlavor, Price, Quantity) VALUES ?";
+        const valuesOrdered = orderData.map(order => [orderId, order.ProductFlavor, order.Price, order.Quantity]);
+        
+        db.query(sqlOrdered, [valuesOrdered], (err, data) => {
+            if (err) return res.json("Error inserting ordered items");
+            return res.json("Order added successfully");
+        });
+    });
+});
 
 const port = 8080;
 

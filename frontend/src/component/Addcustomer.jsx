@@ -41,7 +41,7 @@ function Addcustomer() {
     <>
       <Sidebar />
       <div className="Content">
-        <div className="Content2">
+        <div className="Content-addcustomer">
           <form onSubmit={handleSubmit}>
             <div className="one">
               <label htmlFor="customerName">Store Name:</label>
