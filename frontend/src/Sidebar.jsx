@@ -1,10 +1,9 @@
-// Sidebar.js
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './component/css/Sidebar.css';
 import Header from './Header';
 import HomeIcon from './images/home.png';
-import CustomerIcon from './images/customer.png'; // Import the Customer icon
+import CustomerIcon from './images/customer.png';
 import ProductIcon from './images/product.png';
 import OrderIcon from './images/order.png';
 import TransactionIcon from './images/transaction.png';
@@ -14,6 +13,9 @@ import axios from 'axios';
 function Sidebar() {
   const navigate = useNavigate();
   const [showCustomerSubMenu, setShowCustomerSubMenu] = useState(false);
+  const [showProductSubMenu, setShowProductSubMenu] = useState(false);
+  const [showOrderSubMenu, setShowOrderSubMenu] = useState(false);
+  const [showTransactionSubMenu, setShowTransactionSubMenu] = useState(false);
 
   const handleLogout = () => {
     if (window.confirm('Are you sure you want to log out?')) {
@@ -45,52 +47,95 @@ function Sidebar() {
             </li>
             <li onClick={() => setShowCustomerSubMenu(!showCustomerSubMenu)}>
               <button className="submenu-toggle">
-                <div><img src={CustomerIcon} alt="Customer" className="icon3" />
-                <span className="text">Customer</span></div>
+                <div>
+                  <img src={CustomerIcon} alt="Customer" className="icon3" />
+                  <span className="text">Customer</span>
+                </div>
               </button>
               {showCustomerSubMenu && (
                 <ul className="submenu">
                   <li>
-                    <Link to="/Customer/Customerlist" className="button">
-                      <i className="icon fas fa-list"></i>Customer List
+                    <Link to="/Customer/Customerlist" className="button1">
+                      <i className="fas fa-list"></i> Customer List
                     </Link>
                   </li>
-                  <li>
-                    <Link to="/Customer/Addcustomer" className="button">
-                      <i className="icon fas fa-plus"></i>Add Customer
+                  <li className="product">
+                    <Link to="/Customer/Addcustomer" className="button1">
+                      <i className="fas fa-plus"></i> Add Customer
                     </Link>
                   </li>
-                  <li>
-                    <Link to="/Customer/Editcustomer" className="button">
-                      <i className="icon fas fa-edit"></i>Edit Customer
+                  <li className="product">
+                    <Link to="/Customer/Editcustomer" className="button1">
+                      <i className="fas fa-edit"></i> Edit Customer
                     </Link>
                   </li>
-                  <li>
-                    <Link to="/Customer/Deletecustomer" className="button">
-                      <i className="icon fas fa-trash"></i>Delete Customer
+                  <li className="product">
+                    <Link to="/Customer/Deletecustomer" className="button1">
+                      <i className="fas fa-trash"></i> Delete Customer
                     </Link>
                   </li>
                 </ul>
               )}
             </li>
-            <li>
-              <Link to="/Product">
-                <img src={ProductIcon} alt="Product" className="icon3" />
-                <span className="text">Product</span>
-              </Link>
+            <li onClick={() => setShowProductSubMenu(!showProductSubMenu)}>
+              <button className="submenu-toggle">
+                <div>
+                  <img src={ProductIcon} alt="Product" className="icon3" />
+                  <span className="text">Product</span>
+                </div>
+              </button>
+              {showProductSubMenu && (
+                <ul className="submenu">
+                  <li>
+                    <Link to="/Product/Productlist" className="button1">
+                      <i className="fas fa-list"></i> Product List
+                    </Link>
+                  </li>
+                  <li className="product">
+                    <Link to="/Product/Addproduct" className="button1">
+                      <i className="fas fa-plus"></i> Add Product
+                    </Link>
+                  </li>
+                  <li className="product">
+                    <Link to="/Product/Editproduct" className="button1">
+                      <i className="fas fa-edit"></i> Edit Product
+                    </Link>
+                  </li>
+                  <li className="product">
+                    <Link to="/Product/Deleteproduct" className="button1">
+                      <i className="fas fa-trash"></i> Delete Product
+                    </Link>
+                  </li>
+                </ul>
+              )}
             </li>
-            <li>
-              <Link to="/Order">
-                <img src={OrderIcon} alt="Order" className="icon3" />
-                <span className="text">Order</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/Transaction">
-                <img src={TransactionIcon} alt="Transaction" className="icon3" />
-                <span className="text">Transaction</span>
-              </Link>
-            </li>
+            <li onClick={() => setShowOrderSubMenu(!showOrderSubMenu)}>
+              <button className="submenu-toggle">
+                <div>
+                  <img src={OrderIcon} alt="Order" className="icon3" />
+                  <span className="text">Order</span>
+                </div>
+              </button>
+              {showOrderSubMenu && (
+                 <ul className="submenu">
+                 <li>
+                   <Link to="/Order/Addorder" className="button1">
+                     <i className="fas fa-plus"></i> Add Order
+                   </Link>
+                 </li>
+                 <li className="product">
+                   <Link to="/Order/Editorder" className="button1">
+                     <i className="fas fa-edit"></i> Edit Order
+                   </Link>
+                 </li>
+                 <li className="product">
+                   <Link to="/Order/Deleteorder" className="button1">
+                     <i className="fas fa-trash"></i> Delete Order
+                   </Link>
+                 </li>
+               </ul>
+             )}
+           </li>
             <li>
               <button onClick={handleLogout} className="logout-button">
                 <img src={LogoutIcon} alt="Logout" className="icon3" />
