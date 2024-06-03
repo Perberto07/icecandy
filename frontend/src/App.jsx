@@ -19,6 +19,8 @@ import Settings from "./component/Settings";
 import Customerlist from "./component/Customerlist";
 import Productlist from "./component/Productlist";
 
+
+
 const Customerpage = () => {
     return (
         <>

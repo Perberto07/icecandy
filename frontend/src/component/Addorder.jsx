@@ -9,9 +9,10 @@ function AddOrder() {
   const [productList, setProductList] = useState([]);
   const [selectedCustomer, setSelectedCustomer] = useState('');
   const [selectedAddress, setSelectedAddress] = useState('');
-
-  const [ProductFlavor, setProductFlavor] = useState('');
-  const [Price, setPrice] = useState('');
+  const [total, setTotal] = useState(0);
+  const [orderNo, setOrderNo] = useState('');
+  const [date, setDate] = useState('');
+  const [submissionStatus, setSubmissionStatus] = useState('');
 
   useEffect(() => {
     axios.get('http://localhost:8080/customer')
@@ -22,6 +23,25 @@ function AddOrder() {
       .then(res => setProductList(res.data))
       .catch(err => console.error(err));
   }, []);
+
+  useEffect(() => {
+    // Calculate total whenever products change
+    let sum = 0;
+    products.forEach(product => {
+      const subtotal = parseFloat(product.price) * parseInt(product.quantity);
+      sum += isNaN(subtotal) ? 0 : subtotal;
+    });
+    setTotal(sum);
+  }, [products]);
+
+  useEffect(() => {
+    // Generate order number based on date and selected customer
+    if (date && selectedCustomer) {
+      const formattedDate = date.replace(/-/g, ''); // Remove dashes from date
+      const orderNumber = `${formattedDate}${selectedCustomer}`; // Concatenate date and CustomerNo
+      setOrderNo(orderNumber);
+    }
+  }, [date, selectedCustomer]);
 
   const addProductField = () => {
     setProducts([...products, { id: products.length + 1, product: '', quantity: '', price: '' }]);
@@ -56,113 +76,142 @@ function AddOrder() {
     setProducts(products.filter(product => product.id !== id));
   };
 
+  const handleDateChange = (e) => {
+    setDate(e.target.value);
+  };
+
+  const saveProduct = (product) => {
+    const transactionData = {
+      ProductNO: product.product,
+      OrderNo: orderNo,
+      Quantity: product.quantity
+    };
+
+    axios.post('http://localhost:8080/addorder', transactionData)
+      .then(res => {
+        console.log('Product saved:', res.data);
+        setSubmissionStatus('Product successfully saved!');
+      })
+      .catch(err => {
+        console.error('Error saving product:', err);
+        setSubmissionStatus('Failed to save product.');
+      });
+  };
+
   return (
     <>
       <Sidebar />
       <div className='Content'>
         <div className='Content2'>
           <div className="order-container">
-            <div className='customer-field'>
-              <div className='orderNo'>
-                <h3>Order No: </h3>
-              </div>
-              <div className='date'>
-                <label htmlFor="date">Date</label>
-                <input
-                  type="date"
-                  id="date"
-                  className='date-input'
-                  placeholder='Date'
-                />
-              </div>
-              <div className='customer-address'>
-                <label htmlFor="customer">Customer</label>
-                <select
-                  id="customer"
-                  className='customer-input'
-                  value={selectedCustomer}
-                  onChange={handleCustomerChange}
-                >
-                  <option value="">Select Customer</option>
-                  {customers.map(customer => (
-                    <option key={customer.CustomerNO} value={customer.CustomerNO}>
-                      {customer.Name}
-                    </option>
-                  ))}
-                </select>
-
-                <label htmlFor="address">Address</label>
-                <input
-                  type="text"
-                  id="address"
-                  className='address-input'
-                  placeholder='Address'
-                  value={selectedAddress}
-                  readOnly
-                />
-              </div>
-            </div>
-            <hr />
-            {products.map((product, index) => (
-              <div key={product.id} className='product-quantity'>
-                {index === 0 && (
-                  <button className="add-button" onClick={addProductField}>+</button>
-                )}
-                <hr className='line'/>
-                <div>
-                  <label htmlFor={`product-${product.id}`}>Select Product</label>
+            <form onSubmit={(e) => e.preventDefault()}>
+              <div className='customer-field'>
+                <div className='orderNo'>
+                  <h3>Order No: {orderNo}</h3>
+                </div>
+                <div className='date'>
+                  <label htmlFor="date">Date</label>
+                  <input
+                    type="date"
+                    id="date"
+                    className='date-input'
+                    placeholder='Date'
+                    value={date}
+                    onChange={handleDateChange}
+                  />
+                </div>
+                <div className='customer-address'>
+                  <label htmlFor="customer">Customer</label>
                   <select
-                    name={`products-${product.id}`}
-                    id={`products-${product.id}`}
-                    className='select-product'
-                    value={product.product}
-                    onChange={(e) => handleProductChange(index, e.target.value)}
+                    id="customer"
+                    className='customer-input'
+                    value={selectedCustomer}
+                    onChange={handleCustomerChange}
                   >
-                    <option value="">Select Product</option>
-                    {productList.map(productItem => (
-                      <option key={productItem.ProductNO} value={productItem.ProductNO}>
-                        {productItem.ProductFlavor}
+                    <option value="">Select Customer</option>
+                    {customers.map(customer => (
+                      <option key={customer.CustomerNO} value={customer.CustomerNO}>
+                        {customer.Name}
                       </option>
-                      
                     ))}
                   </select>
-                </div>
-                <div>
-                  <label htmlFor={`price-${product.id}`}>Price</label>
+
+                  <label htmlFor="address">Address</label>
                   <input
                     type="text"
-                    id={`price-${product.id}`}
-                    className='form-control'
-                    placeholder='Price'
-                    value={product.price}
+                    id="address"
+                    className='address-input'
+                    placeholder='Address'
+                    value={selectedAddress}
                     readOnly
                   />
                 </div>
-                <div>
-                  <label htmlFor={`quantity-${product.id}`}>Quantity</label>
-                  <input
-                    type="number"
-                    id={`quantity-${product.id}`}
-                    className='form-control'
-                    placeholder='Enter Quantity'
-                    value={product.quantity}
-                    onChange={(e) => handleQuantityChange(index, e.target.value)}
-                  />
-                </div>
-                <div>
-                  <label htmlFor={`orderNo-${product.id}`}>Order No.</label>
-                  <input
-                    type="text"
-                    id={`orderNo-${product.id}`}
-                    className='orderNo-input'
-                    placeholder='Order No'
-                  />
-                </div>
-                <button className="remove-button" onClick={() => handleRemoveProduct(product.id)}>X</button>
               </div>
-            ))}
-            <hr />
-            <p className='Total'>Total</p>
+              <hr />
+              {products.map((product, index) => (
+                <div key={product.id} className='product-quantity'>
+                  {index === 0 && (
+                    <button type="button" className="add-button" onClick={addProductField}>+</button>
+                  )}
+                  <hr className='line'/>
+                  <div>
+                    <label htmlFor={`product-${product.id}`}>Select Product</label>
+                    <select
+                      name={`products-${product.id}`}
+                      id={`products-${product.id}`}
+                      className='select-product'
+                      value={product.product}
+                      onChange={(e) => handleProductChange(index, e.target.value)}
+                    >
+                      <option value="">Select Product</option>
+                      {productList.map(productItem => (
+                        <option key={productItem.ProductNO} value={productItem.ProductNO}>
+                          {productItem.ProductFlavor}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label htmlFor={`price-${product.id}`}>Price</label>
+                    <input
+                      type="text"
+                      id={`price-${product.id}`}
+                      className='form-control'
+                      placeholder='Price'
+                      value={product.price}
+                      readOnly
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor={`quantity-${product.id}`}>Quantity</label>
+                    <input
+                      type="number"
+                      id={`quantity-${product.id}`}
+                      className='form-control'
+                      placeholder='Enter Quantity'
+                      value={product.quantity}
+                      onChange={(e) => handleQuantityChange(index, e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor={`orderNo-${product.id}`}>Order No.</label>
+                    <input
+                      type="text"
+                      id={`orderNo-${product.id}`}
+                      className='orderNo-input'
+                      placeholder='Order No'
+                      value={orderNo}
+                      readOnly
+                    />
+                  </div>
+                  <button type="button" className="remove-button" onClick={() => handleRemoveProduct(product.id)}>X</button>
+                  <button type="button" className="save-button" onClick={() => saveProduct(product)}>Save</button>
+                </div>
+              ))}
+              <hr />
+              <p className='Total'>Total: Php {total.toFixed(2)}</p>
+              {submissionStatus && <p>{submissionStatus}</p>}
+            </form>
           </div>
         </div>
       </div>

@@ -166,23 +166,39 @@ app.delete('/product/:ProductNO', (req, res) => {
     });
 });
 
-app.post("/addorder", (req, res) => {
-    const { orderData, orderNo, orderDate, customer } = req.body;
-    
-    const sqlOrder = "INSERT INTO orders (OrderNo, OrderDate, CustomerNO) VALUES (?, ?, ?)";
-    const valuesOrder = [orderNo, orderDate, customer];
-    
-    db.query(sqlOrder, valuesOrder, (err, result) => {
-        if (err) return res.json("Error inserting order");
-        
-        const orderId = result.insertId;
-        const sqlOrdered = "INSERT INTO ordered (OrderID, ProductFlavor, Price, Quantity) VALUES ?";
-        const valuesOrdered = orderData.map(order => [orderId, order.ProductFlavor, order.Price, order.Quantity]);
-        
-        db.query(sqlOrdered, [valuesOrdered], (err, data) => {
-            if (err) return res.json("Error inserting ordered items");
-            return res.json("Order added successfully");
-        });
+app.post("/addorder", (req, res)=>{
+    const sql = "insert into ordered (OrderNo, ProductNO, Quantity) Values(?)";
+    const values=[
+        req.body.OrderNo,
+        req.body.ProductNO,
+        req.body.Quantity,
+    ];
+    db.query(sql, [values], (err, data) => {
+        if(err) return res.json("Error");
+        return res.json(data);
+    });
+});
+
+
+app.post("/addtransaction", (req, res)=>{
+    const sql = "insert into transaction (OrderNo, CustomerNO, Date,Sum) Values(?)";
+    const values=[
+        req.body.OrderNo,
+        req.body.CustomerNO,
+        req.body.Date,
+        req.body.Sum,
+    ];
+    db.query(sql, [values], (err, data) => {
+        if(err) return res.json("Error");
+        return res.json(data);
+    });
+});
+
+app.get("/transaction", (req, res)=>{
+    const sql = "SELECT * FROM transaction";
+    db.query(sql, (err, data)=>{
+        if(err) return res.json("error");
+        return res.json(data);
     });
 });
 
