@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2024 at 07:17 PM
+-- Generation Time: Jun 03, 2024 at 06:14 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -269,7 +269,8 @@ INSERT INTO `customer` (`CustomerNO`, `Name`, `Address`, `ContactPerson`, `Cellp
 (227, 'Iyashi Goodies Chocolate Store ', '5 MH Del Pilar St. Tugatog Malabon', 'Allan Lapuz', 9184295590),
 (228, 'Bless Joy Store', '10 D Don Basilio Bautista St Hulong Duhat Malabon', 'Medelon Salveo', 9425551286),
 (229, 'Kian', '485 6th Ave Caloocan ', 'Kian', 9167108244),
-(230, 'Jen Store', '53 4th Ave Caloocan City', 'Jen', 9174569214);
+(230, 'Jen Store', '53 4th Ave Caloocan City', 'Jen', 9174569214),
+(231, 'patrick store', 'baseco manila', 'patrick', 9303887754);
 
 -- --------------------------------------------------------
 
@@ -278,12 +279,18 @@ INSERT INTO `customer` (`CustomerNO`, `Name`, `Address`, `ContactPerson`, `Cellp
 --
 
 CREATE TABLE `ordered` (
-  `orderNo` int(30) NOT NULL,
-  `ProductFlavor` varchar(30) NOT NULL,
-  `Quantity` int(30) NOT NULL,
-  `Price` int(7) NOT NULL,
-  `ProductNO` int(7) NOT NULL
+  `orderID` int(30) NOT NULL,
+  `orderNo` bigint(20) NOT NULL,
+  `ProductNO` int(7) NOT NULL,
+  `Quantity` int(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `ordered`
+--
+
+INSERT INTO `ordered` (`orderID`, `orderNo`, `ProductNO`, `Quantity`) VALUES
+(1, 2024060419, 10, 8);
 
 -- --------------------------------------------------------
 
@@ -323,10 +330,11 @@ INSERT INTO `product` (`ProductNO`, `ProductFlavor`, `Price`) VALUES
 --
 
 CREATE TABLE `transaction` (
-  `orderNo` int(30) NOT NULL,
-  `Name` varchar(50) NOT NULL,
-  `Address` varchar(50) NOT NULL,
-  `Date` datetime NOT NULL DEFAULT current_timestamp()
+  `transactionID` int(20) NOT NULL,
+  `orderNo` bigint(20) NOT NULL,
+  `CustomerNO` int(7) NOT NULL,
+  `Date` date NOT NULL,
+  `Sum` int(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -365,8 +373,11 @@ ALTER TABLE `customer`
 -- Indexes for table `ordered`
 --
 ALTER TABLE `ordered`
-  ADD UNIQUE KEY `orderNo` (`orderNo`),
-  ADD KEY `productno` (`ProductNO`);
+  ADD PRIMARY KEY (`orderID`),
+  ADD KEY `ProductNO` (`ProductNO`),
+  ADD KEY `orderNo` (`orderNo`),
+  ADD KEY `orderNo_2` (`orderNo`),
+  ADD KEY `orderNo_3` (`orderNo`);
 
 --
 -- Indexes for table `product`
@@ -378,7 +389,9 @@ ALTER TABLE `product`
 -- Indexes for table `transaction`
 --
 ALTER TABLE `transaction`
-  ADD PRIMARY KEY (`orderNo`);
+  ADD PRIMARY KEY (`transactionID`),
+  ADD KEY `CustomerNO` (`CustomerNO`),
+  ADD KEY `orderNo` (`orderNo`);
 
 --
 -- Indexes for table `user`
@@ -394,7 +407,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `CustomerNO` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=231;
+  MODIFY `CustomerNO` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=232;
+
+--
+-- AUTO_INCREMENT for table `ordered`
+--
+ALTER TABLE `ordered`
+  MODIFY `orderID` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `product`
@@ -406,7 +425,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `orderNo` int(30) NOT NULL AUTO_INCREMENT;
+  MODIFY `transactionID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -416,8 +435,14 @@ ALTER TABLE `transaction`
 -- Constraints for table `ordered`
 --
 ALTER TABLE `ordered`
-  ADD CONSTRAINT `ordered_ibfk_1` FOREIGN KEY (`ProductNO`) REFERENCES `product` (`ProductNO`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `ordered_ibfk_2` FOREIGN KEY (`orderNo`) REFERENCES `transaction` (`orderNo`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `ordered_ibfk_1` FOREIGN KEY (`ProductNO`) REFERENCES `product` (`ProductNO`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `transaction`
+--
+ALTER TABLE `transaction`
+  ADD CONSTRAINT `transaction_ibfk_1` FOREIGN KEY (`CustomerNO`) REFERENCES `customer` (`CustomerNO`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `transaction_ibfk_2` FOREIGN KEY (`orderNo`) REFERENCES `ordered` (`orderNo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

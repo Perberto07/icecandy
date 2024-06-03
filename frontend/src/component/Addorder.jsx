@@ -25,7 +25,6 @@ function AddOrder() {
   }, []);
 
   useEffect(() => {
-    // Calculate total whenever products change
     let sum = 0;
     products.forEach(product => {
       const subtotal = parseFloat(product.price) * parseInt(product.quantity);
@@ -35,10 +34,9 @@ function AddOrder() {
   }, [products]);
 
   useEffect(() => {
-    // Generate order number based on date and selected customer
     if (date && selectedCustomer) {
-      const formattedDate = date.replace(/-/g, ''); // Remove dashes from date
-      const orderNumber = `${formattedDate}${selectedCustomer}`; // Concatenate date and CustomerNo
+      const formattedDate = date.replace(/-/g, '');
+      const orderNumber = `${formattedDate}${selectedCustomer}`;
       setOrderNo(orderNumber);
     }
   }, [date, selectedCustomer]);
@@ -153,9 +151,8 @@ function AddOrder() {
                   {index === 0 && (
                     <button type="button" className="add-button" onClick={addProductField}>+</button>
                   )}
-                  <hr className='line'/>
                   <div>
-                    <label htmlFor={`product-${product.id}`}>Select Product</label>
+                    <label htmlFor={`product-${product.id}`}>Product</label>
                     <select
                       name={`products-${product.id}`}
                       id={`products-${product.id}`}
@@ -188,7 +185,7 @@ function AddOrder() {
                       type="number"
                       id={`quantity-${product.id}`}
                       className='form-control'
-                      placeholder='Enter Quantity'
+                      placeholder='Quantity'
                       value={product.quantity}
                       onChange={(e) => handleQuantityChange(index, e.target.value)}
                     />
@@ -204,8 +201,10 @@ function AddOrder() {
                       readOnly
                     />
                   </div>
-                  <button type="button" className="remove-button" onClick={() => handleRemoveProduct(product.id)}>X</button>
-                  <button type="button" className="save-button" onClick={() => saveProduct(product)}>Save</button>
+                  <div className="button-container">
+                    <button type="button" className="remove-button" onClick={() => handleRemoveProduct(product.id)}>X</button>
+                    <button type="button" className="save-button" onClick={() => saveProduct(product)}>Save</button>
+                  </div>
                 </div>
               ))}
               <hr />

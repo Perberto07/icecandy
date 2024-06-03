@@ -1,12 +1,13 @@
+/* General styles */
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
   margin: 0;
   padding: 0;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
-
 
 .Content2 {
   padding: 20px;
@@ -22,6 +23,7 @@ body {
   justify-content: center;
 }
 
+/* Order Form */
 .order-container {
   width: 100%;
   margin-top: 5%;
@@ -41,11 +43,14 @@ body {
 
 .product-quantity {
   display: flex;
-  gap: 10px;
-  margin-bottom: 0;
-  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
   width: 100%;
-  background-color: rgb(233, 238, 238);
+  background-color: #e9eeee;
+  padding: 15px;
+  border-radius: 8px;
+  align-items: flex-end;
+  gap: 10px;
 }
 
 .product-quantity > div {
@@ -55,22 +60,23 @@ body {
 .add-button-container {
   display: flex;
   justify-content: flex-end;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .add-button {
-  padding: 5px 10px;
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 0.8em;
+  font-size: 0.9em;
   align-self: flex-start;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .add-button:hover {
   background-color: #0056b3;
+  transform: scale(1.05);
 }
 
 label {
@@ -82,7 +88,7 @@ label {
 input, select {
   width: 100%;
   padding: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
@@ -94,6 +100,7 @@ input[type="date"] {
 hr {
   border: 1px solid #eee;
   margin: 20px 0;
+  width: 100%;
 }
 
 .Total {
@@ -111,11 +118,33 @@ hr {
   cursor: pointer;
   padding: 10px;
   font-size: 0.8em;
-  align-self: center;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .remove-button:hover {
   background-color: #c82333;
+  transform: scale(1.05);
+}
+
+.save-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 0.8em;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.save-button:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
 }
 
 @media (max-width: 800px) {
