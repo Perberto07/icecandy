@@ -194,6 +194,7 @@ app.post("/addtransaction", (req, res)=>{
     });
 });
 
+
 app.get("/transaction", (req, res)=>{
     const sql = "SELECT * FROM transaction";
     db.query(sql, (err, data)=>{

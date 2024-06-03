@@ -4,7 +4,7 @@ import Sidebar from "../Sidebar";
 import axios from 'axios';
 
 function AddOrder() {
-  const [products, setProducts] = useState([{ id: 1, product: '', quantity: '', price: '' }]);
+  const [products, setProducts] = useState([{ id: 1, product: '', quantity: '', price: '', saved: false }]);
   const [customers, setCustomers] = useState([]);
   const [productList, setProductList] = useState([]);
   const [selectedCustomer, setSelectedCustomer] = useState('');
@@ -42,7 +42,7 @@ function AddOrder() {
   }, [date, selectedCustomer]);
 
   const addProductField = () => {
-    setProducts([...products, { id: products.length + 1, product: '', quantity: '', price: '' }]);
+    setProducts([...products, { id: products.length + 1, product: '', quantity: '', price: '', saved: false }]);
   };
 
   const handleCustomerChange = (e) => {
@@ -61,12 +61,14 @@ function AddOrder() {
     const newProducts = [...products];
     newProducts[index].product = productId;
     newProducts[index].price = selectedProduct ? selectedProduct.Price : '';
+    newProducts[index].saved = false; // Reset saved status if product changes
     setProducts(newProducts);
   };
 
   const handleQuantityChange = (index, quantity) => {
     const newProducts = [...products];
     newProducts[index].quantity = quantity;
+    newProducts[index].saved = false; // Reset saved status if quantity changes
     setProducts(newProducts);
   };
 
@@ -78,7 +80,8 @@ function AddOrder() {
     setDate(e.target.value);
   };
 
-  const saveProduct = (product) => {
+  const saveProduct = (productIndex) => {
+    const product = products[productIndex];
     const transactionData = {
       ProductNO: product.product,
       OrderNo: orderNo,
@@ -89,12 +92,40 @@ function AddOrder() {
       .then(res => {
         console.log('Product saved:', res.data);
         setSubmissionStatus('Product successfully saved!');
+        const newProducts = [...products];
+        newProducts[productIndex].saved = true; // Mark product as saved
+        setProducts(newProducts);
+        // Call saveTransaction after saving the last product
+        if (productIndex === products.length - 1) {
+          saveTransaction();
+        }
       })
       .catch(err => {
         console.error('Error saving product:', err);
         setSubmissionStatus('Failed to save product.');
       });
   };
+
+  const saveTransaction = () => {
+    const transactionData = {
+      OrderNo: orderNo,
+      CustomerNO: selectedCustomer,
+      Sum: total,
+      Date: date
+    };
+
+    axios.post('http://localhost:8080/addtransaction', transactionData)
+      .then(res => {
+        console.log('Transaction saved:', res.data);
+        setSubmissionStatus('Transaction successfully saved!');
+      })
+      .catch(err => {
+        console.error('Error saving transaction:', err);
+        setSubmissionStatus('Failed to save transaction.');
+      });
+  };
+
+  const allProductsSaved = products.every(product => product.saved);
 
   return (
     <>
@@ -202,14 +233,35 @@ function AddOrder() {
                     />
                   </div>
                   <div className="button-container">
-                    <button type="button" className="remove-button" onClick={() => handleRemoveProduct(product.id)}>X</button>
-                    <button type="button" className="save-button" onClick={() => saveProduct(product)}>Save</button>
+                    <button
+                      type="button"
+                      className="remove-button"
+                      onClick={() => handleRemoveProduct(product.id)}
+                    >
+                      X
+                    </button>
+                    <button
+                      type="button"
+                      className="save-button"
+                      onClick={() => saveProduct(index)}
+                      disabled={product.saved}
+                    >
+                      {product.saved ? 'Saved' : 'Save'}
+                    </button>
                   </div>
                 </div>
               ))}
               <hr />
               <p className='Total'>Total: Php {total.toFixed(2)}</p>
               {submissionStatus && <p>{submissionStatus}</p>}
+              <button 
+                type="button" 
+                className="save-transaction-button"
+                onClick={saveTransaction}
+                disabled={!allProductsSaved || products.length === 0}
+              >
+                Submit Transaction
+              </button>
             </form>
           </div>
         </div>
