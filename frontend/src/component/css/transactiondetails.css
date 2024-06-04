@@ -1,0 +1,20 @@
+/* transactiondetails.css */
+.transaction-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+  }
+  
+  .transaction-info {
+    margin-bottom: 20px;
+  }
+  
+  .orders-list {
+    margin-top: 20px;
+  }
+  
+  .order-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  

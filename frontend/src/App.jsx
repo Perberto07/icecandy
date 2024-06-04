@@ -8,7 +8,7 @@ import Editcustomer from "./component/Editcustomer";
 import Product from "./component/Product";
 import Addproduct from "./component/Addproduct";
 import Editproduct from "./component/Editproduct";
-import Order from "./component/Order";
+
 import Addorder from "./component/Addorder";
 import Editorder from "./component/Editorder";
 import Transaction from "./component/Transaction";
@@ -18,8 +18,7 @@ import Deleteorder from "./component/Deleteorder";
 import Settings from "./component/Settings";
 import Customerlist from "./component/Customerlist";
 import Productlist from "./component/Productlist";
-
-
+import TransactionDetails from "./component/TransactionDetails";
 
 const Customerpage = () => {
     return (
@@ -48,11 +47,12 @@ const Productpage = () => {
         </>
     );
 };
+
 const Orderpage = () => {
     return (
         <>
             <Routes>
-                <Route path='/' element={<Order/>}></Route>
+                <Route path='/' element={<TransactionDetails/>}></Route>
                 <Route path='/Addorder' element={<Addorder/>}></Route>
                 <Route path='/Editorder' element={<Editorder/>}></Route>
                 <Route path='/Deleteorder' element={<Deleteorder/>}></Route>
@@ -60,10 +60,10 @@ const Orderpage = () => {
         </>
     );
 };
+
 const Transactionpage = () => {
     return (
         <>
-        
             <Routes>
                 <Route path='/' element={<Transaction/>}></Route>
                 <Route path='/Transaction' element={<Transaction/>}></Route>
@@ -73,27 +73,23 @@ const Transactionpage = () => {
     );
 };
 
-
-
-
 function App() {
-  
-  return (
-    <div>
-        <BrowserRouter>
-            <div>
-                <Routes>
-                    <Route path='/' element={<Login/>}></Route>
-                    <Route path='/Home' element={<Home/>}></Route>
-                    <Route path='/Customer/*' element={<Customerpage/>}></Route>
-                    <Route path='/Product/*' element={<Productpage/>}></Route>
-                    <Route path='/Transaction/*' element={<Transactionpage/>}></Route>
-                    <Route path='/Order/*' element={<Orderpage/>}></Route>
-                </Routes>
-            </div>
-        </BrowserRouter>
-    </div>
-);
+    return (
+        <div>
+            <BrowserRouter>
+                <div>
+                    <Routes>
+                        <Route path='/' element={<Login/>}></Route>
+                        <Route path='/Home' element={<Home/>}></Route>
+                        <Route path='/Customer/*' element={<Customerpage/>}></Route>
+                        <Route path='/Product/*' element={<Productpage/>}></Route>
+                        <Route path='/Transaction/*' element={<Transactionpage/>}></Route>
+                        <Route path='/Order/*' element={<Orderpage/>}></Route>
+                    </Routes>
+                </div>
+            </BrowserRouter>
+        </div>
+    );
 }
 
-export default App
+export default App;
