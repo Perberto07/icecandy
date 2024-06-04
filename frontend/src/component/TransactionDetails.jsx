@@ -1,8 +1,12 @@
+import Sidebar from "../Sidebar"
 
 
 function TransactionDetails() {
   return (
-    <div>TransactionDetails</div>
+    <>
+    <Sidebar/>
+    <div className="Content">TransactionDetails</div>
+    </>
   )
 }
 
