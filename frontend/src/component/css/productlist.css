@@ -1,8 +1,7 @@
 /* Product List Container Styles */
 .product-list-container {
-    width: auto;
-    max-width: auto;
-    height: max-content;
+    width: 100%;
+    max-width: 95%;
     margin: 0 auto;
     padding: 30px;
     border-radius: 20px;
