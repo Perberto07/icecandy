@@ -1,11 +1,11 @@
-import Sidebar from "../Sidebar"
-import './css/Addproduct.css'
+import Sidebar from "../Sidebar";
+import "./css/Addproduct.css";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-
 function Addproduct() {
+<<<<<<< Updated upstream
   const [ProductFlavor, setProductFlavor] = useState('');
   const [Price, setPrice] = useState('');
   const [Email, setEmail] = useState('');
@@ -15,14 +15,28 @@ function Addproduct() {
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate('');
 
+=======
+  const [ProductFlavor, setProductFlavor] = useState("");
+  const [Price, setPrice] = useState("");
+  const [isProductFlavorValid, setIsProductFlavorValid] = useState(true);
+  const [isPriceValid, setIsPriceValid] = useState(true);
+  const [otp, setOTP] = useState("");
+  const [showOTPInput, setShowOTPInput] = useState(false);
+  const navigate = useNavigate();
+>>>>>>> Stashed changes
 
   function handleSubmit(event) {
     event.preventDefault();
+
     // Validation: Check if all fields are filled
     if (!ProductFlavor || !Price) {
       alert("All fields are required!");
+      // Set validation status for each field
+      setIsProductFlavorValid(!!ProductFlavor);
+      setIsPriceValid(!!Price);
       return;
     }
+<<<<<<< Updated upstream
     axios.post('http://localhost:8080/sendOTP', { email: Email })
       .then(res => {
         console.log(res);
@@ -60,34 +74,85 @@ function Addproduct() {
         console.error(err);
         setErrorMessage("Error verifying OTP: " + err.response.data);
       });
+=======
+
+    // Ask for confirmation before proceeding
+    const confirmAdd = window.confirm("Are you sure you want to add this product?");
+    if (confirmAdd) {
+      // Generate and send OTP
+      const generatedOTP = Math.floor(1000 + Math.random() * 9000); // Generate a 4-digit OTP
+      alert(`OTP for confirmation: ${generatedOTP}`);
+      const enteredOTP = prompt("Please enter the OTP sent to your email/mobile:");
+
+      // Validate OTP
+      if (enteredOTP && enteredOTP === generatedOTP.toString()) {
+        // OTP is correct, proceed with adding the product
+        axios
+          .post("http://localhost:8080/addproduct", { ProductFlavor, Price })
+          .then((res) => {
+            console.log(res);
+            navigate("/Product/Productlist");
+          })
+          .catch((err) => console.log(err));
+      } else {
+        alert("Incorrect OTP. Product addition aborted.");
+      }
+    }
+  }
+
+  function handleProductFlavorChange(event) {
+    const value = event.target.value;
+    // Custom validation: Allow only letters and spaces
+    const isValid = /^[a-zA-Z\s]+$/.test(value);
+    setProductFlavor(value);
+    setIsProductFlavorValid(isValid);
+  }
+
+  function handleKeyPress(event) {
+    // Prevent input if the key pressed is a number
+    if (/\d/.test(event.key)) {
+      event.preventDefault();
+    }
+>>>>>>> Stashed changes
   }
 
   return (
     <>
       <Sidebar />
-      <div className='Content'>
+      <div className="Content">
         <div className="AddProduct-container">
           <form onSubmit={handleSubmit}>
-            <div className='Product'>
-              <label htmlFor="flavor">New Product: </label>
+            <div className="Product">
+              <label htmlFor="flavor">
+                New Product<span className={isProductFlavorValid ? "" : "required"}>*</span>:
+              </label>
               <input
                 type="text"
                 id="product"
-                placeholder='Enter Product'
+                placeholder="Enter Product"
                 value={ProductFlavor}
-                onChange={e => setProductFlavor(e.target.value)} />
+                onChange={handleProductFlavorChange}
+                onKeyPress={handleKeyPress}
+              />
             </div>
             <hr />
-            <div className='Price'>
-              <label htmlFor="price">Price: </label>
+            <div className="Price">
+              <label htmlFor="price">
+                Price<span className={isPriceValid ? "" : "required"}>*</span>:
+              </label>
               <input
                 type="number"
                 id="price"
-                placeholder='price'
+                placeholder="Price"
                 value={Price}
-                onChange={e => setPrice(e.target.value)} />
+                onChange={(e) => {
+                  setPrice(e.target.value);
+                  setIsPriceValid(!!e.target.value);
+                }}
+              />
             </div>
             <hr />
+<<<<<<< Updated upstream
             <div className="form-group">
               <label>Email:</label>
               <input
@@ -115,11 +180,17 @@ function Addproduct() {
             ) : (
               <button type="submit" className="submit-button">Send OTP</button>
             )}s
+=======
+            <button type="submit" className="add-button">
+              <i className="icon fas fa-plus"></i>
+              <span>Add</span>
+            </button>
+>>>>>>> Stashed changes
           </form>
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default Addproduct
+export default Addproduct;

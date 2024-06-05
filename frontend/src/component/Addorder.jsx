@@ -22,6 +22,10 @@ function AddOrder() {
     axios.get('http://localhost:8080/product')
       .then(res => setProductList(res.data))
       .catch(err => console.error(err));
+
+    // Set date to current date
+    const today = new Date().toISOString().split('T')[0];
+    setDate(today);
   }, []);
 
   useEffect(() => {
@@ -125,7 +129,15 @@ function AddOrder() {
       });
   };
 
+  const handleSaveTransaction = () => {
+    if (window.confirm('Are you sure you want to submit the transaction?')) {
+      saveTransaction();
+    }
+  };
+
   const allProductsSaved = products.every(product => product.saved);
+
+  const isFieldEmpty = (field) => field.trim() === '';
 
   return (
     <>
@@ -139,7 +151,10 @@ function AddOrder() {
                   <h3>Order No: {orderNo}</h3>
                 </div>
                 <div className='date'>
-                  <label htmlFor="date">Date</label>
+                  <label htmlFor="date">
+                    Date
+                    {isFieldEmpty(date) && <span className="red-asterisk">*</span>}
+                  </label>
                   <input
                     type="date"
                     id="date"
@@ -150,7 +165,10 @@ function AddOrder() {
                   />
                 </div>
                 <div className='customer-address'>
-                  <label htmlFor="customer">Customer</label>
+                  <label htmlFor="customer">
+                    Customer
+                    {isFieldEmpty(selectedCustomer.toString()) && <span className="red-asterisk">*</span>}
+                  </label>
                   <select
                     id="customer"
                     className='customer-input'
@@ -176,14 +194,17 @@ function AddOrder() {
                   />
                 </div>
               </div>
-              <hr />
+              
               {products.map((product, index) => (
                 <div key={product.id} className='product-quantity'>
                   {index === 0 && (
                     <button type="button" className="add-button" onClick={addProductField}>+</button>
                   )}
                   <div>
-                    <label htmlFor={`product-${product.id}`}>Product</label>
+                    <label htmlFor={`product-${product.id}`}>
+                      Product
+                      {isFieldEmpty(product.product) && <span className="red-asterisk">*</span>}
+                    </label>
                     <select
                       name={`products-${product.id}`}
                       id={`products-${product.id}`}
@@ -211,7 +232,10 @@ function AddOrder() {
                     />
                   </div>
                   <div>
-                    <label htmlFor={`quantity-${product.id}`}>Quantity</label>
+                    <label htmlFor={`quantity-${product.id}`}>
+                      Quantity
+                      {isFieldEmpty(product.quantity) && <span className="red-asterisk">*</span>}
+                    </label>
                     <input
                       type="number"
                       id={`quantity-${product.id}`}
@@ -248,20 +272,22 @@ function AddOrder() {
                     >
                       {product.saved ? 'Saved' : 'Save'}
                     </button>
+                    
                   </div>
                 </div>
               ))}
-              <hr />
-              <p className='Total'>Total: Php {total.toFixed(2)}</p>
-              {submissionStatus && <p>{submissionStatus}</p>}
+               
               <button 
-                type="button" 
+                type="button"
                 className="save-transaction-button"
-                onClick={saveTransaction}
+                onClick={handleSaveTransaction}
                 disabled={!allProductsSaved || products.length === 0}
               >
                 Submit Transaction
               </button>
+             
+              <p className='Total'>Total: Php {total.toFixed(2)}</p>
+              {submissionStatus && <p>{submissionStatus}</p>}
             </form>
           </div>
         </div>

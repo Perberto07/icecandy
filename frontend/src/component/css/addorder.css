@@ -7,6 +7,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .Content2 {
@@ -20,14 +22,15 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  overflow-y: auto;
+  padding-bottom: 5%;
 }
 
 /* Order Form */
 .order-container {
   width: 100%;
   margin-top: 5%;
-  overflow-x: hidden;
+  
 }
 
 .customer-field {
