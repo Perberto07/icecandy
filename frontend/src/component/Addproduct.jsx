@@ -1,15 +1,11 @@
-import Sidebar from "../Sidebar";
-import "./css/Addproduct.css";
+import Sidebar from "../Sidebar"
+import './css/Addproduct.css'
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-<<<<<<< HEAD
-function AddProduct() {
-=======
-function Addproduct() {
 
->>>>>>> 864c1708dde579daaceda1222107305bdc24cca9
+function Addproduct() {
   const [ProductFlavor, setProductFlavor] = useState('');
   const [Price, setPrice] = useState('');
   const [Email, setEmail] = useState('');
@@ -18,33 +14,15 @@ function Addproduct() {
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate('');
-<<<<<<< HEAD
-  const [isProductFlavorValid, setIsProductFlavorValid] = useState(true);
-  const [isPriceValid, setIsPriceValid] = useState(true);
-=======
 
-
-
-  const [isProductFlavorValid, setIsProductFlavorValid] = useState(true);
-  const [isPriceValid, setIsPriceValid] = useState(true);
-
-  const [showOTPInput, setShowOTPInput] = useState(false);
- 
-
->>>>>>> 864c1708dde579daaceda1222107305bdc24cca9
 
   function handleSubmit(event) {
     event.preventDefault();
-
     // Validation: Check if all fields are filled
-    if (!ProductFlavor || !Price || !Email) {
+    if (!ProductFlavor || !Price) {
       alert("All fields are required!");
-      // Set validation status for each field
-      setIsProductFlavorValid(!!ProductFlavor);
-      setIsPriceValid(!!Price);
       return;
     }
-
     axios.post('http://localhost:8080/sendOTP', { email: Email })
       .then(res => {
         console.log(res);
@@ -53,33 +31,11 @@ function Addproduct() {
       })
       .catch(err => {
         console.error(err);
-        setErrorMessage("Error sending OTP: " + err.response?.data || err.message);
+        setErrorMessage("Error sending OTP: " + err.response.data);
       });
   }
 
-  function handleVerifyOTP() {
-    // Verify OTP entered by the user
-    axios.post('http://localhost:8080/verifyOTP', { email: Email, otp: OTP })
-      .then(res => {
-        console.log(res);
-        if (res.data === 'OTP verified successfully') {
-          setSuccessMessage('OTP verified successfully!');
-          addProduct();
-        } else {
-          setErrorMessage('Invalid OTP');
-        }
-      })
-      .catch(err => {
-        console.error(err);
-        setErrorMessage("Error verifying OTP: " + err.response?.data || err.message);
-      });
-<<<<<<< HEAD
-  }
-=======
-
->>>>>>> 864c1708dde579daaceda1222107305bdc24cca9
-
-  function addProduct() {
+  function AddProduct() {
     axios.post('http://localhost:8080/addproduct', { ProductFlavor, Price })
       .then(res => {
         console.log(res);
@@ -87,65 +43,51 @@ function Addproduct() {
       }).catch(err => console.log(err));
   }
 
-  function handleProductFlavorChange(event) {
-    const value = event.target.value;
-    // Custom validation: Allow only letters and spaces
-    const isValid = /^[a-zA-Z\s]+$/.test(value);
-    setProductFlavor(value);
-    setIsProductFlavorValid(isValid);
-  }
 
-  function handleKeyPress(event) {
-    // Prevent input if the key pressed is a number
-    if (/\d/.test(event.key)) {
-      event.preventDefault();
-    }
-<<<<<<< HEAD
-=======
-
->>>>>>> 864c1708dde579daaceda1222107305bdc24cca9
+  function handleVerifyOTP() {
+    // Verify OTP entered by the user
+    axios.post('http://localhost:7000/verifyOTP', { email: Email, otp: OTP })
+      .then(res => {
+        console.log(res);
+        if (res.data === 'OTP verified successfully') {
+          setSuccessMessage('OTP verified successfully!');
+          AddProduct();
+        } else {
+          setErrorMessage('Invalid OTP');
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        setErrorMessage("Error verifying OTP: " + err.response.data);
+      });
   }
 
   return (
     <>
       <Sidebar />
-      <div className="Content">
+      <div className='Content'>
         <div className="AddProduct-container">
           <form onSubmit={handleSubmit}>
-            <div className="Product">
-              <label htmlFor="flavor">
-                New Product<span className={isProductFlavorValid ? "" : "required"}>*</span>:
-              </label>
+            <div className='Product'>
+              <label htmlFor="flavor">New Product: </label>
               <input
                 type="text"
                 id="product"
-                placeholder="Enter Product"
+                placeholder='Enter Product'
                 value={ProductFlavor}
-                onChange={handleProductFlavorChange}
-                onKeyPress={handleKeyPress}
-              />
+                onChange={e => setProductFlavor(e.target.value)} />
             </div>
             <hr />
-            <div className="Price">
-              <label htmlFor="price">
-                Price<span className={isPriceValid ? "" : "required"}>*</span>:
-              </label>
+            <div className='Price'>
+              <label htmlFor="price">Price: </label>
               <input
                 type="number"
                 id="price"
-                placeholder="Price"
+                placeholder='price'
                 value={Price}
-                onChange={(e) => {
-                  setPrice(e.target.value);
-                  setIsPriceValid(!!e.target.value);
-                }}
-              />
+                onChange={e => setPrice(e.target.value)} />
             </div>
             <hr />
-<<<<<<< HEAD
-=======
-
->>>>>>> 864c1708dde579daaceda1222107305bdc24cca9
             <div className="form-group">
               <label>Email:</label>
               <input
@@ -172,22 +114,12 @@ function Addproduct() {
               <button type="button" onClick={handleVerifyOTP} className="submit-button">Verify OTP</button>
             ) : (
               <button type="submit" className="submit-button">Send OTP</button>
-<<<<<<< HEAD
-            )}
-=======
             )}s
-
-            <button type="submit" className="add-button">
-              <i className="icon fas fa-plus"></i>
-              <span>Add</span>
-            </button>
-
->>>>>>> 864c1708dde579daaceda1222107305bdc24cca9
           </form>
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default AddProduct;
+export default Addproduct
