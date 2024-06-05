@@ -67,10 +67,10 @@ function Header() {
           <img src={Order} alt="order" className="icon2" />
           <span className="icon-text">Order</span>
         </Link>
-        <Link to="/Transaction" className="icon-container">
+        {/*<Link to="/Transaction" className="icon-container">
           <img src={Transaction} alt="Transaction" className="icon2" />
           <span className="icon-text">Transaction</span>
-        </Link>
+  </Link>*/}
         <Link to="/" className="icon-container">
           <img src={Logout} alt="Logout" className="icon2" />
           <span className="icon-text">Logout</span>
