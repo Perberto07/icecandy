@@ -56,7 +56,7 @@ function Deleteproduct() {
     <>
       <Sidebar />
       <div className='Content'>
-        <div className=''>
+        <div className='Content2'>
           <div className='search-container'>
             <input
               type='text'
@@ -67,31 +67,29 @@ function Deleteproduct() {
             />
           </div>
           <hr />
-          <div className='col-md-9 bg-dark bg-opacity-100 d-flex justify-content-center align-items-center'>
-            <div className='delete-product-container'>
-              <table className='delete-product-table'>
-                <thead>
-                  <tr>
-                    <th>Product No.</th>
-                    <th>Product Flavor</th>
-                    <th>Price</th>
-                    <th>Actions</th>
+          <div className='delete-product-container'>
+            <table className='delete-product-table'>
+              <thead>
+                <tr>
+                  <th>Product No.</th>
+                  <th>Product Flavor</th>
+                  <th>Price</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredProducts.map((product, index) => (
+                  <tr key={index}>
+                    <td>{product.ProductNO}</td>
+                    <td>{product.ProductFlavor}</td>
+                    <td>{product.Price}</td>
+                    <td>
+                      <button className='delete-button' onClick={() => handleDeleteClick(product.ProductNO)}>Delete</button>
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  {filteredProducts.map((product, index) => (
-                    <tr key={index}>
-                      <td>{product.ProductNO}</td>
-                      <td>{product.ProductFlavor}</td>
-                      <td>{product.Price}</td>
-                      <td>
-                        <button className='delete-button' onClick={() => handleDeleteClick(product.ProductNO)}>Delete</button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
