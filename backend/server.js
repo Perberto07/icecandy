@@ -218,31 +218,35 @@ app.post('/sendOTP', (req, res) => {
   
     // Send OTP to the provided email
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: 'johnpatrickboleche@gmail.com', // Update with your Gmail address
-        pass: 'nmvx dgjv yxft ojii' // Update with your Gmail app-specific password
-      }
-    });
-  
-    const mailOptions = {
-      from: 'johnpatrickboleche@gmail.com', // Update with your Gmail address
-      to: email,
-      subject: 'OTP Verification',
-      text: 'Your OTP for verification is: ${OTP}'
-    };
-  
-    transporter.sendMail(mailOptions, function(error, info){
-      if (error) {
-        console.log(error);
-        res.status(500).send('Error sending OTP');
-      } else {
-        console.log('Email sent: ' + info.response);
-        // Store the OTP for verification
-        otpStorage[email] = OTP;
-        res.status(200).send('OTP sent successfully');
-      }
-    });
+        service: 'gmail',
+        auth: {
+          user: 'johnpatrickboleche@gmail.com', // Update with your Gmail address
+          pass: 'bamw eoho shfa ycfx' // Update with your Gmail app-specific password
+        },
+        tls: {
+          rejectUnauthorized: false // Accept self-signed certificates
+        }
+      });
+      
+      const mailOptions = {
+        from: 'johnpatrickboleche@gmail.com', // Update with your Gmail address
+        to: email,
+        subject: 'OTP Verification',
+        text: `Your OTP for verification is: ${OTP}`
+      };
+      
+      transporter.sendMail(mailOptions, function(error, info) {
+        if (error) {
+          console.log(error);
+          res.status(500).send('Error sending OTP');
+        } else {
+          console.log('Email sent: ' + info.response);
+          // Store the OTP for verification
+          otpStorage[email] = OTP;
+          res.status(200).send('OTP sent successfully');
+        }
+      });
+      
   });
   
   // Endpoint to verify OTP

@@ -23,7 +23,7 @@ function Addproduct() {
       alert("All fields are required!");
       return;
     }
-    axios.post('http://localhost:7000/sendOTP', { email: Email })
+    axios.post('http://localhost:8080/sendOTP', { email: Email })
       .then(res => {
         console.log(res);
         setSuccessMessage('OTP sent successfully!');
