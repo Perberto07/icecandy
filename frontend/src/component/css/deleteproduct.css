@@ -1,3 +1,13 @@
+.Content3{
+  width: auto%;
+
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+
+
 /* Delete Product Container Styles */
 .delete-product-container {
     width: 100%;

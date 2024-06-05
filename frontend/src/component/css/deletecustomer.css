@@ -78,3 +78,12 @@
     border-color: #007bff;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
+.delete-button {
+    display: flex; /* Use flexbox to align items horizontally */
+    align-items: center; /* Center items vertically */
+  }
+  
+  .delete-button .icon {
+    margin-right: 5px; /* Add margin to create space between the icon and text */
+  }
+  

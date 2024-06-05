@@ -77,8 +77,8 @@ function Editproduct() {
             <div className='Content' ref={contentRef}>
                 <div className='edit-product-container'>
                     <h2 className='edit-product-heading'>Edit Product</h2>
-                    <div className='col-md-9 bg-dark bg-opacity-100 d-flex justify-content-center align-items-center'>
-                        <div className='w-200 h-90 bg-white rounded p-4'>
+                   
+                       
                             <input
                                 type="text"
                                 placeholder="Search by Product Flavor"
@@ -134,8 +134,8 @@ function Editproduct() {
                                     ))}
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
+                        
+                    
                 </div>
                 <button onClick={scrollToTop} className='back-to-top'>
                     Back to Top

@@ -70,3 +70,13 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #0056b3; /* Change button background color on hover */
 }
+.add-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .add-button span {
+    margin-right: 5px; /* Adjust this value as needed */
+  }
+  

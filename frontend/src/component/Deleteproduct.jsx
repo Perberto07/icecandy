@@ -56,7 +56,7 @@ function Deleteproduct() {
     <>
       <Sidebar />
       <div className='Content'>
-        <div className='Content2'>
+        <div className='Content3'>
           <div className='search-container'>
             <input
               type='text'

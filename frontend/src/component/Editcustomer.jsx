@@ -150,7 +150,7 @@ function Editcustomer() {
                                                     <td>{customer.ContactPerson}</td>
                                                     <td>{customer.CellphoneNO}</td>
                                                     <td>
-                                                        <button className="customer-list-button" onClick={() => handleEditClick(customer)}>Edit</button>
+                                                        <button className="icon fas fa-edit" onClick={() => handleEditClick(customer)}>Edit</button>
                                                     </td>
                                                 </>
                                             )}

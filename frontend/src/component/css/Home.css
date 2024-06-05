@@ -1,0 +1,27 @@
+/* Home.css */
+
+.Content {
+    display: flex;
+    flex-direction: row;
+    height: 100vh; /* Set the height of the content to fill the viewport */
+}
+
+/* Style for the sidebar */
+.Sidebar {
+    /* Add your styles for the sidebar here */
+}
+
+/* Style for the main content area */
+.home-container {
+    flex: 1; /* This allows the content area to take up remaining space */
+    /* Add your styles for the main content area here */
+    overflow-y: auto; /* Add scrollbar if content exceeds viewport height */
+}
+
+/* Style for the cover image */
+.Content img {
+    max-width: 100%; /* Ensure the image doesn't exceed its container */
+    height: auto; /* Maintain aspect ratio */
+}
+
+/* You can add more specific styles as needed */

@@ -1,5 +1,6 @@
 /* Edit Product Container Styles */
-.delete-product-container {
+
+.edit-product-container {
   width: 100%;
   max-width: 100%;
   height: max-content;
@@ -11,7 +12,7 @@
 }
 
 /* Heading Styles */
-.delete-product-container h2 {
+.edit-product-container h2 {
   font-size: 32px;
   font-weight: bold;
   color: #333;
