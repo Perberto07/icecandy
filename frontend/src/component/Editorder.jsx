@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "bootstrap/scss/bootstrap.scss";
 
-function Editorder() {
+function EditOrder() {
   const [Products, setProducts] = useState([]);
   const [Transactions, setTransactions] = useState([]);
   const [Customers, setCustomers] = useState([]);
@@ -68,6 +68,12 @@ function Editorder() {
     };
   });
 
+  // Handle the edit button click
+  const handleEdit = (transactionID) => {
+    console.log(`Edit transaction ${transactionID}`);
+    // Implement the edit functionality here
+  };
+
   return (
     <>
       <Sidebar />
@@ -86,6 +92,7 @@ function Editorder() {
                   <th>Product Flavor</th>
                   <th>Price</th>
                   <th>Quantity</th>
+                  <th>Operation</th>
                 </tr>
               </thead>
               <tbody>
@@ -105,6 +112,16 @@ function Editorder() {
                       <td>{item.productFlavor}</td>
                       <td>{item.price}</td>
                       <td>{item.quantity}</td>
+                      {itemIndex === 0 && (
+                        <td rowSpan={data.orderItems.length}>
+                          <button
+                            className="btn btn-primary"
+                            onClick={() => handleEdit(data.transactionID)}
+                          >
+                            Edit
+                          </button>
+                        </td>
+                      )}
                     </tr>
                   ))
                 ))}
@@ -117,4 +134,4 @@ function Editorder() {
   );
 }
 
-export default Editorder;
+export default EditOrder;
