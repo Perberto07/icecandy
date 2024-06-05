@@ -114,7 +114,7 @@ function Addproduct() {
               <button type="button" onClick={handleVerifyOTP} className="submit-button">Verify OTP</button>
             ) : (
               <button type="submit" className="submit-button">Send OTP</button>
-            )}s
+            )}
           </form>
         </div>
       </div>
