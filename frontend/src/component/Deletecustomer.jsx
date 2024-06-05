@@ -70,7 +70,7 @@ function Deletecustomer() {
         <>
             <Sidebar />
             <div className='Content' ref={contentRef}>
-                <div className='col-md-9 bg-dark bg-opacity-100 d-flex justify-content-center align-items-center'>
+                
                     <div className='delete-customer-container'>
                         <h2 className='delete-customer-heading'>Delete Customer</h2>
                         <input
@@ -106,7 +106,7 @@ function Deletecustomer() {
                             </tbody>
                         </table>
                     </div>
-                </div>
+              
                 <button onClick={scrollToTop} className='back-to-top'>
                     Back to Top
                 </button>
