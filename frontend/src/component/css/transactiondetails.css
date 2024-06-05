@@ -1,20 +1,49 @@
-/* transactiondetails.css */
-.transaction-container {
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 5px;
-  }
-  
-  .transaction-info {
-    margin-bottom: 20px;
-  }
-  
-  .orders-list {
-    margin-top: 20px;
-  }
-  
-  .order-item {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-  }
-  
+/* Custom styles for the TransactionDetails component */
+.transaction {
+  margin: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.transaction table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.transaction th, .transaction td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.transaction th {
+  background-color: #007bff;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.transaction tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.transaction tbody tr:hover {
+  background-color: #e9e9e9;
+}
+
+.transaction .btn-danger {
+  margin: 10px 0;
+  padding: 8px 12px;
+  background-color: #dc3545;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.transaction .btn-danger:hover {
+  background-color: #c82333;
+}

@@ -2,6 +2,8 @@ import Sidebar from "../Sidebar";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "bootstrap/scss/bootstrap.scss";
+import './css/transactiondetails.css';
+import TransactionCard from './TransactionCard';
 
 function TransactionDetails() {
   const [Products, setProducts] = useState([]);
@@ -74,42 +76,9 @@ function TransactionDetails() {
       <div className="Content">
         <div className="Content">
           <div className="transaction">
-            <table className="table table-striped">
-              <thead>
-                <tr>
-                  <th>Transaction No</th>
-                  <th>Order No</th>
-                  <th>Customer Name</th>
-                  <th>Customer Address</th>
-                  <th>Date</th>
-                  <th>Sum</th>
-                  <th>Product Flavor</th>
-                  <th>Price</th>
-                  <th>Quantity</th>
-                </tr>
-              </thead>
-              <tbody>
-                {combinedData.map((data, index) => (
-                  data.orderItems.map((item, itemIndex) => (
-                    <tr key={`${index}-${itemIndex}`}>
-                      {itemIndex === 0 && (
-                        <>
-                          <td rowSpan={data.orderItems.length}>{data.transactionID}</td>
-                          <td rowSpan={data.orderItems.length}>{data.orderNo}</td>
-                          <td rowSpan={data.orderItems.length}>{data.customerName}</td>
-                          <td rowSpan={data.orderItems.length}>{data.customerAddress}</td>
-                          <td rowSpan={data.orderItems.length}>{data.date}</td>
-                          <td rowSpan={data.orderItems.length}>{data.sum}</td>
-                        </>
-                      )}
-                      <td>{item.productFlavor}</td>
-                      <td>{item.price}</td>
-                      <td>{item.quantity}</td>
-                    </tr>
-                  ))
-                ))}
-              </tbody>
-            </table>
+            {combinedData.map((transaction, index) => (
+              <TransactionCard key={index} transaction={transaction} />
+            ))}
           </div>
         </div>
       </div>

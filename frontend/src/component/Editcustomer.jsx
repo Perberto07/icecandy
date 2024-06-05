@@ -1,172 +1,89 @@
-import React, { useEffect, useState, useRef } from 'react';
-import axios from 'axios';
-import Sidebar from '../Sidebar';
-import './css/editcustomer.css';
-import './css/topback.css';
+import Sidebar from "../Sidebar";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import "bootstrap/scss/bootstrap.scss";
+import './css/transactiondetails.css';
+import TransactionCard from './TransactionCard';
 
-function Editcustomer() {
-    const [customers, setCustomers] = useState([]);
-    const [editingCustomerId, setEditingCustomerId] = useState(null);
-    const [editingCustomerData, setEditingCustomerData] = useState({
-        Name: '',
-        Address: '',
-        ContactPerson: '',
-        CellphoneNO: ''
+function TransactionDetails() {
+  const [Products, setProducts] = useState([]);
+  const [Transactions, setTransactions] = useState([]);
+  const [Customers, setCustomers] = useState([]);
+  const [Orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/transaction')
+      .then(res => setTransactions(res.data))
+      .catch(err => console.error(err));
+  }, []);
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/product')
+      .then(res => setProducts(res.data))
+      .catch(err => console.error(err));
+  }, []);
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/customer')
+      .then(res => setCustomers(res.data))
+      .catch(err => console.error(err));
+  }, []);
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/order')
+      .then(res => setOrders(res.data))
+      .catch(err => console.error(err));
+  }, []);
+
+  // Create a map of customers for easy lookup
+  const customerMap = Customers.reduce((acc, customer) => {
+    acc[customer.CustomerNO] = customer;
+    return acc;
+  }, {});
+
+  // Create a map of products for easy lookup
+  const productMap = Products.reduce((acc, product) => {
+    acc[product.ProductNO] = product;
+    return acc;
+  }, {});
+
+  // Create a combined data structure
+  const combinedData = Transactions.map(transaction => {
+    const customer = customerMap[transaction.CustomerNO] || {};
+    const orderItems = Orders.filter(order => order.orderNo === transaction.orderNo).map(order => {
+      const product = productMap[order.ProductNO] || {};
+      return {
+        productFlavor: product.ProductFlavor,
+        price: product.Price,
+        quantity: order.Quantity
+      };
     });
-    const [searchInput, setSearchInput] = useState('');
-    const [filteredCustomers, setFilteredCustomers] = useState([]);
-    const contentRef = useRef(null);
 
-    useEffect(() => {
-        axios.get('http://localhost:8080/customer')
-            .then(res => {
-                setCustomers(res.data);
-                setFilteredCustomers(res.data);
-            })
-            .catch(err => console.error(err));
-    }, []);
-
-    const handleEditClick = (customer) => {
-        setEditingCustomerId(customer.CustomerNO);
-        setEditingCustomerData({
-            Name: customer.Name,
-            Address: customer.Address,
-            ContactPerson: customer.ContactPerson,
-            CellphoneNO: customer.CellphoneNO
-        });
+    return {
+      transactionID: transaction.transactionID,
+      orderNo: transaction.orderNo,
+      customerName: customer.Name,
+      customerAddress: customer.Address,
+      date: transaction.Date,
+      sum: transaction.Sum,
+      orderItems
     };
+  });
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setEditingCustomerData({ ...editingCustomerData, [name]: value });
-    };
-
-    const handleUpdateClick = (customerId) => {
-        const confirmUpdate = window.confirm("Are you sure you want to apply changes?");
-        if (confirmUpdate) {
-            axios.put(`http://localhost:8080/customer/${customerId}`, editingCustomerData)
-                .then(() => {
-                    setCustomers(customers.map(customer =>
-                        customer.CustomerNO === customerId ? { ...customer, ...editingCustomerData } : customer
-                    ));
-                    setFilteredCustomers(filteredCustomers.map(customer =>
-                        customer.CustomerNO === customerId ? { ...customer, ...editingCustomerData } : customer
-                    ));
-                    setEditingCustomerId(null);
-                })
-                .catch(err => console.error(err));
-        }
-    };
-
-    const handleSearchInputChange = (e) => {
-        setSearchInput(e.target.value);
-        const filtered = customers.filter(customer =>
-            customer.Name.toLowerCase().includes(e.target.value.toLowerCase())
-        );
-        setFilteredCustomers(filtered);
-    };
-
-    const scrollToTop = () => {
-        if (contentRef.current) {
-            contentRef.current.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-    };
-
-    return (
-        <>
-            <Sidebar />
-            <div className='Content' ref={contentRef}>
-                <div className='edit-customer-container'>
-                    <h2 className='edit-customer-heading'>Edit Customer</h2>
-                    <div className='col-md-9 bg-dark bg-opacity-100 d-flex justify-content-center align-items-center'>
-                        <div className='w-200 h-90 bg-white rounded p-4'>
-                            <input
-                                type="text"
-                                placeholder="Search by Store Name"
-                                value={searchInput}
-                                onChange={handleSearchInputChange}
-                            />
-                            <table className='edit-customer-table'>
-                                <thead>
-                                    <tr>
-                                        <th>Customer NO.</th>
-                                        <th>Name</th>
-                                        <th>Address</th>
-                                        <th>Contact Person</th>
-                                        <th>Cellphone Number</th>
-                                        <th>Operation</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {filteredCustomers.map((customer, index) => (
-                                        <tr key={index}>
-                                            {editingCustomerId === customer.CustomerNO ? (
-                                                <>
-                                                    <td>{customer.CustomerNO}</td>
-                                                    <td>
-                                                        <input
-                                                            type="text"
-                                                            name="Name"
-                                                            value={editingCustomerData.Name}
-                                                            onChange={handleInputChange}
-                                                        />
-                                                    </td>
-                                                    <td>
-                                                        <input
-                                                            type="text"
-                                                            name="Address"
-                                                            value={editingCustomerData.Address}
-                                                            onChange={handleInputChange}
-                                                        />
-                                                    </td>
-                                                    <td>
-                                                        <input
-                                                            type="text"
-                                                            name="ContactPerson"
-                                                            value={editingCustomerData.ContactPerson}
-                                                            onChange={handleInputChange}
-                                                        />
-                                                    </td>
-                                                    <td>
-                                                        <input
-                                                            type="number"
-                                                            name="CellphoneNO"
-                                                            value={editingCustomerData.CellphoneNO}
-                                                            onChange={handleInputChange}
-                                                        />
-                                                    </td>
-                                                    <td>
-                                                        <button className="customer-list-button" onClick={() => handleUpdateClick(customer.CustomerNO)}>Update</button>
-                                                    </td>
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <td>{customer.CustomerNO}</td>
-                                                    <td>{customer.Name}</td>
-                                                    <td>{customer.Address}</td>
-                                                    <td>{customer.ContactPerson}</td>
-                                                    <td>{customer.CellphoneNO}</td>
-                                                    <td>
-                                                        <button className="icon fas fa-edit" onClick={() => handleEditClick(customer)}>Edit</button>
-                                                    </td>
-                                                </>
-                                            )}
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <button onClick={scrollToTop} className='back-to-top'>
-                    Back to Top
-                </button>
-            </div>
-        </>
-    );
+  return (
+    <>
+      <Sidebar />
+      <div className="Content">
+        <div className="Content">
+          <div className="transaction">
+            {combinedData.map((transaction, index) => (
+              <TransactionCard key={index} transaction={transaction} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
 
-export default Editcustomer;
+export default TransactionDetails;
