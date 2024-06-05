@@ -15,7 +15,7 @@ function Order() {
             </Link>
           </h2>
           <ul>
-            <li>
+            <li>s
               <Link to="/Order/Transactiondetail">
                 <i className="fas fa-list"></i> Order List
               </Link>
