@@ -51,12 +51,11 @@ function Customerlist() {
                             ))}
                         </tbody>
                     </table>
-                
+                </div>
+                <button onClick={scrollToTop} className='back-to-top'> {/* Apply the back-to-top class */}
+                    Back to Top
+                </button>
             </div>
-            <button onClick={scrollToTop} className='back-to-top'> {/* Apply the back-to-top class */}
-                Back to Top
-            </button>
-        </div >
         </>
     );
 }
