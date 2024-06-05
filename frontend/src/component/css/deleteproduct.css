@@ -1,92 +1,90 @@
-.Content3{
-  width: auto ;
-
-    margin: 0 auto;
-    padding: 30px;
-    border-radius: 20px;
+.Content3 {
+  width: auto;
+  margin: 0 auto;
+  padding: 30px;
+  border-radius: 20px;
 }
 
 
 
 /* Delete Product Container Styles */
 .delete-product-container {
-    width: 100%;
-    max-width: 95%;
-    margin: 0 auto;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(135deg, #f3f3f3, #e0e0e0);
-  }
-  
-  /* Delete Product Heading Styles */
-  .delete-product-heading {
-    font-size: 32px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  /* Delete Product Table Styles */
-  .delete-product-table {
-    width: 100%;
-    border-collapse: collapse;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  .delete-product-table th,
-  .delete-product-table td {
-    padding: 20px;
-    border-bottom: 1px solid #ddd;
-    text-align: left;
-  }
-  
-  .delete-product-table th {
-    background-color: #007bff;
-    color: #fff;
-    text-transform: uppercase;
-  }
-  
-  .delete-product-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  .delete-product-table tbody tr:hover {
-    background-color: #f0f0f0;
-    transition: background-color 0.3s ease;
-  }
-  
-  /* Delete Button Styles */
-  .delete-button {
-    padding: 10px 20px;
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .delete-button:hover {
-    background-color: #c82333;
-  }
-  
-  /* Search Bar Styles */
-  .search-input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    font-size: 16px;
-  }
-  
-  .search-input:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-  }
-  
+  width: 100%;
+  max-width: 95%;
+  margin: 0 auto;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #f3f3f3, #e0e0e0);
+}
+
+/* Delete Product Heading Styles */
+.delete-product-heading {
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Delete Product Table Styles */
+.delete-product-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.delete-product-table th,
+.delete-product-table td {
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.delete-product-table th {
+  background-color: #007bff;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.delete-product-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.delete-product-table tbody tr:hover {
+  background-color: #f0f0f0;
+  transition: background-color 0.3s ease;
+}
+
+/* Delete Button Styles */
+.delete-button {
+  padding: 10px 20px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #c82333;
+}
+
+/* Search Bar Styles */
+.search-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}

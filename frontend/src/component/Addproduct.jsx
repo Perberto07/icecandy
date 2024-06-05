@@ -8,8 +8,12 @@ import { useNavigate } from "react-router-dom";
 function Addproduct() {
   const [ProductFlavor, setProductFlavor] = useState('');
   const [Price, setPrice] = useState('');
+  const [Email, setEmail] = useState('');
+  const [OTP, setOTP] = useState('');
+  const [showOTPField, setShowOTPField] = useState(false); // State to control OTP input visibility
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate('');
-
 
 
   function handleSubmit(event) {
@@ -19,12 +23,45 @@ function Addproduct() {
       alert("All fields are required!");
       return;
     }
+    axios.post('http://localhost:7000/sendOTP', { email: Email })
+      .then(res => {
+        console.log(res);
+        setSuccessMessage('OTP sent successfully!');
+        setShowOTPField(true); // Show OTP input field after sending OTP
+      })
+      .catch(err => {
+        console.error(err);
+        setErrorMessage("Error sending OTP: " + err.response.data);
+      });
+  }
+
+  function AddProduct() {
     axios.post('http://localhost:8080/addproduct', { ProductFlavor, Price })
       .then(res => {
         console.log(res);
         navigate('/Product/Productlist');
       }).catch(err => console.log(err));
   }
+
+
+  function handleVerifyOTP() {
+    // Verify OTP entered by the user
+    axios.post('http://localhost:7000/verifyOTP', { email: Email, otp: OTP })
+      .then(res => {
+        console.log(res);
+        if (res.data === 'OTP verified successfully') {
+          setSuccessMessage('OTP verified successfully!');
+          AddProduct();
+        } else {
+          setErrorMessage('Invalid OTP');
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        setErrorMessage("Error verifying OTP: " + err.response.data);
+      });
+  }
+
   return (
     <>
       <Sidebar />
@@ -51,11 +88,33 @@ function Addproduct() {
                 onChange={e => setPrice(e.target.value)} />
             </div>
             <hr />
-            <button type='submit' className="add-button">
-              <i className="icon fas fa-plus"></i>
-              <span>Add</span>
-            </button>
-
+            <div className="form-group">
+              <label>Email:</label>
+              <input
+                type="email"
+                value={Email}
+                onChange={e => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            {showOTPField && (
+              <div className="form-group">
+                <label>OTP:</label>
+                <input
+                  type="text"
+                  value={OTP}
+                  onChange={e => setOTP(e.target.value)}
+                  required
+                />
+              </div>
+            )}
+            <p className="error-message">{errorMessage}</p>
+            <p className="success-message">{successMessage}</p>
+            {showOTPField ? (
+              <button type="button" onClick={handleVerifyOTP} className="submit-button">Verify OTP</button>
+            ) : (
+              <button type="submit" className="submit-button">Send OTP</button>
+            )}s
           </form>
         </div>
       </div>

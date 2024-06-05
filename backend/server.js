@@ -4,6 +4,8 @@ const mysql = require("mysql");
 const app = express();
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
+const nodemailer = require('nodemailer');
+const otpGenerator = require('otp-generator');
 
 app.use(express.json());
 app.use(cookieParser());
@@ -209,6 +211,59 @@ app.get("/order", (req, res)=>{
     });
 });
   
+
+app.post('/sendOTP', (req, res) => {
+    const { email } = req.body;
+    const OTP = otpGenerator.generate(6, { digits: true, alphabets: false, upperCase: false, specialChars: false });
+  
+    // Send OTP to the provided email
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'johnpatrickboleche@gmail.com', // Update with your Gmail address
+        pass: 'nmvx dgjv yxft ojii' // Update with your Gmail app-specific password
+      }
+    });
+  
+    const mailOptions = {
+      from: 'johnpatrickboleche@gmail.com', // Update with your Gmail address
+      to: email,
+      subject: 'OTP Verification',
+      text: 'Your OTP for verification is: ${OTP}'
+    };
+  
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+        res.status(500).send('Error sending OTP');
+      } else {
+        console.log('Email sent: ' + info.response);
+        // Store the OTP for verification
+        otpStorage[email] = OTP;
+        res.status(200).send('OTP sent successfully');
+      }
+    });
+  });
+  
+  // Endpoint to verify OTP
+  app.post('/verifyOTP', (req, res) => {
+    const { email, otp } = req.body;
+  
+    // Check if OTP exists for the provided email
+    if (!otpStorage[email]) {
+      return res.status(400).send('No OTP sent for this email');
+    }
+  
+    // Check if the entered OTP matches the one sent to the email
+    if (otp === otpStorage[email]) {
+      // OTP matched, clear OTP from storage
+      delete otpStorage[email];
+      return res.status(200).send('OTP verified successfully');
+    } else {
+      // OTP didn't match
+      return res.status(400).send('Invalid OTP');
+    }
+  });
 
 
 const port = 8080;
