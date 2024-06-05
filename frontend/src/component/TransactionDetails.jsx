@@ -39,6 +39,12 @@ function TransactionDetails() {
     return acc;
   }, {});
 
+  // Create a map of products for easy lookup
+  const productMap = Products.reduce((acc, product) => {
+    acc[product.ProductNO] = product;
+    return acc;
+  }, {});
+
   return (
     <>
       <Sidebar />
@@ -81,17 +87,22 @@ function TransactionDetails() {
                 <tr>
                   <th>Order No</th>
                   <th>Product Flavor</th>
-                  <th>Quantiy</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
                 </tr>
               </thead>
               <tbody>
-                {Orders.map((order, index) => (
-                  <tr key={index}>
-                    <td>{order.orderNo}</td>
-                    <td>{order.ProductNO}</td>
-                    <td>{order.Quantity}</td>
-                  </tr>
-                ))}
+                {Orders.map((order, index) => {
+                  const product = productMap[order.ProductNO] || {};
+                  return (
+                    <tr key={index}>
+                      <td>{order.orderNo}</td>
+                      <td>{product.ProductFlavor}</td>
+                      <td>{product.Price}</td>
+                      <td>{order.Quantity}</td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
@@ -101,7 +112,7 @@ function TransactionDetails() {
               <thead>
                 <tr>
                   <th>Product Flavor</th>
-                  <th>Price</th>s
+                  <th>Price</th>
                 </tr>
               </thead>
               <tbody>

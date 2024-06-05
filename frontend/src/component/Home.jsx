@@ -5,18 +5,20 @@ import DeliciousCoverImage from '../images/DeliciousCover.jpg';
 function Home() {
     return (
         <>
-            <div>
-                <Sidebar />
-                <img src={DeliciousCoverImage} alt="DeliciousCover" />
-            </div>
+            <div className="Content">
+                <div>
+                    <Sidebar />
+                    <img src={DeliciousCoverImage} alt="DeliciousCover" />
+                </div>
 
-            <div className="home-container">
-               <Sidebar />
-               {/* Content goes here */}
+                <div className="home-container">
+                    
+                    {/* Content goes here */}
+                </div>
             </div>
         </>
 
-        
+
     );
 }
 
