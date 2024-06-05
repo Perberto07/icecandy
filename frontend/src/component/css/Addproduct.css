@@ -79,4 +79,8 @@ button[type="submit"]:hover {
   .add-button span {
     margin-right: 5px; /* Adjust this value as needed */
   }
+  .required {
+    color: red;
+    margin-left: 5px;
+  }
   

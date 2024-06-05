@@ -6,7 +6,7 @@ import HomeIcon from './images/home.png';
 import CustomerIcon from './images/customer.png';
 import ProductIcon from './images/product.png';
 import OrderIcon from './images/order.png';
-//import TransactionIcon from './images/transaction.png';
+import TransactionIcon from './images/transaction.png'; // Uncomment this line
 import LogoutIcon from './images/logout.png';
 import axios from 'axios';
 
@@ -15,7 +15,7 @@ function Sidebar() {
   const [showCustomerSubMenu, setShowCustomerSubMenu] = useState(false);
   const [showProductSubMenu, setShowProductSubMenu] = useState(false);
   const [showOrderSubMenu, setShowOrderSubMenu] = useState(false);
-//  const [showTransactionSubMenu, setShowTransactionSubMenu] = useState(false);
+  const [showTransactionSubMenu, setShowTransactionSubMenu] = useState(false);
 
   const handleLogout = () => {
     if (window.confirm('Are you sure you want to log out?')) {
@@ -141,6 +141,38 @@ function Sidebar() {
                </ul>
              )}
            </li>
+           {/*<li onClick={() => setShowTransactionSubMenu(!showTransactionSubMenu)}>
+              <button className="submenu-toggle">
+                <div>
+                  <img src={TransactionIcon} alt="Transaction" className="icon3" />
+                  <span className="text">Transaction</span>
+                </div>
+              </button>
+              {showTransactionSubMenu && (
+                 <ul className="submenu">
+                  <li>
+                   <Link to="/Transaction/Transactiondetail" className="button1">
+                     <i className="fas fa-list"></i> Transaction List
+                   </Link>
+                 </li>
+                 <li>
+                   <Link to="/Transaction/Addtransaction" className="button1">
+                     <i className="fas fa-plus"></i> Add Transaction
+                   </Link>
+                 </li>
+                 <li className="product">
+                   <Link to="/Transaction/Edittransaction" className="button1">
+                     <i className="fas fa-edit"></i> Edit Transaction
+                   </Link>
+                 </li>
+                 <li className="product">
+                   <Link to="/Transaction/Deletetransaction" className="button1">
+                     <i className="fas fa-trash"></i> Delete Transaction
+                   </Link>
+                 </li>
+               </ul>
+             )}
+           </li>*/}
             <li>
               <button onClick={handleLogout} className="logout-button">
                 <img src={LogoutIcon} alt="Logout" className="icon3" />
