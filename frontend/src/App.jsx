@@ -19,6 +19,7 @@ import Settings from "./component/Settings";
 import Customerlist from "./component/Customerlist";
 import Productlist from "./component/Productlist";
 import TransactionDetails from "./component/TransactionDetails";
+import Order from "./component/Order";
 
 const Customerpage = () => {
     return (
@@ -52,8 +53,9 @@ const Orderpage = () => {
     return (
         <>
             <Routes>
-                <Route path='/' element={<TransactionDetails/>}></Route>
+                <Route path='/' element={<Order/>}></Route>
                 <Route path='/Addorder' element={<Addorder/>}></Route>
+                <Route path='/Transactiondetail' element={<TransactionDetails/>}></Route>
                 <Route path='/Editorder' element={<Editorder/>}></Route>
                 <Route path='/Deleteorder' element={<Deleteorder/>}></Route>
             </Routes>
@@ -61,7 +63,7 @@ const Orderpage = () => {
     );
 };
 
-const Transactionpage = () => {
+/*const Transactionpage = () => {
     return (
         <>
             <Routes>
@@ -71,7 +73,7 @@ const Transactionpage = () => {
             </Routes>
         </>
     );
-};
+};*/
 
 function App() {
     return (
@@ -83,7 +85,7 @@ function App() {
                         <Route path='/Home' element={<Home/>}></Route>
                         <Route path='/Customer/*' element={<Customerpage/>}></Route>
                         <Route path='/Product/*' element={<Productpage/>}></Route>
-                        <Route path='/Transaction/*' element={<Transactionpage/>}></Route>
+                        {/*<Route path='/Transaction/*' element={<Transactionpage/>}></Route>*/}
                         <Route path='/Order/*' element={<Orderpage/>}></Route>
                     </Routes>
                 </div>
