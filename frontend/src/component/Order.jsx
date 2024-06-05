@@ -15,6 +15,11 @@ function Order() {
             </Link>
           </h2>
           <ul>
+            <li>s
+              <Link to="/Order/Transactiondetail">
+                <i className="fas fa-list"></i> Order List
+              </Link>
+            </li>
             <li>
               <Link to="/Order/Addorder">
                 <i className="fas fa-plus"></i> Add Order
