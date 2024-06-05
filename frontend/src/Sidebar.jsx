@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './component/css/Sidebar.css';
 import Header from './Header';
@@ -6,7 +6,7 @@ import HomeIcon from './images/home.png';
 import CustomerIcon from './images/customer.png';
 import ProductIcon from './images/product.png';
 import OrderIcon from './images/order.png';
-import TransactionIcon from './images/transaction.png';
+//import TransactionIcon from './images/transaction.png';
 import LogoutIcon from './images/logout.png';
 import axios from 'axios';
 
@@ -15,7 +15,7 @@ function Sidebar() {
   const [showCustomerSubMenu, setShowCustomerSubMenu] = useState(false);
   const [showProductSubMenu, setShowProductSubMenu] = useState(false);
   const [showOrderSubMenu, setShowOrderSubMenu] = useState(false);
-  const [showTransactionSubMenu, setShowTransactionSubMenu] = useState(false);
+//  const [showTransactionSubMenu, setShowTransactionSubMenu] = useState(false);
 
   const handleLogout = () => {
     if (window.confirm('Are you sure you want to log out?')) {
