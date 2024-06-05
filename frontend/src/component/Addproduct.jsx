@@ -5,7 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function Addproduct() {
-<<<<<<< Updated upstream
+
   const [ProductFlavor, setProductFlavor] = useState('');
   const [Price, setPrice] = useState('');
   const [Email, setEmail] = useState('');
@@ -15,15 +15,14 @@ function Addproduct() {
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate('');
 
-=======
-  const [ProductFlavor, setProductFlavor] = useState("");
-  const [Price, setPrice] = useState("");
+
+
   const [isProductFlavorValid, setIsProductFlavorValid] = useState(true);
   const [isPriceValid, setIsPriceValid] = useState(true);
-  const [otp, setOTP] = useState("");
+
   const [showOTPInput, setShowOTPInput] = useState(false);
-  const navigate = useNavigate();
->>>>>>> Stashed changes
+ 
+
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -36,7 +35,7 @@ function Addproduct() {
       setIsPriceValid(!!Price);
       return;
     }
-<<<<<<< Updated upstream
+
     axios.post('http://localhost:8080/sendOTP', { email: Email })
       .then(res => {
         console.log(res);
@@ -74,7 +73,7 @@ function Addproduct() {
         console.error(err);
         setErrorMessage("Error verifying OTP: " + err.response.data);
       });
-=======
+
 
     // Ask for confirmation before proceeding
     const confirmAdd = window.confirm("Are you sure you want to add this product?");
@@ -113,7 +112,7 @@ function Addproduct() {
     if (/\d/.test(event.key)) {
       event.preventDefault();
     }
->>>>>>> Stashed changes
+
   }
 
   return (
@@ -152,7 +151,7 @@ function Addproduct() {
               />
             </div>
             <hr />
-<<<<<<< Updated upstream
+
             <div className="form-group">
               <label>Email:</label>
               <input
@@ -180,12 +179,12 @@ function Addproduct() {
             ) : (
               <button type="submit" className="submit-button">Send OTP</button>
             )}s
-=======
+
             <button type="submit" className="add-button">
               <i className="icon fas fa-plus"></i>
               <span>Add</span>
             </button>
->>>>>>> Stashed changes
+
           </form>
         </div>
       </div>
