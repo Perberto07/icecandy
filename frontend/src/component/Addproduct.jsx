@@ -4,7 +4,12 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+<<<<<<< HEAD
 function AddProduct() {
+=======
+function Addproduct() {
+
+>>>>>>> 864c1708dde579daaceda1222107305bdc24cca9
   const [ProductFlavor, setProductFlavor] = useState('');
   const [Price, setPrice] = useState('');
   const [Email, setEmail] = useState('');
@@ -13,8 +18,20 @@ function AddProduct() {
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate('');
+<<<<<<< HEAD
   const [isProductFlavorValid, setIsProductFlavorValid] = useState(true);
   const [isPriceValid, setIsPriceValid] = useState(true);
+=======
+
+
+
+  const [isProductFlavorValid, setIsProductFlavorValid] = useState(true);
+  const [isPriceValid, setIsPriceValid] = useState(true);
+
+  const [showOTPInput, setShowOTPInput] = useState(false);
+ 
+
+>>>>>>> 864c1708dde579daaceda1222107305bdc24cca9
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -56,7 +73,11 @@ function AddProduct() {
         console.error(err);
         setErrorMessage("Error verifying OTP: " + err.response?.data || err.message);
       });
+<<<<<<< HEAD
   }
+=======
+
+>>>>>>> 864c1708dde579daaceda1222107305bdc24cca9
 
   function addProduct() {
     axios.post('http://localhost:8080/addproduct', { ProductFlavor, Price })
@@ -79,6 +100,10 @@ function AddProduct() {
     if (/\d/.test(event.key)) {
       event.preventDefault();
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 864c1708dde579daaceda1222107305bdc24cca9
   }
 
   return (
@@ -117,6 +142,10 @@ function AddProduct() {
               />
             </div>
             <hr />
+<<<<<<< HEAD
+=======
+
+>>>>>>> 864c1708dde579daaceda1222107305bdc24cca9
             <div className="form-group">
               <label>Email:</label>
               <input
@@ -143,7 +172,17 @@ function AddProduct() {
               <button type="button" onClick={handleVerifyOTP} className="submit-button">Verify OTP</button>
             ) : (
               <button type="submit" className="submit-button">Send OTP</button>
+<<<<<<< HEAD
             )}
+=======
+            )}s
+
+            <button type="submit" className="add-button">
+              <i className="icon fas fa-plus"></i>
+              <span>Add</span>
+            </button>
+
+>>>>>>> 864c1708dde579daaceda1222107305bdc24cca9
           </form>
         </div>
       </div>
