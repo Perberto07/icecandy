@@ -179,7 +179,6 @@ app.post("/addorder", (req, res)=>{
     });
 });
 
-
 app.post("/addtransaction", (req, res)=>{
     const sql = "insert into transaction (OrderNo, CustomerNO, Date,Sum) Values(?)";
     const values=[
@@ -190,6 +189,22 @@ app.post("/addtransaction", (req, res)=>{
     ];
     db.query(sql, [values], (err, data) => {
         if(err) return res.json("Error");
+        return res.json(data);
+    });
+});
+
+app.get("/transaction", (req, res)=>{
+    const sql = "SELECT * FROM transaction";
+    db.query(sql, (err, data)=>{
+        if(err) return res.json("error");
+        return res.json(data);
+    });
+});
+
+app.get("/order", (req, res)=>{
+    const sql = "SELECT * FROM ordered";
+    db.query(sql, (err, data)=>{
+        if(err) return res.json("error");
         return res.json(data);
     });
 });

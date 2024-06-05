@@ -31,7 +31,7 @@ function Customerlist() {
                         <tbody>
                             {orders.map((order, index) => (
                                 <tr key={index}>
-                                    <td>{order.CustomerNO}</td>
+                                    <td>{order.orderNo}</td>
                                     <td>{order.Name}</td>
                                     <td>{order.Address}</td>
                                 </tr>
