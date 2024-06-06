@@ -23,7 +23,6 @@ function Productlist() {
       <div className='Content'>
         <Sidebar />
         <div className='product-list-container'>
-          <hr />
           <div className='product-list-heading'>
             <table className='product-list-table'> {/* Add product-list-table class */}
               <thead>

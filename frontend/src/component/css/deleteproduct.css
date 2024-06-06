@@ -16,6 +16,7 @@
   border-radius: 20px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   background: linear-gradient(135deg, #f3f3f3, #e0e0e0);
+
 }
 
 /* Delete Product Heading Styles */
@@ -33,6 +34,7 @@
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30%;
 }
 
 .delete-product-table th,

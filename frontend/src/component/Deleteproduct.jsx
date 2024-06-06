@@ -18,7 +18,7 @@ function Deleteproduct() {
       .catch(err => console.error(err));
   }, []);
 
-  const handleSearch = (event) => {
+  const handleSearch = (event) => { 
     setSearchQuery(event.target.value);
   };
 

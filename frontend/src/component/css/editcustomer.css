@@ -17,6 +17,9 @@
     color: #333;
     margin-bottom: 20px;
 }
+.edit-table{
+    margin-bottom: 20%  ;
+}
 
 /* Table Styles */
 .edit-customer-container table {

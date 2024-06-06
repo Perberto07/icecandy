@@ -161,9 +161,9 @@ app.put('/product/:ProductNO', (req, res) => {
 });
 
 app.delete('/product/:ProductNO', (req, res) => {
-    const productNO = req.params.ProductNO;
+    const ProductNO = req.params.ProductNO;
     const sql = 'DELETE FROM product WHERE ProductNO = ?';
-    db.query(sql, [productNO], (err, data) => {
+    db.query(sql, [ProductNO], (err, data) => {
         if (err) return res.json({ error: err.message });
         return res.json(data);
     });

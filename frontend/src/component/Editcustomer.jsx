@@ -81,7 +81,7 @@ function Editcustomer() {
         <Sidebar />
         <div className='edit-customer-container'>
           <h2 className='edit-customer-heading'>Edit Customer</h2>
-          <div className='col-md-9 bg-dark bg-opacity-100 d-flex justify-content-center align-items-center'>
+          <div className='edit-table'>
             <div className='w-200 h-90 bg-white rounded p-4'>
               <input
                 type="text"
