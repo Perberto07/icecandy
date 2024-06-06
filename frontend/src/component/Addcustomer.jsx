@@ -55,9 +55,9 @@ function Addcustomer() {
 
   return (
     <>
-      
+
       <div className="Content">
-      <Sidebar />
+        <Sidebar />
         <div className="Content-addcustomer">
           <form onSubmit={handleSubmit}>
             <div className="one">
@@ -109,7 +109,7 @@ function Addcustomer() {
                   setIsContactPersonValid(!!e.target.value);
                 }}
               />
-            </div>  
+            </div>
             <div className="four">
               <label htmlFor="contactNumber">
                 Contact Number
@@ -126,8 +126,8 @@ function Addcustomer() {
                 }}
               />
             </div>
-            <button type="submit" disabled={adding}>
-              {adding ? "Adding..." : "Add"}
+            <button type="submit" className="addcustomer-button" disabled={adding}>
+              {adding ? "✅" : "+"}
             </button>
           </form>
         </div>

@@ -248,8 +248,7 @@ function EditOrder() {
                             <button
                               className="btn btn-primary"
                               onClick={() => handleEdit(data.transactionID)}
-                            >
-                              Edit
+                            ><i className="fa fa-edit"></i> | Edit
                             </button>
                           )}
                         </td>

@@ -23,11 +23,11 @@ function AddOrder() {
     axios.get('http://localhost:8080/product')
       .then(res => setProductList(res.data))
       .catch(err => console.error(err));
-      
-      axios.get('http://localhost:8080/highest-transaction-id')
+
+    axios.get('http://localhost:8080/highest-transaction-id')
       .then(res => setHighestTransactionId(res.data.highestTransactionId))
       .catch(err => console.error(err));
-  
+
   }, []);
 
 
@@ -102,8 +102,6 @@ function AddOrder() {
         const newProducts = [...products];
         newProducts[productIndex].saved = true; // Mark product as saved
         setProducts(newProducts);
-        // Call saveTransaction after saving the last product
-       
       })
       .catch(err => {
         console.error('Error saving product:', err);
@@ -143,7 +141,7 @@ function AddOrder() {
   return (
     <>
       <div className='Content'>
-      <Sidebar />
+        <Sidebar />
         <div className='Content-order'>
           <div className="order-container">
             <form onSubmit={(e) => e.preventDefault()}>
@@ -195,7 +193,7 @@ function AddOrder() {
                   />
                 </div>
               </div>
-              
+
               {products.map((product, index) => (
                 <div key={product.id} className='product-quantity'>
                   {index === 0 && (
@@ -263,7 +261,7 @@ function AddOrder() {
                       className="remove-button"
                       onClick={() => handleRemoveProduct(product.id)}
                     >
-                      X
+                      x
                     </button>
                     <button
                       type="button"
@@ -271,22 +269,22 @@ function AddOrder() {
                       onClick={() => saveProduct(index)}
                       disabled={product.saved}
                     >
-                      {product.saved ? 'Saved' : 'Save'}
+                      {product.saved ? '✔' : '+'}
                     </button>
-                    
+
                   </div>
                 </div>
               ))}
-               
-              <button 
+
+              <button
                 type="button"
                 className="save-transaction-button"
                 onClick={handleSaveTransaction}
                 disabled={!allProductsSaved || products.length === 0}
               >
-                Submit Transaction
+                Submit Transaction <i className="fa fa-save"></i>
               </button>
-             
+
               <p className='Total'>Total: Php {total.toFixed(2)}</p>
               {submissionStatus && <p>{submissionStatus}</p>}
             </form>

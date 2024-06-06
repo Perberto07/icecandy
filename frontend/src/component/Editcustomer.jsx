@@ -139,7 +139,7 @@ function Editcustomer() {
                             />
                           </td>
                           <td>
-                            <button className="customer-list-button" onClick={() => handleUpdateClick(customer.CustomerNO)}>Update</button>
+                            <button className="customer-list-button" onClick={() => handleUpdateClick(customer.CustomerNO)}><i className="fa fa-save"></i>Update</button>
                           </td>
                         </>
                       ) : (
@@ -150,7 +150,7 @@ function Editcustomer() {
                           <td>{customer.ContactPerson}</td>
                           <td>{customer.CellphoneNO}</td>
                           <td>
-                            <button className="customer-list-button" onClick={() => handleEditClick(customer)}>Edit</button>
+                            <button className="customer-list-button" onClick={() => handleEditClick(customer)}><i className="fa fa-edit"></i> Edit</button>
                           </td>
                         </>
                       )}

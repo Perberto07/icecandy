@@ -117,8 +117,7 @@ function Deleteorder() {
                               setTransactionToDelete(data.transactionID);
                               setShowModal(true);
                             }}
-                          >
-                            Delete
+                          ><i className="fa fa-trash"></i> | Delete
                           </button>
                         </td>
                       )}

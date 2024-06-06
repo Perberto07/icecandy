@@ -180,7 +180,7 @@ function TransactionCard({ transaction }) {
           </tbody>
         </table>
       </div>
-      <button className="print-button" onClick={handlePrint}>Print</button>
+      <button className="print-button" onClick={handlePrint}><i className="fa fa-print"></i> | Print </button>
     </div>
   );
 }

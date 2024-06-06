@@ -99,7 +99,7 @@ function Deletecustomer() {
                                     <td>{customer.CellphoneNO}</td>
                                     <td>
                                         <button className="delete-button" onClick={() => handleDeleteClick(customer.CustomerNO)}>
-                                            <i className="icon fas fa-minus"></i>
+                                            <i className="icon fas fa-trash"></i>
                                             <span>Delete</span>
                                         </button>
 

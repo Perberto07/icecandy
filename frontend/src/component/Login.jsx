@@ -71,7 +71,7 @@ function Login() {
             </div>
             {error && <div className="error-message">{error}</div>}
             <div className="button-container">
-              <button className='login-button'>Login</button>
+              <button className='login-button'><i className="fa fa-sign-in"></i> | Login</button>
             </div>
           </form>
         </div>

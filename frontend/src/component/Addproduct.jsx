@@ -116,7 +116,7 @@ function Addproduct() {
             {showOTPField ? (
               <button type="button" onClick={handleVerifyOTP} className="submit-button">Verify OTP</button>
             ) : (
-              <button type="submit" className="submit-button">Send OTP</button>
+              <button type="submit" className="submit-button"><i className="fa fa-send"></i>Send OTP</button>
             )}
           </form>
         </div>

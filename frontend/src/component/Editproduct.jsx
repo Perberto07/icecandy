@@ -126,7 +126,7 @@ function Editproduct() {
                                             <td>{product.ProductFlavor}</td>
                                             <td>{product.Price}</td>
                                             <td>
-                                                <button className="product-list-button" onClick={() => handleEditClick(product)}>Edit</button>
+                                                <button className="product-list-button" onClick={() => handleEditClick(product)}><i className="fa fa-edit"></i> | Edit</button>
                                             </td>
                                         </>
                                     )}

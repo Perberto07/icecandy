@@ -84,7 +84,7 @@ function Deleteproduct() {
                     <td>{product.ProductFlavor}</td>
                     <td>{product.Price}</td>
                     <td>
-                      <button className='delete-button' onClick={() => handleDeleteClick(product.ProductNO)}>Delete</button>
+                      <button className='delete-button' onClick={() => handleDeleteClick(product.ProductNO)}><i className="fa fa-trash"></i> Delete</button>
                     </td>
                   </tr>
                 ))}
