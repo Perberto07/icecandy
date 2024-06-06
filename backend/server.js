@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const nodemailer = require('nodemailer');
 const otpGenerator = require('otp-generator');
+const otpStorage = require('./otpStorage');
 
 app.use(express.json());
 app.use(cookieParser());

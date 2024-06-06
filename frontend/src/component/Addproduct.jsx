@@ -19,33 +19,25 @@ function Addproduct() {
   function handleSubmit(event) {
     event.preventDefault();
     // Validation: Check if all fields are filled
-    if (!ProductFlavor || !Price) {
+    if (!ProductFlavor || !Price || !Email) {
       alert("All fields are required!");
       return;
     }
-
+  
     axios
       .post('http://localhost:8080/sendOTP', { email: Email })
       .then(res => {
         console.log(res);
         setSuccessMessage('OTP sent successfully!');
-        setShowOTPField(true); // Show OTP input field after sending OTP
+       // Show OTP input field after sending OTP
       })
       .catch(err => {
         console.error(err);
         setErrorMessage("Error sending OTP: " + err.response.data);
       });
-      return;
+      setShowOTPField(true); 
   }
-
-  function AddProduct() {
-    axios.post('http://localhost:8080/addproduct', { ProductFlavor, Price })
-      .then(res => {
-        console.log(res);
-        navigate('/Product/Productlist');
-      }).catch(err => console.log(err));
-  }
-
+  
 
   function handleVerifyOTP() {
     // Verify OTP entered by the user
@@ -53,8 +45,14 @@ function Addproduct() {
       .then(res => {
         console.log(res);
         if (res.data === 'OTP verified successfully') {
-          setSuccessMessage('OTP verified successfully!');
-          AddProduct();
+
+            axios.post('http://localhost:8080/addproduct', { ProductFlavor, Price })
+              .then(res => {
+                console.log(res);
+                navigate('/Product/Productlist');
+              }).catch(err => console.log(err));
+    
+        
         } else {
           setErrorMessage('Invalid OTP');
         }
