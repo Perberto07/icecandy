@@ -2,7 +2,7 @@ import Sidebar from "../Sidebar";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "bootstrap/scss/bootstrap.scss";
-import Modal from './Modal';
+import OTPModal from './OTPModal'; // Import the OTPModal component
 
 function Deleteorder() {
   const [Products, setProducts] = useState([]);
@@ -11,6 +11,7 @@ function Deleteorder() {
   const [Transactions, setTransactions] = useState([]);
   const [Customers, setCustomers] = useState([]);
   const [Orders, setOrders] = useState([]);
+  const [showOTPModal, setShowOTPModal] = useState(false); // State to control OTP modal
 
   useEffect(() => {
     axios.get('http://localhost:8080/transaction')
@@ -31,10 +32,17 @@ function Deleteorder() {
   }, []);
 
   const handleDelete = (transactionID) => {
-    axios.delete(`http://localhost:8080/transaction/${transactionID}`)
+    // Set transaction ID to be deleted and show OTP modal
+    setTransactionToDelete(transactionID);
+    setShowOTPModal(true);
+  };
+
+  const handleConfirmDelete = () => {
+    // Make API call to delete transaction after OTP verification
+    axios.delete(`http://localhost:8080/transaction/${transactionToDelete}`)
       .then(() => {
-        setTransactions(prevTransactions => prevTransactions.filter(transaction => transaction.transactionID !== transactionID));
-        setShowModal(false);
+        setTransactions(prevTransactions => prevTransactions.filter(transaction => transaction.transactionID !== transactionToDelete));
+        setShowOTPModal(false); // Close OTP modal after deletion
       })
       .catch(err => console.error(err));
   };
@@ -113,10 +121,7 @@ function Deleteorder() {
                         <td rowSpan={data.orderItems.length}>
                           <button
                             className="btn btn-danger"
-                            onClick={() => {
-                              setTransactionToDelete(data.transactionID);
-                              setShowModal(true);
-                            }}
+                            onClick={() => handleDelete(data.transactionID)}
                           ><i className="fa fa-trash"></i> | Delete
                           </button>
                         </td>
@@ -129,12 +134,12 @@ function Deleteorder() {
           </div>
         </div>
       </div>
-      <Modal
-        show={showModal}
-        onClose={() => setShowModal(false)}
-        onConfirm={() => handleDelete(transactionToDelete)}
-        message="Are you sure you want to delete this transaction?"
-      />
+      {/* OTP modal component */}
+      {showOTPModal && (
+        <OTPModal
+          onVerify={handleConfirmDelete} // Pass the function to handle OTP verification
+        />
+      )}
     </>
   );
 }

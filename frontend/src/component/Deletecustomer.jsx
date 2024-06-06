@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import Sidebar from '../Sidebar';
 import Modal from './Modal';
+import OTPModal from './OTPModal'; // Import the OTPModal component
 import './css/topback.css';
 import './css/deletecustomer.css';
 
@@ -11,6 +12,7 @@ function Deletecustomer() {
     const [selectedCustomerId, setSelectedCustomerId] = useState(null);
     const [searchInput, setSearchInput] = useState('');
     const [filteredCustomers, setFilteredCustomers] = useState([]);
+    const [showOTPModal, setShowOTPModal] = useState(false); // State to control OTP modal
     const contentRef = useRef(null);
 
     useEffect(() => {
@@ -24,7 +26,7 @@ function Deletecustomer() {
 
     const handleDeleteClick = (customerId) => {
         setSelectedCustomerId(customerId);
-        setShowModal(true);
+        setShowOTPModal(true); // Show OTP modal when attempting to delete
     };
 
     const handleConfirmDelete = () => {
@@ -39,7 +41,7 @@ function Deletecustomer() {
             })
             .catch(err => console.error(err))
             .finally(() => {
-                setShowModal(false);
+                setShowOTPModal(false); // Close OTP modal after deletion
                 setSelectedCustomerId(null);
             });
     };
@@ -103,7 +105,6 @@ function Deletecustomer() {
                                                 <i className="icon fas fa-trash"></i>
                                                 <span>Delete</span>
                                             </button>
-
                                         </td>
                                     </tr>
                                 ))}
@@ -116,12 +117,12 @@ function Deletecustomer() {
                     </button>
                 </div>
             </div>
-            <Modal
-                show={showModal}
-                onClose={handleCloseModal}
-                onConfirm={handleConfirmDelete}
-                message="Are you sure you want to delete this customer?"
-            />
+            {/* OTP modal component */}
+            {showOTPModal && (
+                <OTPModal
+                    onVerify={handleConfirmDelete} // Pass the function to handle OTP verification
+                />
+            )}
         </>
     );
 }

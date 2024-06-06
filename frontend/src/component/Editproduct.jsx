@@ -3,15 +3,18 @@ import axios from 'axios';
 import Sidebar from '../Sidebar';
 import './css/editproduct.css';
 import './css/topback.css';
+import OTPModal from './OTPModal';
 
 function Editproduct() {
     const [products, setProducts] = useState([]);
     const [editingProductId, setEditingProductId] = useState(null);
     const [editingProductData, setEditingProductData] = useState({
         ProductFlavor: '',
-        Price: ''
+        Price: '',
+        Email:''
     });
     const [searchInput, setSearchInput] = useState('');
+    const [showOTPModal, setShowOTPModal] = useState(false);
     const [filteredProducts, setFilteredProducts] = useState([]);
     const contentRef = useRef(null);
 
@@ -28,9 +31,18 @@ function Editproduct() {
         setEditingProductId(product.ProductNO);
         setEditingProductData({
             ProductFlavor: product.ProductFlavor,
-            Price: product.Price
+            Price: product.Price,
+            Email: product.Email
         });
     };
+
+    const handleOTPVerified = () => {
+        const confirmUpdate = window.confirm("Are you sure you want to apply changes?");
+        if (confirmUpdate) {
+          handleUpdateClick(editingProductId);
+        }
+        setShowOTPModal(false);
+      };
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -38,8 +50,7 @@ function Editproduct() {
     };
 
     const handleUpdateClick = (productId) => {
-        const confirmUpdate = window.confirm("Are you sure you want to apply changes?");
-        if (confirmUpdate) {
+            setShowOTPModal(true);
             axios.put(`http://localhost:8080/product/${productId}`, editingProductData)
                 .then(() => {
                     setProducts(products.map(product =>
@@ -51,7 +62,7 @@ function Editproduct() {
                     setEditingProductId(null);
                 })
                 .catch(err => console.error(err));
-        }
+        
     };
 
     const handleSearchInputChange = (e) => {
@@ -113,6 +124,7 @@ function Editproduct() {
                                                     }}
                                                 />
                                             </td>
+
                                             <td>
                                                 <input
                                                     type="number"
@@ -122,7 +134,7 @@ function Editproduct() {
                                                 />
                                             </td>
                                             <td>
-                                                <button className="product-list-button" onClick={() => handleUpdateClick(product.ProductNO)}>Update</button>
+                                                <button className="product-list-button" onClick={() => setShowOTPModal(true)}>Update</button>
                                             </td>
                                         </>
                                     ) : (
@@ -146,6 +158,12 @@ function Editproduct() {
                     Back to Top
                 </button>
             </div>
+            {showOTPModal && (
+        <OTPModal
+          email={editingProductData.Email} // Pass the email to the OTP modal
+          onVerify={handleOTPVerified} // Pass the function to handle OTP verification success
+        />
+      )}
         </>
     );
 }

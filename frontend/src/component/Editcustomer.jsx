@@ -1,6 +1,7 @@
-import { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import Sidebar from '../Sidebar';
+import OTPModal from './OTPModal';
 import './css/editcustomer.css';
 import './css/topback.css';
 
@@ -11,10 +12,12 @@ function Editcustomer() {
     Name: '',
     Address: '',
     ContactPerson: '',
-    CellphoneNO: ''
+    CellphoneNO: '',
+    Email: '' // Ensure Email field is included
   });
   const [searchInput, setSearchInput] = useState('');
   const [filteredCustomers, setFilteredCustomers] = useState([]);
+  const [showOTPModal, setShowOTPModal] = useState(false);
   const contentRef = useRef(null);
 
   useEffect(() => {
@@ -27,13 +30,23 @@ function Editcustomer() {
   }, []);
 
   const handleEditClick = (customer) => {
+    
     setEditingCustomerId(customer.CustomerNO);
     setEditingCustomerData({
       Name: customer.Name,
       Address: customer.Address,
       ContactPerson: customer.ContactPerson,
-      CellphoneNO: customer.CellphoneNO
+      CellphoneNO: customer.CellphoneNO,
+      Email: customer.Email // Ensure email is included
     });
+  };
+
+  const handleOTPVerified = () => {
+    const confirmUpdate = window.confirm("Are you sure you want to apply changes?");
+    if (confirmUpdate) {
+      handleUpdateClick(editingCustomerId);
+    }
+    setShowOTPModal(false);
   };
 
   const handleInputChange = (e) => {
@@ -42,20 +55,18 @@ function Editcustomer() {
   };
 
   const handleUpdateClick = (customerId) => {
-    const confirmUpdate = window.confirm("Are you sure you want to apply changes?");
-    if (confirmUpdate) {
-      axios.put(`http://localhost:8080/customer/${customerId}`, editingCustomerData)
-        .then(() => {
-          setCustomers(customers.map(customer =>
-            customer.CustomerNO === customerId ? { ...customer, ...editingCustomerData } : customer
-          ));
-          setFilteredCustomers(filteredCustomers.map(customer =>
-            customer.CustomerNO === customerId ? { ...customer, ...editingCustomerData } : customer
-          ));
-          setEditingCustomerId(null);
-        })
-        .catch(err => console.error(err));
-    }
+    setShowOTPModal(true);
+    axios.put(`http://localhost:8080/customer/${customerId}`, editingCustomerData)
+      .then(() => {
+        setCustomers(customers.map(customer =>
+          customer.CustomerNO === customerId ? { ...customer, ...editingCustomerData } : customer
+        ));
+        setFilteredCustomers(filteredCustomers.map(customer =>
+          customer.CustomerNO === customerId ? { ...customer, ...editingCustomerData } : customer
+        ));
+        setEditingCustomerId(null);
+      })
+      .catch(err => console.error(err));
   };
 
   const handleSearchInputChange = (e) => {
@@ -149,7 +160,7 @@ function Editcustomer() {
                             />
                           </td>
                           <td>
-                            <button className="customer-list-button" onClick={() => handleUpdateClick(customer.CustomerNO)}><i className="fa fa-save"></i>Update</button>
+                            <button className="customer-list-button" onClick={() => setShowOTPModal(true)}><i className="fa fa-save"></i>Update</button>
                           </td>
                         </>
                       ) : (
@@ -174,7 +185,13 @@ function Editcustomer() {
         <button onClick={scrollToTop} className='back-to-top'>
           Back to Top
         </button>
-      </div >
+      </div>
+      {showOTPModal && (
+        <OTPModal
+          email={editingCustomerData.Email} // Pass the email to the OTP modal
+          onVerify={handleOTPVerified} // Pass the function to handle OTP verification success
+        />
+      )}
     </>
   );
 }

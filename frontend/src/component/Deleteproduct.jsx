@@ -1,15 +1,13 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Sidebar from '../Sidebar';
-import Modal from './Modal'; // Assuming you have a Modal component for confirmation
+import OTPModal from './OTPModal'; // Import the OTPModal component
 import './css/deleteproduct.css';
-
-
 
 function Deleteproduct() {
   const [products, setProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
-  const [showModal, setShowModal] = useState(false);
+  const [showOTPModal, setShowOTPModal] = useState(false);
   const [selectedProductId, setSelectedProductId] = useState(null);
 
   useEffect(() => {
@@ -18,16 +16,17 @@ function Deleteproduct() {
       .catch(err => console.error(err));
   }, []);
 
-  const handleSearch = (event) => { 
+  const handleSearch = (event) => {
     setSearchQuery(event.target.value);
   };
 
   const handleDeleteClick = (productId) => {
     setSelectedProductId(productId);
-    setShowModal(true);
+    setShowOTPModal(true); // Show OTP modal when delete is clicked
   };
 
   const handleConfirmDelete = () => {
+    // Make API call to delete product after OTP verification
     axios.delete(`http://localhost:8080/product/${selectedProductId}`)
       .then(res => {
         if (res.data.Status === "Success") {
@@ -36,16 +35,10 @@ function Deleteproduct() {
           console.error("Error deleting product:", res.data.Message);
         }
       })
-      .catch(err => console.error(err))
-      .finally(() => {
-        setShowModal(false);
-        setSelectedProductId(null);
-      });
-  };
+      .catch(err => console.error(err));
 
-  const handleCloseModal = () => {
-    setShowModal(false);
-    setSelectedProductId(null);
+    // Close OTP modal after deletion
+    setShowOTPModal(false);
   };
 
   const filteredProducts = products.filter(product =>
@@ -93,12 +86,14 @@ function Deleteproduct() {
           </div>
         </div>
       </div>
-      <Modal
-        show={showModal}
-        onClose={handleCloseModal}
-        onConfirm={handleConfirmDelete}
-        message="Are you sure you want to delete this product?"
-      />
+
+      {/* Conditionally render OTP modal */}
+      {showOTPModal && (
+        <OTPModal
+          email="" // Pass email to the OTP modal if needed
+          onVerify={handleConfirmDelete} // Handle OTP verification
+        />
+      )}
     </>
   );
 }
