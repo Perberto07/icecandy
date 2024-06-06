@@ -70,49 +70,51 @@ function Deletecustomer() {
         <>
             <div className='Content' ref={contentRef}>
                 <Sidebar />
-                <div className='delete-customer-container'>
-                    <h2 className='delete-customer-heading'>Delete Customer</h2>
-                    <input
-                        type="text"
-                        placeholder="Search by Store Name"
-                        value={searchInput}
-                        onChange={handleSearchInputChange}
-                    />
-                    <table className='delete-customer-table'>
-                        <thead>
-                            <tr>
-                                <th>Customer NO.</th>
-                                <th>Name</th>
-                                <th>Address</th>
-                                <th>Contact Person</th>
-                                <th>CellPhone Number</th>
-                                <th>Operation</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {filteredCustomers.map((customer, index) => (
-                                <tr key={index}>
-                                    <td>{customer.CustomerNO}</td>
-                                    <td>{customer.Name}</td>
-                                    <td>{customer.Address}</td>
-                                    <td>{customer.ContactPerson}</td>
-                                    <td>{customer.CellphoneNO}</td>
-                                    <td>
-                                        <button className="delete-button" onClick={() => handleDeleteClick(customer.CustomerNO)}>
-                                            <i className="icon fas fa-trash"></i>
-                                            <span>Delete</span>
-                                        </button>
-
-                                    </td>
+                <div className='delete-content'>
+                    <div className='delete-customer-container'>
+                        <h2 className='delete-customer-heading'>Delete Customer</h2>
+                        <input
+                            type="text"
+                            placeholder="Search by Store Name"
+                            value={searchInput}
+                            onChange={handleSearchInputChange}
+                        />
+                        <table className='delete-customer-table'>
+                            <thead>
+                                <tr>
+                                    <th>Customer NO.</th>
+                                    <th>Name</th>
+                                    <th>Address</th>
+                                    <th>Contact Person</th>
+                                    <th>CellPhone Number</th>
+                                    <th>Operation</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
+                            </thead>
+                            <tbody>
+                                {filteredCustomers.map((customer, index) => (
+                                    <tr key={index}>
+                                        <td>{customer.CustomerNO}</td>
+                                        <td>{customer.Name}</td>
+                                        <td>{customer.Address}</td>
+                                        <td>{customer.ContactPerson}</td>
+                                        <td>{customer.CellphoneNO}</td>
+                                        <td>
+                                            <button className="delete-button" onClick={() => handleDeleteClick(customer.CustomerNO)}>
+                                                <i className="icon fas fa-trash"></i>
+                                                <span>Delete</span>
+                                            </button>
 
-                <button onClick={scrollToTop} className='back-to-top'>
-                    Back to Top
-                </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <button onClick={scrollToTop} className='back-to-top'>
+                        Back to Top
+                    </button>
+                </div>
             </div>
             <Modal
                 show={showModal}

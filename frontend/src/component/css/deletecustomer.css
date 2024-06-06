@@ -8,13 +8,15 @@
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     background: linear-gradient(135deg, #f3f3f3, #e0e0e0);
 }
-
+.delete-content{
+    margin-bottom: 50%;
+    padding-bottom: 50%;
+}
 /* Delete Customer Heading Styles */
 .delete-customer-heading {
     font-size: 32px;
     font-weight: bold;
     color: #333;
-    margin-bottom: 20px;
 }
 
 /* Delete Customer Table Styles */
@@ -24,6 +26,7 @@
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20%
 }
 
 .delete-customer-table th,
