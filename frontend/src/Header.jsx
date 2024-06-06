@@ -65,7 +65,7 @@ function Header() {
                 </li>
                 <li>
                   <Link to="/Customer/Addcustomer" className="submenu-link">
-                    <i className="fas fa-plus"></i> Add Customer
+                    <i className="fas fa-plus"></i>Add Customer
                   </Link>
                 </li>
                 <li>
@@ -75,7 +75,7 @@ function Header() {
                 </li>
                 <li>
                   <Link to="/Customer/Deletecustomer" className="submenu-link">
-                    <i className="fas fa-trash"></i> Delete Customer
+                    <i className="fas fa-trash"></i>Delete Customer
                   </Link>
                 </li>
               </ul>

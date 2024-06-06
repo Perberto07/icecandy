@@ -255,7 +255,7 @@ app.post('/sendOTP', (req, res) => {
         from: 'johnpatrickboleche@gmail.com', // Update with your Gmail address
         to: email,
         subject: 'OTP Verification',
-        text: `Your OTP for verification is: ${OTP}`
+        text: `Good Day Ma'am/Sir! This is Delicious Icecandy, please input the OTP to confirm your transaction: ${OTP}`
       };
       
       transporter.sendMail(mailOptions, function(error, info) {
