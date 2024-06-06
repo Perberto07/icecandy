@@ -20,6 +20,7 @@ import Customerlist from "./component/Customerlist";
 import Productlist from "./component/Productlist";
 import TransactionDetails from "./component/TransactionDetails";
 import Order from "./component/Order";
+import Report from "./component/report";
 
 
 const Customerpage = () => {
@@ -59,6 +60,7 @@ const Orderpage = () => {
                 <Route path='/Transactiondetail' element={<TransactionDetails/>}></Route>
                 <Route path='/Editorder' element={<Editorder/>}></Route>
                 <Route path='/Deleteorder' element={<Deleteorder/>}></Route>
+                <Route path='/Report' element={<Report/>}></Route>
             </Routes>
         </>
     );

@@ -106,6 +106,7 @@ function Header() {
                     <i className="fas fa-trash"></i> Delete Product
                   </Link>
                 </li>
+                
               </ul>
             )}
           </div>
@@ -134,6 +135,11 @@ function Header() {
                     <i className="fas fa-trash"></i> Delete Order
                   </Link>
                 </li>
+                <li>
+                   <Link to="/Order/Report" className="submenu-link">
+                     <i className="fas fa-file-alt"></i> Report
+                   </Link>
+                 </li>
               </ul>
             )}
           </div>

@@ -138,6 +138,11 @@ function Sidebar() {
                      <i className="fas fa-trash"></i> Delete Order
                    </Link>
                  </li>
+                 <li>
+                   <Link to="/Order/Report" className="button1">
+                     <i className="fas fa-file-alt"></i> Report
+                   </Link>
+                 </li>
                </ul>
              )}
            </li>
