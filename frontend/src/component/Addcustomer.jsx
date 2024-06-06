@@ -55,8 +55,9 @@ function Addcustomer() {
 
   return (
     <>
-      <Sidebar />
+      
       <div className="Content">
+      <Sidebar />
         <div className="Content-addcustomer">
           <form onSubmit={handleSubmit}>
             <div className="one">

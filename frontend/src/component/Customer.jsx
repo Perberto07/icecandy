@@ -6,8 +6,8 @@ import Sidebar from '../Sidebar';
 const CustomerComponent = () => {
   return (
     <>
-      <Sidebar />
       <div className='Content'>
+      <Sidebar />
         <div className="container">
           <div className='customer'>
             <div className="link-container">

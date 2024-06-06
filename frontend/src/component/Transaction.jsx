@@ -6,8 +6,8 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 function Transaction() {
   return (
     <>
-      <Sidebar />
       <div className="Content">
+        <Sidebar /> 
         <div className="transac">
           <ul>
             <li>

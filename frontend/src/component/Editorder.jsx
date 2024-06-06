@@ -76,9 +76,10 @@ function EditOrder() {
 
   return (
     <>
-      <Sidebar />
+      
       <div className="Content">
-        <div className="Content">
+      <Sidebar />
+        <div className="Content-orderedit">
           <div className="transaction">
             <table className="table table-striped">
               <thead>

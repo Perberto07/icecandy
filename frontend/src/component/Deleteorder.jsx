@@ -76,9 +76,9 @@ function Deleteorder() {
 
   return (
     <>
-      <Sidebar />
       <div className="Content">
-        <div className="Content">
+        <Sidebar />
+        <div className="Content-deleteorder">
           <div className="transaction">
             <table className="table table-striped">
               <thead>

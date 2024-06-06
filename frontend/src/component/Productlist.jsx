@@ -13,17 +13,16 @@ function Productlist() {
       .catch(err => console.error(err));
   }, []);
 
-  
+
   const filteredProducts = products.filter(product =>
     product.ProductFlavor.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
     <>
-      <Sidebar />
       <div className='Content'>
+        <Sidebar />
         <div className='product-list-container'>
-          
           <hr />
           <div className='product-list-heading'>
             <table className='product-list-table'> {/* Add product-list-table class */}

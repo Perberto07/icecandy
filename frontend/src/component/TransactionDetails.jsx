@@ -72,12 +72,12 @@ function TransactionDetails() {
 
   return (
     <>
-      <Sidebar />
       <div className="Content">
-        <div className="Content">
+        <Sidebar />
+        <div className="Content-orderlist">
           <div className="transaction">
             {combinedData.map((transaction, index) => (
-              <TransactionCard key={index} transaction={transaction} />
+              <TransactionCard key={index} transaction={transaction} className="transaction-card" />
             ))}
           </div>
         </div>

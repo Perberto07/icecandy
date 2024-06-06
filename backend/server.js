@@ -210,6 +210,9 @@ app.get("/order", (req, res)=>{
         return res.json(data);
     });
 });
+
+
+
   
 
 app.post('/sendOTP', (req, res) => {
@@ -250,7 +253,7 @@ app.post('/sendOTP', (req, res) => {
   });
   
   // Endpoint to verify OTP
-  app.post('/verifyOTP', (req, res) => {
+app.post('/verifyOTP', (req, res) => {
     const { email, otp } = req.body;
   
     // Check if OTP exists for the provided email
@@ -268,6 +271,7 @@ app.post('/sendOTP', (req, res) => {
       return res.status(400).send('Invalid OTP');
     }
   });
+
 
 
 const port = 8080;

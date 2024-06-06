@@ -73,69 +73,69 @@ function Editproduct() {
 
     return (
         <>
-            <Sidebar />
             <div className='Content' ref={contentRef}>
+                <Sidebar />
                 <div className='edit-product-container'>
                     <h2 className='edit-product-heading'>Edit Product</h2>
-                   
-                       
-                            <input
-                                type="text"
-                                placeholder="Search by Product Flavor"
-                                value={searchInput}
-                                onChange={handleSearchInputChange}
-                            />
-                            <table className='edit-product-table'>
-                                <thead>
-                                    <tr>
-                                        <th>Product NO.</th>
-                                        <th>Product Flavor</th>
-                                        <th>Price</th>
-                                        <th>Operation</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {filteredProducts.map((product, index) => (
-                                        <tr key={index}>
-                                            {editingProductId === product.ProductNO ? (
-                                                <>
-                                                    <td>{product.ProductNO}</td>
-                                                    <td>
-                                                        <input
-                                                            type="text"
-                                                            name="ProductFlavor"
-                                                            value={editingProductData.ProductFlavor}
-                                                            onChange={handleInputChange}
-                                                        />
-                                                    </td>
-                                                    <td>
-                                                        <input
-                                                            type="number"
-                                                            name="Price"
-                                                            value={editingProductData.Price}
-                                                            onChange={handleInputChange}
-                                                        />
-                                                    </td>
-                                                    <td>
-                                                        <button className="product-list-button" onClick={() => handleUpdateClick(product.ProductNO)}>Update</button>
-                                                    </td>
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <td>{product.ProductNO}</td>
-                                                    <td>{product.ProductFlavor}</td>
-                                                    <td>{product.Price}</td>
-                                                    <td>
-                                                        <button className="product-list-button" onClick={() => handleEditClick(product)}>Edit</button>
-                                                    </td>
-                                                </>
-                                            )}
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        
-                    
+
+
+                    <input
+                        type="text"
+                        placeholder="Search by Product Flavor"
+                        value={searchInput}
+                        onChange={handleSearchInputChange}
+                    />
+                    <table className='edit-product-table'>
+                        <thead>
+                            <tr>
+                                <th>Product NO.</th>
+                                <th>Product Flavor</th>
+                                <th>Price</th>
+                                <th>Operation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {filteredProducts.map((product, index) => (
+                                <tr key={index}>
+                                    {editingProductId === product.ProductNO ? (
+                                        <>
+                                            <td>{product.ProductNO}</td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name="ProductFlavor"
+                                                    value={editingProductData.ProductFlavor}
+                                                    onChange={handleInputChange}
+                                                />
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="number"
+                                                    name="Price"
+                                                    value={editingProductData.Price}
+                                                    onChange={handleInputChange}
+                                                />
+                                            </td>
+                                            <td>
+                                                <button className="product-list-button" onClick={() => handleUpdateClick(product.ProductNO)}>Update</button>
+                                            </td>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <td>{product.ProductNO}</td>
+                                            <td>{product.ProductFlavor}</td>
+                                            <td>{product.Price}</td>
+                                            <td>
+                                                <button className="product-list-button" onClick={() => handleEditClick(product)}>Edit</button>
+                                            </td>
+                                        </>
+                                    )}
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+
+
                 </div>
                 <button onClick={scrollToTop} className='back-to-top'>
                     Back to Top

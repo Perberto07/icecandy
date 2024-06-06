@@ -68,9 +68,8 @@ function Deletecustomer() {
 
     return (
         <>
-            <Sidebar />
             <div className='Content' ref={contentRef}>
-
+                <Sidebar />
                 <div className='delete-customer-container'>
                     <h2 className='delete-customer-heading'>Delete Customer</h2>
                     <input

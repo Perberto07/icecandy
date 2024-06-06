@@ -6,8 +6,8 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 function Order() {
   return (
     <>
-      <Sidebar />
       <div className="Content">
+      <Sidebar />
         <div className='option'>
           <h2>
             <Link to="/Order">
@@ -15,7 +15,7 @@ function Order() {
             </Link>
           </h2>
           <ul>
-            <li>s
+            <li>
               <Link to="/Order/Transactiondetail">
                 <i className="fas fa-list"></i> Order List
               </Link>

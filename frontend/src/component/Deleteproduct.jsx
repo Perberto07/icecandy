@@ -54,8 +54,8 @@ function Deleteproduct() {
 
   return (
     <>
-      <Sidebar />
       <div className='Content'>
+        <Sidebar />
         <div className='Content3'>
           <div className='search-container'>
             <input

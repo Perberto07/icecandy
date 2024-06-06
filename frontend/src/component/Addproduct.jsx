@@ -64,8 +64,8 @@ function Addproduct() {
 
   return (
     <>
-      <Sidebar />
       <div className='Content'>
+        <Sidebar />
         <div className="AddProduct-container">
           <form onSubmit={handleSubmit}>
             <div className='Product'>

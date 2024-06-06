@@ -25,8 +25,8 @@ function Customerlist() {
 
     return (
         <>
-            <Sidebar />
             <div className='Content' ref={contentRef}>
+                <Sidebar />
                 <div className='customer-list-container'> {/* Apply the container class */}
                     <h2 className='customer-list-heading'>Customer List</h2> {/* Apply the heading class */}
                     <table className='customer-list-table'> {/* Apply the table class */}

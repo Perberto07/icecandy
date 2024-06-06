@@ -6,13 +6,11 @@ function Home() {
     return (
         <>
             <div className="Content">
+                <Sidebar />
                 <div>
-                    <Sidebar />
                     <img src={DeliciousCoverImage} alt="DeliciousCover" />
                 </div>
-
                 <div className="home-container">
-                    
                     {/* Content goes here */}
                 </div>
             </div>

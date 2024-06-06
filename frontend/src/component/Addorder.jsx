@@ -141,9 +141,9 @@ function AddOrder() {
 
   return (
     <>
-      <Sidebar />
       <div className='Content'>
-        <div className='Content2'>
+      <Sidebar />
+        <div className='Content-order'>
           <div className="order-container">
             <form onSubmit={(e) => e.preventDefault()}>
               <div className='customer-field'>

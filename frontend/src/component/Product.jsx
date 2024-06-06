@@ -7,8 +7,8 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 function Product() {
   return (
     <>
-      <Sidebar />
       <div className='Content'>
+        <Sidebar />
         <div className='option'>
           <div className='product'>
             <Link to="/Product/Productlist" className='button1'>

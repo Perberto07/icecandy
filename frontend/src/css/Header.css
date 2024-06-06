@@ -1,95 +1,128 @@
-  .header {
-    display: flex;
-    justify-content: space-between;
-    background-color: dodgerblue;
-    color: #013220;
-    padding-left: 20px; /* Adjust padding for better alignment */
-    padding-right: 10; /* Adjust padding for better alignment */
-    padding-top: 10px;
-    padding-bottom: 10px;
-    position: fixed;
-    left: 0px;
-    right: 0px;
-    top: 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add shadow effect */
-  }
-  
-  .icecandy-text-container {
-    display: flex;
-    font-size: 20px; /* Adjust font size as needed */
-    margin-left: 0%;
-  }
-  .icecandy-logo {
-    width: 100px; 
-    height: auto; 
-    margin-left: 15px;
-    border-radius: 150%;
-  }
-  
-.datetime-icons{
-  display: block ;
+/* Header.css */
 
-  margin-right: 20px;
-
+.header {
+  display: flex;
+  justify-content: space-between;
+  background-color: dodgerblue;
+  color: #013220;
+  padding: 10px 20px; /* Combined padding */
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
-  
-  /* Style for the date and time container */
+
+.business-container {
+  display: flex;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-left: 0%;
+}
+
+.icecandy-logo {
+  width: 100px;
+  height: auto;
+  margin-left: 15px;
+  border-radius: 150%;
+}
+
+.datetime-icons {
+  display: block;
+  margin-right: 20px;
+}
+
 .date-time-container {
-    font-size: 110%;
-    font-family: 'Roboto', sans-serif;
-    display: flex;
-    align-self: flex-end;
-    justify-self: end;
-    margin-left: 300px;
-  }
-  /* Style for the date */
-  .current-date {
-    font-weight: bold; /* Make the date bold */
-  }
-  
-  /* Style for the time */
-  .current-time {
-    font-weight: bold; /* Make the time bold */
-    
-  }
-  .icons{
-    margin-top: 1px;
-    display: flex;
-  }
-  .icon-container {
-    position: relative;
-    margin-right: 20px;
-    display: inline-block;
-  }
-  
-  .icon2 {
-    width: 30px;
-    margin-left: 20px ;
-  }
-  
-  .icon-text {
-    visibility: hidden;
-    opacity: 0;
-    width: max-content;
-    background-color: black;
-    color: white;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px;
-    position: absolute;
-    z-index: 1;
-    bottom:120%; /* Position above the icon */
-    left: 50%;
-    transform: translateX(-50%);
-    transition: opacity 0.3s;
-  }
-  
-  .icon-container:hover .icon-text {
-    visibility: visible;
-    opacity: 1;
-  }
-  .brandname{
-    margin-left: 30px;
-  }
-  
-  
+  font-size: 110%;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-self: flex-end;
+  justify-self: end;
+  margin-left: 300px;
+}
+
+.current-date {
+  font-weight: bold;
+}
+
+.current-time {
+  font-weight: bold;
+}
+
+.icons {
+  margin-top: 1px;
+  display: flex;
+}
+
+.icon-container {
+  position: relative;
+  margin-right: 20px;
+  display: inline-block;
+}
+
+.icon2 {
+  width: 30px;
+  margin-left: 20px;
+}
+
+.icon-text {
+  visibility: hidden;
+  opacity: 0;
+  width: max-content;
+  background-color: black;
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: opacity 0.3s;
+}
+
+.icon-container:hover .icon-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.business {
+  margin-left: 30px;
+}
+
+.customer-submenu,
+.product-submenu,
+.order-submenu {  /* Added order-submenu */
+  position: absolute;
+  top: 40px;
+  left: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  width: 150px;
+  padding: 10px 0;
+}
+
+.customer-submenu li,
+.product-submenu li,
+.order-submenu li {  /* Adjusted for order-submenu */
+  list-style: none;
+}
+
+.submenu-link {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #013220;
+  background-color: #f8f9fa;
+}
+
+.submenu-link:hover {
+  background-color: #e2e6ea;
+}
+
+.submenu-link i {
+  margin-right: 8px;
+}
