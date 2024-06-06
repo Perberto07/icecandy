@@ -3,6 +3,7 @@ import Sidebar from "../Sidebar";
 import "./css/addcustomer.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import OTPModal from './OTPModal'; // Import the OTPModal component
 
 function Addcustomer() {
   const [Name, setStore] = useState("");
@@ -14,6 +15,7 @@ function Addcustomer() {
   const [isAddressValid, setIsAddressValid] = useState(true);
   const [isContactPersonValid, setIsContactPersonValid] = useState(true);
   const [isContactNoValid, setIsContactNoValid] = useState(true);
+  const [showOTPModal, setShowOTPModal] = useState(false); // State to control OTP modal
   const navigate = useNavigate();
 
   function handleSubmit(event) {
@@ -33,29 +35,34 @@ function Addcustomer() {
     // Prompt before adding
     const confirmAdd = window.confirm("Are you sure you want to add?");
     if (confirmAdd) {
-      setAdding(true);
-      axios
-        .post("http://localhost:8080/addcustomer", {
-          Name,
-          Address,
-          ContactPerson,
-          CellphoneNo,
-        })
-        .then((res) => {
-          console.log(res);
-          setAdding(false);
-          setTimeout(() => {
-            alert("Adding complete!");
-            navigate("/Customer/Customerlist");
-          }, 2000);
-        })
-        .catch((err) => console.log(err));
+      setShowOTPModal(true); // Show OTP modal when attempting to add
     }
   }
 
+  // Function to handle OTP verification and execute adding of a customer
+  const handleOTPVerified = () => {
+    setAdding(true);
+    axios
+      .post("http://localhost:8080/addcustomer", {
+        Name,
+        Address,
+        ContactPerson,
+        CellphoneNo,
+      })
+      .then((res) => {
+        console.log(res);
+        setAdding(false);
+        setShowOTPModal(false); // Close OTP modal after successful addition
+        setTimeout(() => {
+          alert("Adding complete!");
+          navigate("/Customer/Customerlist");
+        }, 2000);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <>
-
       <div className="Content">
         <Sidebar />
         <div className="Content-addcustomer">
@@ -80,7 +87,6 @@ function Addcustomer() {
                   }
                 }}
               />
-
             </div>
             <hr />
             <div className="two">
@@ -143,6 +149,12 @@ function Addcustomer() {
           </form>
         </div>
       </div>
+      {/* OTP modal component */}
+      {showOTPModal && (
+        <OTPModal
+          onVerify={handleOTPVerified} // Pass the function to handle OTP verification
+        />
+      )}
     </>
   );
 }

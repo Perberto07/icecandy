@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import './css/addorder.css';
 import Sidebar from "../Sidebar";
 import axios from 'axios';
+import OTPModal from './OTPModal'; // Import OTPModal component
 
 function AddOrder() {
   const [products, setProducts] = useState([{ id: 1, product: '', quantity: '', price: '', saved: false }]);
@@ -14,6 +15,7 @@ function AddOrder() {
   const [date, setDate] = useState('');
   const [highestTransactionId, setHighestTransactionId] = useState(0);
   const [submissionStatus, setSubmissionStatus] = useState('');
+  const [showOTPModal, setShowOTPModal] = useState(false);
 
   useEffect(() => {
     axios.get('http://localhost:8080/customer')
@@ -128,9 +130,17 @@ function AddOrder() {
       });
   };
 
+
+  const handleOTPVerified = () => {
+    // Submit the transaction after OTP verification
+    saveTransaction();
+    // Hide OTP modal after verification
+    setShowOTPModal(false);
+  };
+
   const handleSaveTransaction = () => {
     if (window.confirm('Are you sure you want to submit the transaction?')) {
-      saveTransaction();
+      setShowOTPModal(true);
     }
   };
 
@@ -291,6 +301,13 @@ function AddOrder() {
           </div>
         </div>
       </div>
+      {showOTPModal && (
+        <OTPModal
+          show={showOTPModal}
+          onClose={() => setShowOTPModal(false)}
+          onVerify={handleOTPVerified}
+        />
+      )}
     </>
   );
 }
