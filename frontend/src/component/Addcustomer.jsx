@@ -109,7 +109,7 @@ function Addcustomer() {
                   setIsContactPersonValid(!!e.target.value);
                 }}
               />
-            </div>
+            </div>  
             <div className="four">
               <label htmlFor="contactNumber">
                 Contact Number

@@ -211,6 +211,18 @@ app.get("/order", (req, res)=>{
     });
 });
 
+app.delete('/transaction/:transactionID', (req, res) => {
+    const { transactionID } = req.params;
+    const sql = 'DELETE FROM transaction WHERE transactionID = ?';
+
+    db.query(sql, [transactionID], (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Error deleting transaction');
+        }
+        return res.status(200).send('Transaction deleted successfully');
+    });
+});
 
 
   

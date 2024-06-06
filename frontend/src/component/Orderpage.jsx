@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react';
-import './css/addorder.css';
+import './css/order.css';  // Combined CSS for both add and edit order
 import Sidebar from "../Sidebar";
 import axios from 'axios';
+import { useParams, useHistory } from 'react-router-dom';
 
-function AddOrder() {
+function OrderPage() {
+  const { orderId } = useParams();  // Get the order ID from the URL
+  const history = useHistory();
+
   const [products, setProducts] = useState([{ id: 1, product: '', quantity: '', price: '', saved: false }]);
   const [customers, setCustomers] = useState([]);
   const [productList, setProductList] = useState([]);
@@ -23,10 +27,29 @@ function AddOrder() {
       .then(res => setProductList(res.data))
       .catch(err => console.error(err));
 
-    // Set date to current date
-    const today = new Date().toISOString().split('T')[0];
-    setDate(today);
-  }, []);
+    if (orderId) {
+      axios.get(`http://localhost:8080/order/${orderId}`)
+        .then(res => {
+          const orderData = res.data;
+          setOrderNo(orderData.orderNo);
+          setDate(orderData.date);
+          setSelectedCustomer(orderData.customerNo);
+          setSelectedAddress(orderData.address);
+          setTotal(orderData.total);
+          setProducts(orderData.products.map((p, index) => ({
+            id: index + 1,
+            product: p.productNo,
+            quantity: p.quantity,
+            price: p.price,
+            saved: true
+          })));
+        })
+        .catch(err => console.error(err));
+    } else {
+      const today = new Date().toISOString().split('T')[0];
+      setDate(today);
+    }
+  }, [orderId]);
 
   useEffect(() => {
     let sum = 0;
@@ -65,14 +88,14 @@ function AddOrder() {
     const newProducts = [...products];
     newProducts[index].product = productId;
     newProducts[index].price = selectedProduct ? selectedProduct.Price : '';
-    newProducts[index].saved = false; // Reset saved status if product changes
+    newProducts[index].saved = false;
     setProducts(newProducts);
   };
 
   const handleQuantityChange = (index, quantity) => {
     const newProducts = [...products];
     newProducts[index].quantity = quantity;
-    newProducts[index].saved = false; // Reset saved status if quantity changes
+    newProducts[index].saved = false;
     setProducts(newProducts);
   };
 
@@ -97,10 +120,8 @@ function AddOrder() {
         console.log('Product saved:', res.data);
         setSubmissionStatus('Product successfully saved!');
         const newProducts = [...products];
-        newProducts[productIndex].saved = true; // Mark product as saved
+        newProducts[productIndex].saved = true;
         setProducts(newProducts);
-        // Call saveTransaction after saving the last product
-       
       })
       .catch(err => {
         console.error('Error saving product:', err);
@@ -120,6 +141,7 @@ function AddOrder() {
       .then(res => {
         console.log('Transaction saved:', res.data);
         setSubmissionStatus('Transaction successfully saved!');
+        history.push('/');  // Redirect to a different page after saving
       })
       .catch(err => {
         console.error('Error saving transaction:', err);
@@ -140,7 +162,7 @@ function AddOrder() {
   return (
     <>
       <div className='Content'>
-      <Sidebar />
+        <Sidebar />
         <div className='Content-order'>
           <div className="order-container">
             <form onSubmit={(e) => e.preventDefault()}>
@@ -192,7 +214,7 @@ function AddOrder() {
                   />
                 </div>
               </div>
-              
+
               {products.map((product, index) => (
                 <div key={product.id} className='product-quantity'>
                   {index === 0 && (
@@ -270,20 +292,19 @@ function AddOrder() {
                     >
                       {product.saved ? 'Saved' : 'Save'}
                     </button>
-                    
                   </div>
                 </div>
               ))}
-               
-              <button 
+
+              <button
                 type="button"
                 className="save-transaction-button"
                 onClick={handleSaveTransaction}
                 disabled={!allProductsSaved || products.length === 0}
               >
-                Submit Transaction
+                {orderId ? 'Update Transaction' : 'Submit Transaction'}
               </button>
-             
+
               <p className='Total'>Total: Php {total.toFixed(2)}</p>
               {submissionStatus && <p>{submissionStatus}</p>}
             </form>
@@ -294,4 +315,4 @@ function AddOrder() {
   );
 }
 
-export default AddOrder;
+export default OrderPage;

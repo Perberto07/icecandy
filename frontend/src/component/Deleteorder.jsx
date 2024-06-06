@@ -2,9 +2,12 @@ import Sidebar from "../Sidebar";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "bootstrap/scss/bootstrap.scss";
+import Modal from './Modal';
 
 function Deleteorder() {
   const [Products, setProducts] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [transactionToDelete, setTransactionToDelete] = useState(null);
   const [Transactions, setTransactions] = useState([]);
   const [Customers, setCustomers] = useState([]);
   const [Orders, setOrders] = useState([]);
@@ -13,39 +16,39 @@ function Deleteorder() {
     axios.get('http://localhost:8080/transaction')
       .then(res => setTransactions(res.data))
       .catch(err => console.error(err));
-  }, []);
-
-  useEffect(() => {
+      
     axios.get('http://localhost:8080/product')
       .then(res => setProducts(res.data))
       .catch(err => console.error(err));
-  }, []);
-
-  useEffect(() => {
+      
     axios.get('http://localhost:8080/customer')
       .then(res => setCustomers(res.data))
       .catch(err => console.error(err));
-  }, []);
-
-  useEffect(() => {
+      
     axios.get('http://localhost:8080/order')
       .then(res => setOrders(res.data))
       .catch(err => console.error(err));
   }, []);
 
-  // Create a map of customers for easy lookup
+  const handleDelete = (transactionID) => {
+    axios.delete(`http://localhost:8080/transaction/${transactionID}`)
+      .then(() => {
+        setTransactions(prevTransactions => prevTransactions.filter(transaction => transaction.transactionID !== transactionID));
+        setShowModal(false);
+      })
+      .catch(err => console.error(err));
+  };
+
   const customerMap = Customers.reduce((acc, customer) => {
     acc[customer.CustomerNO] = customer;
     return acc;
   }, {});
 
-  // Create a map of products for easy lookup
   const productMap = Products.reduce((acc, product) => {
     acc[product.ProductNO] = product;
     return acc;
   }, {});
 
-  // Create a combined data structure
   const combinedData = Transactions.map(transaction => {
     const customer = customerMap[transaction.CustomerNO] || {};
     const orderItems = Orders.filter(order => order.orderNo === transaction.orderNo).map(order => {
@@ -67,12 +70,6 @@ function Deleteorder() {
       orderItems
     };
   });
-
-  // Handle the edit button click
-  const handleEdit = (transactionID) => {
-    console.log(`Edit transaction ${transactionID}`);
-    // Implement the edit functionality here
-  };
 
   return (
     <>
@@ -116,7 +113,10 @@ function Deleteorder() {
                         <td rowSpan={data.orderItems.length}>
                           <button
                             className="btn btn-danger"
-                            onClick={() => handleEdit(data.transactionID)}
+                            onClick={() => {
+                              setTransactionToDelete(data.transactionID);
+                              setShowModal(true);
+                            }}
                           >
                             Delete
                           </button>
@@ -130,6 +130,12 @@ function Deleteorder() {
           </div>
         </div>
       </div>
+      <Modal
+        show={showModal}
+        onClose={() => setShowModal(false)}
+        onConfirm={() => handleDelete(transactionToDelete)}
+        message="Are you sure you want to delete this transaction?"
+      />
     </>
   );
 }

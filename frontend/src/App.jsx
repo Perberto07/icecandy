@@ -20,6 +20,7 @@ import Customerlist from "./component/Customerlist";
 import Productlist from "./component/Productlist";
 import TransactionDetails from "./component/TransactionDetails";
 import Order from "./component/Order";
+import OrderPage from "./component/Orderpage";
 
 const Customerpage = () => {
     return (
@@ -82,6 +83,7 @@ function App() {
                 <div>
                     <Routes>
                         <Route path='/' element={<Login/>}></Route>
+                        <Route path='/orderpage' element={<OrderPage/>}></Route>
                         <Route path='/Home' element={<Home/>}></Route>
                         <Route path='/Customer/*' element={<Customerpage/>}></Route>
                         <Route path='/Product/*' element={<Productpage/>}></Route>

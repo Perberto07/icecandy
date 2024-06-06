@@ -23,7 +23,9 @@ function Addproduct() {
       alert("All fields are required!");
       return;
     }
-    axios.post('http://localhost:8080/sendOTP', { email: Email })
+
+    axios
+      .post('http://localhost:8080/sendOTP', { email: Email })
       .then(res => {
         console.log(res);
         setSuccessMessage('OTP sent successfully!');
@@ -33,6 +35,7 @@ function Addproduct() {
         console.error(err);
         setErrorMessage("Error sending OTP: " + err.response.data);
       });
+      return;
   }
 
   function AddProduct() {
@@ -46,7 +49,7 @@ function Addproduct() {
 
   function handleVerifyOTP() {
     // Verify OTP entered by the user
-    axios.post('http://localhost:7000/verifyOTP', { email: Email, otp: OTP })
+    axios.post('http://localhost:8080/verifyOTP', { email: Email, otp: OTP })
       .then(res => {
         console.log(res);
         if (res.data === 'OTP verified successfully') {
@@ -114,7 +117,7 @@ function Addproduct() {
               <button type="button" onClick={handleVerifyOTP} className="submit-button">Verify OTP</button>
             ) : (
               <button type="submit" className="submit-button">Send OTP</button>
-            )}s
+            )}
           </form>
         </div>
       </div>
