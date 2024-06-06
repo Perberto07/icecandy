@@ -128,11 +128,11 @@ function Sidebar() {
                      <i className="fas fa-plus"></i> Add Order
                    </Link>
                  </li>
-                 <li className="product">
+                 {/*<li className="product">
                    <Link to="/Order/Editorder" className="button1">
                      <i className="fas fa-edit"></i> Edit Order
                    </Link>
-                 </li>
+                 </li>*/}
                  <li className="product">
                    <Link to="/Order/Deleteorder" className="button1">
                      <i className="fas fa-trash"></i> Delete Order

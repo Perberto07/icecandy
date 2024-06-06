@@ -124,11 +124,11 @@ function Header() {
                     <i className="fas fa-plus"></i> Add Order
                   </Link>
                 </li>
-                <li>
-                  <Link to="/Order/Editorder" className="submenu-link">
-                    <i className="fas fa-edit"></i> Edit Order
-                  </Link>
-                </li>
+                 {/*<li className="product">
+                   <Link to="/Order/Editorder" className="button1">
+                     <i className="fas fa-edit"></i> Edit Order
+                   </Link>
+                 </li>*/}
                 <li>
                   <Link to="/Order/Deleteorder" className="submenu-link">
                     <i className="fas fa-trash"></i> Delete Order
