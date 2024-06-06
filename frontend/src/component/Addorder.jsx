@@ -12,6 +12,7 @@ function AddOrder() {
   const [total, setTotal] = useState(0);
   const [orderNo, setOrderNo] = useState('');
   const [date, setDate] = useState('');
+  const [highestTransactionId, setHighestTransactionId] = useState(0);
   const [submissionStatus, setSubmissionStatus] = useState('');
 
   useEffect(() => {
@@ -22,11 +23,13 @@ function AddOrder() {
     axios.get('http://localhost:8080/product')
       .then(res => setProductList(res.data))
       .catch(err => console.error(err));
-
-    // Set date to current date
-    const today = new Date().toISOString().split('T')[0];
-    setDate(today);
+      
+      axios.get('http://localhost:8080/highest-transaction-id')
+      .then(res => setHighestTransactionId(res.data.highestTransactionId))
+      .catch(err => console.error(err));
+  
   }, []);
+
 
   useEffect(() => {
     let sum = 0;
@@ -40,10 +43,10 @@ function AddOrder() {
   useEffect(() => {
     if (date && selectedCustomer) {
       const formattedDate = date.replace(/-/g, '');
-      const orderNumber = `${formattedDate}${selectedCustomer}`;
+      const orderNumber = `${formattedDate}${highestTransactionId + 1}`;
       setOrderNo(orderNumber);
     }
-  }, [date, selectedCustomer]);
+  }, [date, selectedCustomer, highestTransactionId]);
 
   const addProductField = () => {
     setProducts([...products, { id: products.length + 1, product: '', quantity: '', price: '', saved: false }]);

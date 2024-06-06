@@ -195,13 +195,13 @@ app.post("/addtransaction", (req, res)=>{
     });
 });
 
-app.get("/transaction", (req, res)=>{
-    const sql = "SELECT * FROM transaction";
-    db.query(sql, (err, data)=>{
-        if(err) return res.json("error");
-        return res.json(data);
+app.get("/highest-transaction-id", (req, res) => {
+    const sql = "SELECT MAX(TransactionID) AS highestTransactionId FROM transaction";
+    db.query(sql, (err, data) => {
+      if (err) return res.json("error");
+      return res.json(data[0]); // Assuming data[0].highestTransactionId contains the max ID
     });
-});
+  });
 
 app.get("/order", (req, res)=>{
     const sql = "SELECT * FROM ordered";
