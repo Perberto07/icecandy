@@ -1,0 +1,28 @@
+/* Report.css */
+
+/* Hide everything by default */
+@media print {
+    body * {
+      visibility: hidden;
+    }
+  
+    /* Show only the print area */
+    .print-area, .print-area * {
+      visibility: visible;
+    }
+  
+    /* Ensure the print area uses the full page */
+    .print-area {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+  
+    /* Optionally hide the print button */
+    .btn-primary {
+      display: none;
+    }
+  }
+  

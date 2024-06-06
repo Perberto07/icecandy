@@ -1,15 +1,17 @@
-import Sidebar from "../Sidebar";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Sidebar from "../Sidebar";
 import "bootstrap/scss/bootstrap.scss";
+import './css/report.css'; // Assuming you have a CSS file for report styling
+import logo from '../images/icecandy.jpg'; // Import your logo image
 
 function Report() {
   const [Products, setProducts] = useState([]);
   const [Transactions, setTransactions] = useState([]);
   const [Customers, setCustomers] = useState([]);
   const [Orders, setOrders] = useState([]);
-  const [startDate, setStartDate] = useState(''); // State for start date
-  const [endDate, setEndDate] = useState(''); // State for end date
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
 
   useEffect(() => {
     axios.get('http://localhost:8080/transaction')
@@ -68,10 +70,73 @@ function Report() {
     };
   });
 
-  const totalIncome = combinedData.reduce((acc, data) => acc + data.sum, 0); // Calculate total income
+  const totalIncome = combinedData.reduce((acc, data) => acc + data.sum, 0);
 
   const handlePrint = () => {
-    window.print();
+    const printContent = document.getElementById('printable-report').innerHTML;
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write('<html><head><title>Print Report</title>');
+    printWindow.document.write('<style>');
+    // Add the styles you want to apply to the printout
+    printWindow.document.write(`
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      .report-container {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        background-color: #f9f9f9;
+      }
+      .report-header {
+        margin-bottom: 20px;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 10px;
+      }
+      .header-content {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+      .icecandy-logo {
+        width: 50px; /* Adjust the size to match the text height */
+        height: auto;
+        margin-right: 10px;
+      }
+      .brandname {
+        font-size: 24px;
+        margin: 0;
+      }
+      .total-income {
+        margin: 20px 0;
+      }
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .table th, .table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+      .table th {
+        background-color: #007bff;
+        color: white;
+      }
+      .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #f2f2f2;
+      }
+    `);
+    printWindow.document.write('</style>');
+    printWindow.document.write('</head><body>');
+    printWindow.document.write(`
+      
+    `);
+    printWindow.document.write(printContent);
+    printWindow.document.write('</body></html>');
+    printWindow.document.close();
+    printWindow.print();
   };
 
   return (
@@ -79,27 +144,32 @@ function Report() {
       <div className="Content">
         <Sidebar />
         <div className="Content-deleteorder">
-          <div className="transaction">
-            <div className="filter">
-              <label htmlFor="startDate">Start Date:</label>
-              <input
-                type="date"
-                id="startDate"
-                value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
-              />
-              <label htmlFor="endDate">End Date:</label>
-              <input
-                type="date"
-                id="endDate"
-                value={endDate}
-                onChange={(e) => setEndDate(e.target.value)}
-              />
+          <div id="printable-report" className="report-container"> {/* Add report-container class */}
+            <div className="report-header">
+              <div className="header-content">
+                <img src={logo} alt="Company Logo" className="icecandy-logo" />
+                <h1 className="brandname">Delicious Ice Candy</h1>
+              </div>
+              <div className="filter">
+                <label htmlFor="startDate">Start Date:</label>
+                <input
+                  type="date"
+                  id="startDate"
+                  value={startDate}
+                  onChange={(e) => setStartDate(e.target.value)}
+                />
+                <label htmlFor="endDate">End Date:</label>
+                <input
+                  type="date"
+                  id="endDate"
+                  value={endDate}
+                  onChange={(e) => setEndDate(e.target.value)}
+                />
+              </div>
+              <div className="total-income">
+                <h3>Total Income: Php. {totalIncome.toFixed(2)}</h3>
+              </div>
             </div>
-            <div className="total-income">
-              <h3>Total Income: Php. {totalIncome.toFixed(2)}</h3> {/* Display total income */}
-            </div>
-            <button className="btn btn-primary" onClick={handlePrint}>Print Report</button> {/* Print button */}
             <table className="table table-striped">
               <thead>
                 <tr>
@@ -136,6 +206,7 @@ function Report() {
                 ))}
               </tbody>
             </table>
+            <button className="btn btn-primary print-button" onClick={handlePrint}>Print Report</button> {/* Print button */}
           </div>
         </div>
       </div>
