@@ -97,12 +97,13 @@
   position: absolute;
   top: 40px;
   left: 0;
-  background-color: white;
+  background-color: #7fbfff;
   border: 1px solid #ccc;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 10;
-  width: 150px;
+  width: max-content;
   padding: 10px 0;
+  border-radius: 5%;
 }
 
 .customer-submenu li,
@@ -112,15 +113,26 @@
 }
 
 .submenu-link {
-  display: block;
-  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 10px;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+  font-size: 18px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 5px;
   text-decoration: none;
-  color: #013220;
-  background-color: #f8f9fa;
+  color: #fff;
+  background-color: #007bff;
+  width: 100%;
+  border: none;
 }
 
 .submenu-link:hover {
-  background-color: #e2e6ea;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #fff;
+  border-radius: 5px;
 }
 
 .submenu-link i {
