@@ -23,21 +23,21 @@ function Addproduct() {
       alert("All fields are required!");
       return;
     }
-  
+
     axios
       .post('http://localhost:8080/sendOTP', { email: Email })
       .then(res => {
         console.log(res);
         setSuccessMessage('OTP sent successfully!');
-       // Show OTP input field after sending OTP
+        // Show OTP input field after sending OTP
       })
       .catch(err => {
         console.error(err);
         setErrorMessage("Error sending OTP: " + err.response.data);
       });
-      setShowOTPField(true); 
+    setShowOTPField(true);
   }
-  
+
 
   function handleVerifyOTP() {
     // Verify OTP entered by the user
@@ -46,13 +46,13 @@ function Addproduct() {
         console.log(res);
         if (res.data === 'OTP verified successfully') {
 
-            axios.post('http://localhost:8080/addproduct', { ProductFlavor, Price })
-              .then(res => {
-                console.log(res);
-                navigate('/Product/Productlist');
-              }).catch(err => console.log(err));
-    
-        
+          axios.post('http://localhost:8080/addproduct', { ProductFlavor, Price })
+            .then(res => {
+              console.log(res);
+              navigate('/Product/Productlist');
+            }).catch(err => console.log(err));
+
+
         } else {
           setErrorMessage('Invalid OTP');
         }
@@ -76,7 +76,13 @@ function Addproduct() {
                 id="product"
                 placeholder='Enter Product'
                 value={ProductFlavor}
-                onChange={e => setProductFlavor(e.target.value)} />
+                onChange={e => {
+                  const inputValue = e.target.value;
+                  if (/^[a-zA-Z\s]*$/.test(inputValue)) {
+                    setProductFlavor(inputValue);
+                  }
+                }}
+              />
             </div>
             <hr />
             <div className='Price'>

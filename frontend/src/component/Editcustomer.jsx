@@ -111,7 +111,12 @@ function Editcustomer() {
                               type="text"
                               name="Name"
                               value={editingCustomerData.Name}
-                              onChange={handleInputChange}
+                              onChange={(e) => {
+                                const inputValue = e.target.value;
+                                if (/^[a-zA-Z\s]*$/.test(inputValue)) {
+                                  handleInputChange(e);
+                                }
+                              }}
                             />
                           </td>
                           <td>
@@ -127,7 +132,12 @@ function Editcustomer() {
                               type="text"
                               name="ContactPerson"
                               value={editingCustomerData.ContactPerson}
-                              onChange={handleInputChange}
+                              onChange={(e) => {
+                                const inputValue = e.target.value;
+                                if (/^[a-zA-Z\s]*$/.test(inputValue)) {
+                                  handleInputChange(e);
+                                }
+                              }}
                             />
                           </td>
                           <td>
@@ -164,7 +174,7 @@ function Editcustomer() {
         <button onClick={scrollToTop} className='back-to-top'>
           Back to Top
         </button>
-      </div>
+      </div >
     </>
   );
 }

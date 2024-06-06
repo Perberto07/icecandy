@@ -105,7 +105,12 @@ function Editproduct() {
                                                     type="text"
                                                     name="ProductFlavor"
                                                     value={editingProductData.ProductFlavor}
-                                                    onChange={handleInputChange}
+                                                    onChange={(e) => {
+                                                        const inputValue = e.target.value;
+                                                        if (/^[a-zA-Z\s]*$/.test(inputValue)) {
+                                                            handleInputChange(e);
+                                                        }
+                                                    }}
                                                 />
                                             </td>
                                             <td>

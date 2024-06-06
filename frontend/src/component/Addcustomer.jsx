@@ -71,10 +71,16 @@ function Addcustomer() {
                 placeholder="Enter Customer Name"
                 value={Name}
                 onChange={(e) => {
-                  setStore(e.target.value);
-                  setIsNameValid(!!e.target.value);
+                  const inputValue = e.target.value;
+                  if (/^[a-zA-Z\s]*$/.test(inputValue)) {
+                    setStore(inputValue);
+                    setIsNameValid(true);
+                  } else {
+                    setIsNameValid(false);
+                  }
                 }}
               />
+
             </div>
             <hr />
             <div className="two">
@@ -105,8 +111,13 @@ function Addcustomer() {
                 placeholder="Enter Contact Person"
                 value={ContactPerson}
                 onChange={(e) => {
-                  setContact(e.target.value);
-                  setIsContactPersonValid(!!e.target.value);
+                  const inputValue = e.target.value;
+                  if (/^[a-zA-Z\s]*$/.test(inputValue)) {
+                    setContact(inputValue);
+                    setIsContactPersonValid(true);
+                  } else {
+                    setIsContactPersonValid(false);
+                  }
                 }}
               />
             </div>
