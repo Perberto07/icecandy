@@ -124,6 +124,20 @@ function TransactionCard({ transaction }) {
         margin: 0;
       }
 
+      .contact-info {
+        margin-top: 10px;
+        font-size: 14px;
+      }
+
+      .contact-info a {
+        color: #007bff;
+        text-decoration: none;
+      }
+
+      .contact-info a:hover {
+        text-decoration: underline;
+      }
+
       .header-spacing {
         margin-bottom: 20px; /* Adjust the value as needed */
       }
@@ -154,6 +168,14 @@ function TransactionCard({ transaction }) {
             <img src={logo} alt="Logo" className="icecandy-logo" />
             <h1 className="brandname">Delicious Ice Candy</h1>
           </Link>
+          <div className="contact-info">
+            <p>Address: 1998 Almeda St. Tondo, Manila</p>
+            <p>
+              Facebook: <a href="https://www.facebook.com/profile.php?id=100078804894867&mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer">Delicious Ice Candy</a>
+            </p>
+            <p>Email: <a href="mailto:deliciousicecandy@gmail.com">deliciousicecandy@gmail.com</a></p>
+            <p>Contact No.: 09686604225 / 09205951421</p>
+          </div>
           <h4>Transaction No: {transaction.transactionID}</h4>
           <p>Order No: {transaction.orderNo}</p>
         </div>
