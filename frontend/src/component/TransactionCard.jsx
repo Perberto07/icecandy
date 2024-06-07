@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './css/TransactionCard.css';
 import logo from '../images/icecandy.jpg'; // Import your logo image
 
 function TransactionCard({ transaction }) {
+  const topRef = useRef(null);
+
+  const scrollToTop = () => {
+    if (topRef.current) {
+      topRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const handlePrint = () => {
     const printableContent = document.getElementById(`transaction-card-${transaction.transactionID}`).innerHTML;
     const printWindow = window.open('', '_blank');
@@ -147,40 +155,44 @@ function TransactionCard({ transaction }) {
   };
 
   return (
-    <div id={`transaction-card-${transaction.transactionID}`} className="transaction-card transaction">
-      <div className="transaction-header header-spacing">
-        <Link to="/Home" className="header-content">
-          <img src={logo} alt="Logo" className="icecandy-logo" />
-          <h1 className="brandname">Delicious Ice Candy</h1>
-        </Link>
-        <h4>Transaction No: {transaction.transactionID}</h4>
-        <p>Order No: {transaction.orderNo}</p>
-      </div>
-      <div className="transaction-body">
-        <p><strong>Customer Name:</strong> {transaction.customerName}</p>
-        <p><strong>Customer Address:</strong> {transaction.customerAddress}</p>
-        <p><strong>Date:</strong> {formatDate(transaction.date)}</p>
-        <p><strong>Sum:</strong> {transaction.sum}</p>
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th>Product Flavor</th>
-              <th>Price</th>
-              <th>Quantity</th>
-            </tr>
-          </thead>
-          <tbody>
-            {transaction.orderItems.map((item, index) => (
-              <tr key={index}>
-                <td>{item.productFlavor}</td>
-                <td>{item.price}</td>
-                <td>{item.quantity}</td>
+    <div>
+      <div ref={topRef}></div> {/* Reference for scrolling to top */}
+      <div id={`transaction-card-${transaction.transactionID}`} className="transaction-card transaction">
+        <div className="transaction-header header-spacing">
+          <Link to="/Home" className="header-content">
+            <img src={logo} alt="Logo" className="icecandy-logo" />
+            <h1 className="brandname">Delicious Ice Candy</h1>
+          </Link>
+          <h4>Transaction No: {transaction.transactionID}</h4>
+          <p>Order No: {transaction.orderNo}</p>
+        </div>
+        <div className="transaction-body">
+          <p><strong>Customer Name:</strong> {transaction.customerName}</p>
+          <p><strong>Customer Address:</strong> {transaction.customerAddress}</p>
+          <p><strong>Date:</strong> {formatDate(transaction.date)}</p>
+          <p><strong>Sum:</strong> {transaction.sum}</p>
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th>Product Flavor</th>
+                <th>Price</th>
+                <th>Quantity</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {transaction.orderItems.map((item, index) => (
+                <tr key={index}>
+                  <td>{item.productFlavor}</td>
+                  <td>{item.price}</td>
+                  <td>{item.quantity}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <button className="print-button" onClick={handlePrint}><i className="fa fa-print"></i> | Print </button>
       </div>
-      <button className="print-button" onClick={handlePrint}><i className="fa fa-print"></i> | Print </button>
+      <button onClick={scrollToTop} className="back-to-top">Back to Top</button>
     </div>
   );
 }

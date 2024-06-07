@@ -138,6 +138,12 @@ function Report() {
     printWindow.document.close();
     printWindow.print();
   };
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 
   return (
     <>
@@ -208,7 +214,9 @@ function Report() {
             </table>
             <button className="btn btn-primary print-button" onClick={handlePrint}>Print Report</button> {/* Print button */}
           </div>
+          <button className="back-to-top" onClick={scrollToTop}>Back to Top</button>
         </div>
+        
       </div>
     </>
   );
