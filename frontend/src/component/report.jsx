@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Sidebar from "../Sidebar";
 import "bootstrap/scss/bootstrap.scss";
@@ -12,6 +12,7 @@ function Report() {
   const [Orders, setOrders] = useState([]);
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+  const contentRef = useRef(null);
 
   useEffect(() => {
     axios.get('http://localhost:8080/transaction')
@@ -139,17 +140,19 @@ function Report() {
     printWindow.print();
   };
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
+    if (contentRef.current) {
+        contentRef.current.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+};
 
   return (
     <>
-      <div className="Content">
+      <div className="Content" >
         <Sidebar />
-        <div className="Content-deleteorder">
+        <div className="Content-deleteorder" ref={contentRef}>
           <div id="printable-report" className="report-container"> {/* Add report-container class */}
             <div className="report-header">
               <div className="header-content">

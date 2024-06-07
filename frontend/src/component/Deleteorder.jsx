@@ -1,8 +1,8 @@
-import Sidebar from "../Sidebar";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import "bootstrap/scss/bootstrap.scss";
+import Sidebar from "../Sidebar";
 import OTPModal from './OTPModal'; // Import the OTPModal component
+//import './css/deleteorder.css'; // Import the CSS file for styling
 
 function Deleteorder() {
   const [Products, setProducts] = useState([]);
@@ -12,6 +12,7 @@ function Deleteorder() {
   const [Customers, setCustomers] = useState([]);
   const [Orders, setOrders] = useState([]);
   const [showOTPModal, setShowOTPModal] = useState(false); // State to control OTP modal
+  const contentRef = useRef(null);
 
   useEffect(() => {
     axios.get('http://localhost:8080/transaction')
@@ -79,11 +80,20 @@ function Deleteorder() {
     };
   });
 
+  const scrollToTop = () => {
+    if (contentRef.current) {
+        contentRef.current.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+};
+
   return (
     <>
-      <div className="Content">
+      <div className="Content" >
         <Sidebar />
-        <div className="Content-deleteorder">
+        <div className="Content-deleteorder" ref={contentRef}>
           <div className="transaction">
             <table className="table table-striped">
               <thead>
@@ -140,6 +150,10 @@ function Deleteorder() {
           onVerify={handleConfirmDelete} // Pass the function to handle OTP verification
         />
       )}
+      {/* Back to Top button */}
+      <button onClick={scrollToTop} className="back-to-top">
+        Back to Top
+      </button>
     </>
   );
 }

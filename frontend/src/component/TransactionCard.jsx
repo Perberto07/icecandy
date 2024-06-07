@@ -1,17 +1,9 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './css/TransactionCard.css';
 import logo from '../images/icecandy.jpg'; // Import your logo image
 
 function TransactionCard({ transaction }) {
-  const topRef = useRef(null);
-
-  const scrollToTop = () => {
-    if (topRef.current) {
-      topRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   const handlePrint = () => {
     const printableContent = document.getElementById(`transaction-card-${transaction.transactionID}`).innerHTML;
     const printWindow = window.open('', '_blank');
@@ -156,7 +148,6 @@ function TransactionCard({ transaction }) {
 
   return (
     <div>
-      <div ref={topRef}></div> {/* Reference for scrolling to top */}
       <div id={`transaction-card-${transaction.transactionID}`} className="transaction-card transaction">
         <div className="transaction-header header-spacing">
           <Link to="/Home" className="header-content">
@@ -192,7 +183,6 @@ function TransactionCard({ transaction }) {
         </div>
         <button className="print-button" onClick={handlePrint}><i className="fa fa-print"></i> | Print </button>
       </div>
-      <button onClick={scrollToTop} className="back-to-top">Back to Top</button>
     </div>
   );
 }

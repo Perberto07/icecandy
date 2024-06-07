@@ -1,14 +1,14 @@
-import React, { useEffect, useState, useRef } from 'react';
+import  { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import Sidebar from '../Sidebar';
-import Modal from './Modal';
+
 import OTPModal from './OTPModal'; // Import the OTPModal component
 import './css/topback.css';
 import './css/deletecustomer.css';
 
 function Deletecustomer() {
     const [customers, setCustomers] = useState([]);
-    const [showModal, setShowModal] = useState(false);
+   
     const [selectedCustomerId, setSelectedCustomerId] = useState(null);
     const [searchInput, setSearchInput] = useState('');
     const [filteredCustomers, setFilteredCustomers] = useState([]);
@@ -46,10 +46,7 @@ function Deletecustomer() {
             });
     };
 
-    const handleCloseModal = () => {
-        setShowModal(false);
-        setSelectedCustomerId(null);
-    };
+   
 
     const handleSearchInputChange = (e) => {
         setSearchInput(e.target.value);
@@ -72,7 +69,7 @@ function Deletecustomer() {
         <>
             <div className='Content' ref={contentRef}>
                 <Sidebar />
-                <div className='delete-content'>
+                <div className='delete-content' >
                     <div className='delete-customer-container'>
                         <h2 className='delete-customer-heading'>Delete Customer</h2>
                         <input
