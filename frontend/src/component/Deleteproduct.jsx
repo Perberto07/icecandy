@@ -1,14 +1,16 @@
-import { useEffect, useState } from 'react';
+import  { useState, useEffect, useRef } from "react";
 import axios from 'axios';
 import Sidebar from '../Sidebar';
 import OTPModal from './OTPModal'; // Import the OTPModal component
 import './css/deleteproduct.css';
+
 
 function Deleteproduct() {
   const [products, setProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [showOTPModal, setShowOTPModal] = useState(false);
   const [selectedProductId, setSelectedProductId] = useState(null);
+  const contentRef = useRef(null);
 
   useEffect(() => {
     axios.get('http://localhost:8080/product')
@@ -45,9 +47,19 @@ function Deleteproduct() {
     product.ProductFlavor.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  const scrollToTop = () => {
+    if (contentRef.current) {
+        contentRef.current.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+};
+
   return (
+   
     <>
-      <div className='Content'>
+      <div className='Content'  ref={contentRef}>
         <Sidebar />
         <div className='Content3'>
           <div className='search-container'>
@@ -85,6 +97,10 @@ function Deleteproduct() {
             </table>
           </div>
         </div>
+        {/* Back to Top button */}
+      <button onClick={scrollToTop} className="back-to-top">
+        Back to Top
+      </button>
       </div>
 
       {/* Conditionally render OTP modal */}

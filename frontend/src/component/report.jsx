@@ -215,7 +215,7 @@ function Report() {
                 ))}
               </tbody>
             </table>
-            <button className="btn btn-primary print-button" onClick={handlePrint}>Print Report</button> {/* Print button */}
+            <button className="btn btn-primary print-button" onClick={handlePrint}><i className="fa fa-print"></i>Print Report</button> {/* Print button */}
           </div>
           <button className="back-to-top" onClick={scrollToTop}>Back to Top</button>
         </div>

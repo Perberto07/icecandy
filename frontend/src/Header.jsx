@@ -1,19 +1,37 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from './images/icecandy.jpg';
 import home from './images/home.png';
 import Customer from './images/customer.png';
 import Product from './images/product.png';
-import Order from './images/order.png';
-import OrderIcon from './images/order.png';  // Added import for OrderIcon
-import Logout from './images/logout.png';
+import OrderIcon from './images/order.png';
+import Logouticon from './images/logout.png';
 import './css/Header.css';
+import axios from 'axios';
 
 function Header() {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
   const [showCustomerSubMenu, setShowCustomerSubMenu] = useState(false);
   const [showProductSubMenu, setShowProductSubMenu] = useState(false);
-  const [showOrderSubMenu, setShowOrderSubMenu] = useState(false);  // Added state for order submenu
+  const [showOrderSubMenu, setShowOrderSubMenu] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    if (window.confirm('Are you sure you want to log out?')) {
+      axios.post('http://localhost:8080/logout')
+        .then(res => {
+          if (res.data.Status === "Success") {
+            navigate('/');
+          } else {
+            console.error("Logout failed:", res.data.Message);
+          }
+        })
+        .catch(err => {
+          console.error("Logout error:", err);
+        });
+    }
+  };
 
   const getCurrentDateTime = () => {
     const now = new Date();
@@ -106,11 +124,10 @@ function Header() {
                     <i className="fas fa-trash"></i> Delete Product
                   </Link>
                 </li>
-                
               </ul>
             )}
           </div>
-          <div className="icon-container" onClick={() => setShowOrderSubMenu(!showOrderSubMenu)}>  {/* Added order submenu */}
+          <div className="icon-container" onClick={() => setShowOrderSubMenu(!showOrderSubMenu)}>
             <img src={OrderIcon} alt="Order" className="icon2" />
             <span className="icon-text">Order</span>
             {showOrderSubMenu && (
@@ -125,28 +142,23 @@ function Header() {
                     <i className="fas fa-plus"></i> Add Order
                   </Link>
                 </li>
-                 {/*<li className="product">
-                   <Link to="/Order/Editorder" className="button1">
-                     <i className="fas fa-edit"></i> Edit Order
-                   </Link>
-                 </li>*/}
                 <li>
                   <Link to="/Order/Deleteorder" className="submenu-link">
                     <i className="fas fa-trash"></i> Delete Order
                   </Link>
                 </li>
                 <li>
-                   <Link to="/Order/Report" className="submenu-link">
-                     <i className="fas fa-file-alt"></i> Report
-                   </Link>
-                 </li>
+                  <Link to="/Order/Report" className="submenu-link">
+                    <i className="fas fa-file-alt"></i> Report
+                  </Link>
+                </li>
               </ul>
             )}
           </div>
-          <Link to="/" className="icon-container">
-            <img src={Logout} alt="Logout" className="icon2" />
+          <div className="icon-container" onClick={handleLogout}>
+            <img src={Logouticon} alt="Logout" className="icon2" />
             <span className="icon-text">Logout</span>
-          </Link>
+          </div>
         </div>
       </div>
     </div>
