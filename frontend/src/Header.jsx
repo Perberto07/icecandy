@@ -56,7 +56,7 @@ function Header() {
     <div className="header">
       <div className="business-container">
         <Link to="/Home" className="active">
-          <img src={logo} alt="Logo" className="icecandy-logo" />
+          <img src={logo} alt="Logo" className="icecandy" />
         </Link>
         <h1 className='business'>Delicious Ice Candy</h1>
       </div>
@@ -83,7 +83,7 @@ function Header() {
                 </li>
                 <li>
                   <Link to="/Customer/Addcustomer" className="submenu-link">
-                    <i className="fas fa-plus"></i>Add Customer
+                    <i className="fas fa-plus"></i> Add Customer
                   </Link>
                 </li>
                 <li>
@@ -93,7 +93,7 @@ function Header() {
                 </li>
                 <li>
                   <Link to="/Customer/Deletecustomer" className="submenu-link">
-                    <i className="fas fa-trash"></i>Delete Customer
+                    <i className="fas fa-trash"></i> Delete Customer
                   </Link>
                 </li>
               </ul>

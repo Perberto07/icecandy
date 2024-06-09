@@ -15,12 +15,12 @@
 
 .business-container {
   display: flex;
-  font-size: 20px;
+  font-size: 40px;
   margin-top: 20px;
   margin-left: 0%;
 }
 
-.icecandy-logo {
+.icecandy {
   width: 100px;
   height: auto;
   margin-left: 15px;
@@ -57,38 +57,28 @@
 .icon-container {
   position: relative;
   margin-right: 20px;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .icon2 {
   width: 30px;
-  margin-left: 20px;
+  height: 30px;
 }
 
 .icon-text {
-  visibility: hidden;
-  opacity: 0;
-  width: max-content;
-  background-color: black;
+  font-size: 14px;
   color: white;
+  margin-top: 5px;
   text-align: center;
-  border-radius: 6px;
-  padding: 5px;
-  position: absolute;
-  z-index: 1;
-  bottom: 120%;
-  left: 50%;
-  transform: translateX(-50%);
-  transition: opacity 0.3s;
-}
-
-.icon-container:hover .icon-text {
-  visibility: visible;
-  opacity: 1;
 }
 
 .business {
-  margin-left: 30px;
+  margin-left: 20px;
+  font-size: larger;
+  margin-top: 15px;
 }
 
 .customer-submenu,
