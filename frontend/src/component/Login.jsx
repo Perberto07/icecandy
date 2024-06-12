@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import ADMIN from './images/admin.png';
+import OTPModal from './OTPModal'; // Import the OTPModal component
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -10,6 +11,7 @@ function Login() {
   const navigate = useNavigate();
   const [error, setError] = useState('');
   const [errorVisible, setErrorVisible] = useState(false); // State to track error visibility
+  const [showOTPModal, setShowOTPModal] = useState(false); // State to control OTP modal
 
   axios.defaults.withCredentials = true;
 
@@ -20,8 +22,7 @@ function Login() {
     axios.post('http://localhost:8080/login', { username, password })
       .then(res => {
         if (res.data.Status === "Success") {
-          navigate('/home');
-          console.log("Success");
+          setShowOTPModal(true); // Show OTP modal on successful login
         } else {
           setError(res.data.Message); // Display error to the user
           setErrorVisible(true); // Set error visibility to true
@@ -33,6 +34,13 @@ function Login() {
         setErrorVisible(true); // Set error visibility to true
       });
   }
+
+  // Function to handle OTP verification and navigate to home page
+  const handleOTPVerified = () => {
+    setShowOTPModal(false); // Close OTP modal after successful OTP verification
+    navigate('/home');
+    console.log("OTP verified, navigating to home page");
+  };
 
   // Clear error and reset error visibility
   useEffect(() => {
@@ -46,8 +54,8 @@ function Login() {
       <div className="loginbg">
         <div className={`login-container ${errorVisible ? 'error-visible' : ''}`}>
           <div className='ADMIN'>
-          <img src={ADMIN} alt="admin" className="admin" />
-          <h2 className='log'>Login</h2>
+            <img src={ADMIN} alt="admin" className="admin" />
+            <h2 className='log'>Login</h2>
           </div>
           
           <form onSubmit={handleSubmit}>
@@ -76,6 +84,12 @@ function Login() {
           </form>
         </div>
       </div>
+      {/* OTP modal component */}
+      {showOTPModal && (
+        <OTPModal
+          onVerify={handleOTPVerified} // Pass the function to handle OTP verification
+        />
+      )}
     </>
   );
 }
