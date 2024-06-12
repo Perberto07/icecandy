@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2024 at 06:14 PM
+-- Generation Time: Jun 12, 2024 at 06:09 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -66,7 +66,7 @@ INSERT INTO `customer` (`CustomerNO`, `Name`, `Address`, `ContactPerson`, `Cellp
 (24, 'Carol Magpili', '173 San Nicolas 1 Bacoor Cavite', 'Carol', 9156579928),
 (25, 'Veronica Valenzona', 'Blk 22 L4B Elisa Homes Molina 4 Bacoor Cavite', 'Veronica ', 9214778704),
 (26, 'Esperanza del Rosario', '177 Mambog 4 City of Bacoor Cavite', 'Esperanza Del Rosario Aquino', 9178392523),
-(27, 'Jfroi Store', 'Jfroi Store', 'Edna Conde Pelimiano', 9194574988),
+(27, 'Jfroi Store', 'blumintrit', 'Edna Conde Pelimiano', 9194574988),
 (28, 'Marischell Pharmacy', '245 Carsadang Bago Pag-asa Imus Cavite', 'Marischell Bautista', 9228025546),
 (29, 'Edlyn Buenafe', 'Blk 5 Lot 5 Ph 2 Prima Rosa Vill Buhay Na Tubig Im', 'Edlyn Buenafe', 9569814209),
 (30, 'Emy Store', 'Bukandala 2, Imus Cavite', 'Emerita Concepcion', 9433166829),
@@ -151,7 +151,6 @@ INSERT INTO `customer` (`CustomerNO`, `Name`, `Address`, `ContactPerson`, `Cellp
 (109, 'Xena Mae Store', 'Langka St. Cor. Guyabano St. AFP Housing S.M.R', 'Grace Fernandez', 9431361558),
 (110, 'Pinky Store', 'B12 31 Lanzones St. AFP Village San Mateo Rizal', 'Esperanza', 9217030752),
 (111, 'Azhanic', '48 Halcon St Sta. Teresita Quezon City', 'Mark Lester', 9354426675),
-(112, 'Angel & Ashley Variety', 'Modesta San Mateo Rizal', 'Manate Tabaling', 9192002161),
 (113, 'Lugaw Ni Bossing', 'J. Sumulong Rd. San Mateo Rizal', 'Melody Deguzman', 9264132609),
 (114, 'J4IN1GEN. MDSE', 'BLK 11 LOT 4 AFP Village Brgy. Silangan S.M.R.', 'Renalyn P. Gilo', 9617586157),
 (115, 'Jay Velasco Vargas', 'Purok Maligaya 2 Brgy Mambugan Antipolo', 'Jay VArgas', 9465562413),
@@ -270,7 +269,11 @@ INSERT INTO `customer` (`CustomerNO`, `Name`, `Address`, `ContactPerson`, `Cellp
 (228, 'Bless Joy Store', '10 D Don Basilio Bautista St Hulong Duhat Malabon', 'Medelon Salveo', 9425551286),
 (229, 'Kian', '485 6th Ave Caloocan ', 'Kian', 9167108244),
 (230, 'Jen Store', '53 4th Ave Caloocan City', 'Jen', 9174569214),
-(231, 'patrick store', 'baseco manila', 'patrick', 9303887754);
+(233, '2131', 'a231', '1231', 2313),
+(234, 'jann', 'blum', 'jhudq', 980394),
+(238, 'Josie Tan', 'unit 1 ', 'qwscac', 92938492),
+(240, 'Mary jane', 'block 14 Baseco Manila', 'banday', 99823479283),
+(241, 'Mary jane', 'block 14 Baseco Manila', 'banday', 99823479283);
 
 -- --------------------------------------------------------
 
@@ -290,7 +293,69 @@ CREATE TABLE `ordered` (
 --
 
 INSERT INTO `ordered` (`orderID`, `orderNo`, `ProductNO`, `Quantity`) VALUES
-(1, 2024060419, 10, 8);
+(1, 2024060419, 10, 8),
+(2, 202406048, 11, 2),
+(3, 202406048, 12, 6),
+(4, 2024060419, 1, 4),
+(5, 2024060419, 11, 2),
+(6, 2024060419, 12, 5),
+(7, 2024060416, 10, 4),
+(8, 2024060416, 1, 4),
+(9, 2024060415, 10, 6),
+(10, 2024060415, 11, 8),
+(11, 20240605231, 1, 7),
+(12, 20240605231, 2, 8),
+(13, 20240605231, 13, 5),
+(14, 20240605231, 2, 8),
+(15, 2024060527, 1, 1),
+(16, 2024060527, 2, 1),
+(17, 2024060527, 3, 1),
+(18, 2024060527, 4, 0),
+(19, 2024060527, 5, 0),
+(20, 2024060527, 6, 0),
+(21, 2024060527, 7, 0),
+(25, 202406063, 13, 12),
+(26, 202406063, 12, 12),
+(27, 202406063, 1, 12),
+(28, 202406063, 10, 13),
+(29, 202406063, 8, 13),
+(30, 20240606231, 12, 12),
+(31, 2024060614, 6, 12),
+(32, 2024060614, 7, 14),
+(34, 2024060614, 6, 42),
+(35, 2024060614, 1, 213),
+(36, 202406069, 3, 0),
+(37, 202406069, 1, 0),
+(38, 2024060616, 4, 0),
+(39, 2024060616, 3, 0),
+(40, 2024060616, 2, 0),
+(41, 202406065, 5, 12),
+(42, 202406063, 3, 0),
+(43, 202406063, 3, 0),
+(44, 202406063, 4, 0),
+(45, 202406063, 7, 0),
+(52, 2024060612, 6, 12),
+(53, 2024060611, 10, 12),
+(54, 2024060611, 11, 12),
+(55, 2024060611, 2, 12),
+(57, 0, 3, 15),
+(58, 0, 6, 12),
+(59, 0, 9, 12),
+(60, 0, 2, 12),
+(61, 0, 13, 12),
+(62, 202406060, 4, 22),
+(63, 202406060, 3, 12),
+(64, 202406060000, 4, 13),
+(65, 202406060000, 7, 12),
+(66, 202406061, 7, 12),
+(69, 2024060637, 4, 12),
+(73, 0, 12, 12),
+(75, 2024060638, 12, 12),
+(81, 2024060639, 3, 12),
+(82, 2024060639, 3, 12),
+(83, 2024060739, 9, 6),
+(85, 2024060743, 1, 12),
+(86, 2024060743, 10, 12);
 
 -- --------------------------------------------------------
 
@@ -321,7 +386,7 @@ INSERT INTO `product` (`ProductNO`, `ProductFlavor`, `Price`) VALUES
 (10, 'Cookies & Cream', 12),
 (11, 'Cappuccino', 12),
 (12, 'Rocky Road', 12),
-(13, 'Dragon Fruit', 12);
+(13, 'Dragon Fruit', 15);
 
 -- --------------------------------------------------------
 
@@ -336,6 +401,25 @@ CREATE TABLE `transaction` (
   `Date` date NOT NULL,
   `Sum` int(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `transaction`
+--
+
+INSERT INTO `transaction` (`transactionID`, `orderNo`, `CustomerNO`, `Date`, `Sum`) VALUES
+(6, 2024060415, 15, '2024-06-04', 168),
+(19, 2024060614, 14, '2024-06-06', 3372),
+(29, 2024060611, 11, '2024-06-06', 432),
+(30, 0, 14, '2024-06-06', 468),
+(31, 0, 14, '2024-06-06', 288),
+(32, 202406060, 3, '2024-06-06', 264),
+(33, 202406060, 3, '2024-06-06', 144),
+(34, 202406060000, 4, '2024-06-06', 156),
+(35, 202406060000, 6, '2024-06-06', 144),
+(36, 202406061, 1, '2024-06-06', 144),
+(37, 2024060637, 1, '2024-06-06', 144),
+(38, 2024060638, 10, '2024-06-06', 144),
+(42, 2024060739, 9, '2024-06-07', 72);
 
 -- --------------------------------------------------------
 
@@ -407,25 +491,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `CustomerNO` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=232;
+  MODIFY `CustomerNO` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=242;
 
 --
 -- AUTO_INCREMENT for table `ordered`
 --
 ALTER TABLE `ordered`
-  MODIFY `orderID` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `orderID` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `ProductNO` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `ProductNO` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `transactionID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `transactionID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- Constraints for dumped tables
