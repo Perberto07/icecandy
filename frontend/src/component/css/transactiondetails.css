@@ -13,5 +13,6 @@
   flex: 1 1 calc(33.333% - 16px); /* Adjust based on desired number of columns */
   box-sizing: border-box;
   margin-bottom: 16px; /* Optional: Adjust the space between rows */
+  padding-bottom: 25%;
 }
 
