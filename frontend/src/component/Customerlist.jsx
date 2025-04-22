@@ -9,7 +9,7 @@ function Customerlist() {
     const contentRef = useRef(null);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/customer')
+        axios.get('http://127.0.0.1:8000/candy/')
             .then(res => setCustomers(res.data))
             .catch(err => console.error(err));
     }, []);
@@ -32,21 +32,17 @@ function Customerlist() {
                     <table className='customer-list-table'> {/* Apply the table class */}
                         <thead>
                             <tr>
-                                <th>Customer NO.</th>
                                 <th>Name</th>
                                 <th>Address</th>
-                                <th>Contact person</th>
                                 <th>CellPhone Number</th>
                             </tr>
                         </thead>
                         <tbody>
                             {customers.map((customer, index) => (
                                 <tr key={index}>
-                                    <td>{customer.CustomerNO}</td>
-                                    <td>{customer.Name}</td>
-                                    <td>{customer.Address}</td>
-                                    <td>{customer.ContactPerson}</td>
-                                    <td>{customer.CellphoneNO}</td>
+                                    <td>{customer.name}</td>
+                                    <td>{customer.address}</td>
+                                    <td>{customer.phone}</td>
                                 </tr>
                             ))}
                         </tbody>
