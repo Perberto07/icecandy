@@ -1,50 +1,32 @@
-from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from rest_framework.parsers import JSONParser
-from icecandy.models import customer
-from icecandy.serializers import customerSerializer
+from django.shortcuts import get_object_or_404
+from icecandy.serializers import CustomerSerializer, ProductSerializer
+from icecandy.models import Customer, Product
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 
-@csrf_exempt
+
+@api_view(['GET'])
 def customer_list(request):
-    """
-    List all code snippets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        candy = customer.objects.all()
-        serializer = customerSerializer(candy, many=True)
-        return JsonResponse(serializer.data, safe=False)
+    customers = Customer.objects.all()
+    serializer = CustomerSerializer(customers, many=True)
+    return Response(serializer.data)
 
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        serializer = customerSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
-    
-@csrf_exempt
+
+
+@api_view(['GET'])
 def customer_detail(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    try:
-        candy = customer.objects.get(pk=pk)
-    except customer.DoesNotExist:
-        return HttpResponse(status=404)
+    customer = get_object_or_404(Customer, pk=pk)
+    serializer = CustomerSerializer(customer)
+    return Response(serializer.data)
 
-    if request.method == 'GET':
-        serializer = customerSerializer(candy)
-        return JsonResponse(serializer.data)
+@api_view(['GET'])
+def product_list(request):
+    products = Product.objects.all()
+    serializer = ProductSerializer(products, many=True)
+    return Response(serializer.data)
 
-    elif request.method == 'PUT':
-        data = JSONParser().parse(request)
-        serializer = customerSerializer(candy, data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data)
-        return JsonResponse(serializer.errors, status=400)
-
-    elif request.method == 'DELETE':
-        candy.delete()
-        return HttpResponse(status=204)
+@api_view(['GET'])
+def product_detail(request, pk):
+    product = get_object_or_404(Customer, pk=pk)
+    serializer = ProductSerializer(product)
+    return Response(serializer.data)

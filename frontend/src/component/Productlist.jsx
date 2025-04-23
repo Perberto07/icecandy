@@ -9,7 +9,7 @@ function Productlist() {
   const contentRef = useRef(null);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/product')
+    axios.get('http://127.0.0.1:8000/products/')
       .then(res => setProducts(res.data))
       .catch(err => console.error(err));
   }, []);
@@ -36,17 +36,17 @@ function Productlist() {
             <table className='product-list-table'> {/* Add product-list-table class */}
               <thead>
                 <tr>
-                  <th>Product No.</th>
                   <th>Product Flavor</th>
                   <th>Price</th>
+                  <th>Image</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredProducts.map((product, index) => (
                   <tr key={index}>
-                    <td>{product.ProductNO}</td>
                     <td>{product.ProductFlavor}</td>
                     <td>{product.Price}</td>
+                    <td>{product.image}</td>
                   </tr>
                 ))}
               </tbody>
