@@ -3,6 +3,7 @@ from django.db import models
 from pygments.lexers import get_all_lexers
 from pygments.styles import get_all_styles
 
+
 # Create your models here.
 class Customer(models.Model):
     id= models.AutoField(primary_key=True)
@@ -48,12 +49,9 @@ class Order(models.Model):
         return f'Order {self.OrderId} - {self.customername}'
     
 class OrderItem(models.Model): 
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='item')
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
-
-    def __str__(self):
-        return f'{self.product} - {self.quantity}'
 
     @property
     def item_subtotal(self):
