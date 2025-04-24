@@ -39,6 +39,6 @@ def orderlist(request, pk):
 
 @api_view(['GET'])
 def order_list(request):
-    orders = Order.objects.all()
-    serializer = OrderSerializer(orders, many=True)
+    order = Order.objects.all()
+    serializer = OrderSerializer(order, many=True)
     return Response(serializer.data)

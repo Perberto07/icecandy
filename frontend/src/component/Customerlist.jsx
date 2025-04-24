@@ -9,7 +9,7 @@ function Customerlist() {
     const contentRef = useRef(null);
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/candy/')
+        axios.get('http://127.0.0.1:8000/customer/')
             .then(res => setCustomers(res.data))
             .catch(err => console.error(err));
     }, []);

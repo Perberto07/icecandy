@@ -8,7 +8,7 @@ import Editcustomer from "./component/Editcustomer";
 import Product from "./component/Product";
 import Addproduct from "./component/Addproduct";
 import Editproduct from "./component/Editproduct";
-
+import OrderList from "./component/OrderList";
 import Addorder from "./component/Addorder";
 import Editorder from "./component/Editorder";
 import Transaction from "./component/Transaction";
@@ -56,6 +56,7 @@ const Orderpage = () => {
         <>
             <Routes>
                 <Route path='/' element={<Order/>}></Route>
+                <Route path='/orderlist' element={<OrderList/>}></Route>
                 <Route path='/Addorder' element={<Addorder/>}></Route>
                 <Route path='/Transactiondetail' element={<TransactionDetails/>}></Route>
                 <Route path='/Editorder' element={<Editorder/>}></Route>

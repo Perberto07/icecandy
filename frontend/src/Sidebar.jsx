@@ -119,7 +119,7 @@ function Sidebar() {
               {showOrderSubMenu && (
                  <ul className="submenu">
                   <li>
-                   <Link to="/Order/Transactiondetail" className="button1">
+                   <Link to="/Order/orderlist" className="button1">
                      <i className="fas fa-list"></i> Order List
                    </Link>
                  </li>
