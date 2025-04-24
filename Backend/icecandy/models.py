@@ -37,7 +37,7 @@ class Order(models.Model):
 
     OrderId  = models.UUIDField(primary_key=True, default=uuid.uuid4,)
     customername = models.ForeignKey(Customer, on_delete=models.CASCADE) 
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)    
     status = models.CharField(
         max_length=10,
         choices=StatusChoices.choices,
