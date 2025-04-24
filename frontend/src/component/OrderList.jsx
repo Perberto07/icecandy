@@ -1,6 +1,7 @@
 import  { useState, useEffect, useRef } from "react";
 import axios from 'axios';
 import Sidebar from "../Sidebar";
+import './css/customerlist.css';
 
 function OrdersList() {
   const [orders, setOrders] = useState([]);
@@ -27,28 +28,29 @@ function OrdersList() {
   <Sidebar />
   
   {/* Scrollable container */}
-  <div className="overflow-auto max-h-[80vh] border rounded shadow">
-    <table className="min-w-full border-collapse border border-gray-300">
-      <thead className="bg-gray-100 sticky top-0 z-10">
+    <div className="customer-list-container"> {/* Apply the container class */}
+    <h1 className="customer-list-heading">Orderlist</h1>
+    <table className="customer-list-table">
+      <thead >
         <tr>
-          <th className="border border-gray-300 px-4 py-2">Order ID</th>
-          <th className="border border-gray-300 px-4 py-2">Customer</th>
-          <th className="border border-gray-300 px-4 py-2">Date</th>
-          <th className="border border-gray-300 px-4 py-2">Status</th>
-          <th className="border border-gray-300 px-4 py-2">Items</th>
-          <th className="border border-gray-300 px-4 py-2">Total ($)</th>
+          <th>Order ID</th>
+          <th>Customer</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Items</th>
+          <th>Total ($)</th>
         </tr>
       </thead>
       <tbody>
         {orders.map((order) => (
-          <tr key={order.OrderId} className="hover:bg-gray-50">
-            <td className="border border-gray-300 px-4 py-2">{order.OrderId}</td>
-            <td className="border border-gray-300 px-4 py-2">{order.customername}</td>
-            <td className="border border-gray-300 px-4 py-2">
+          <tr key={order.OrderId} >
+            <td>{order.OrderId}</td>
+            <td>{order.customername}</td>
+            <td>
               {new Date(order.created_at).toLocaleString()}
             </td>
-            <td className="border border-gray-300 px-4 py-2">{order.status}</td>
-            <td className="border border-gray-300 px-4 py-2">
+            <td>{order.status}</td>
+            <td>
               <ul className="list-disc ml-4">
                 {order.item.map((item, idx) => (
                   <li key={idx}>
@@ -63,6 +65,9 @@ function OrdersList() {
       </tbody>
     </table>
   </div>
+  <button onClick={scrollToTop} className='back-to-top'> {/* Apply the back-to-top class */}
+                    Back to Top
+</button>
 </div>
 
   );
